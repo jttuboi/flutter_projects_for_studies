@@ -1,11 +1,23 @@
-# flutter_training
- Some apps to learn flutter.
+# Flutter Training
 
-# app1
+Some apps to learn flutter.
 
-A new Flutter project.
+## Name Generator (app1)
 
-## Getting Started
+### Description
+
+A simple app that generates proposed names for a startup company. The user can select and unselect names, saving the best ones. The code lazily generates 10 names at a time. As the user scrolls, more names are generated. There is no limit to how far a user can scroll.
+
+### Version
+
+Flutter 2.12
+
+### Tutorial
+
+https://flutter.dev/docs/get-started/codelab
+
+
+### Getting Started
 
 This project is a starting point for a Flutter application.
 
