@@ -24,12 +24,36 @@ class RandomWords extends StatefulWidget {
 class _RandomWordsState extends State<RandomWords> {
   final _suggestions = <WordPair>[];
   final _biggerFont = const TextStyle(fontSize: 18.0);
+  final _saved = <WordPair>{};
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text('Name Generator')),
+        appBar: AppBar(
+          title: const Text('Name Generator'),
+          actions: [IconButton(onPressed: _pushSaved, icon: Icon(Icons.list))],
+        ),
         body: _buildSuggestions());
+  }
+
+  void _pushSaved() {
+    // controle de páginas (stack) do app em cima do context
+    // o push é a route que será adicionada na stack
+    Navigator.of(context)
+        .push(MaterialPageRoute<void>(builder: (BuildContext context) {
+      final tiles = _saved.map((WordPair pair) {
+        return ListTile(title: Text(pair.asPascalCase, style: _biggerFont));
+      });
+      final divided = tiles.isNotEmpty
+          ? ListTile.divideTiles(tiles: tiles, context: context).toList()
+          : <Widget>[];
+      return Scaffold(
+        appBar: AppBar(title: Text('Saved Suggestions')),
+        body: ListView(
+          children: divided,
+        ),
+      );
+    }));
   }
 
   Widget _buildSuggestions() {
@@ -53,6 +77,20 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildRow(WordPair pair) {
-    return ListTile(title: Text(pair.asPascalCase, style: _biggerFont));
+    final alreadySaved = _saved.contains(pair);
+    return ListTile(
+        title: Text(pair.asPascalCase, style: _biggerFont),
+        trailing: Icon(alreadySaved ? Icons.favorite : Icons.favorite_border,
+            color: alreadySaved ? Colors.red : null),
+        onTap: () {
+          // ao chamar setState, o build() é chamado e consequentemente os componentes dentro do build() é atualizada
+          setState(() {
+            if (alreadySaved) {
+              _saved.remove(pair);
+            } else {
+              _saved.add(pair);
+            }
+          });
+        });
   }
 }
