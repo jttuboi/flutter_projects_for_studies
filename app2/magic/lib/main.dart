@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
+import 'package:permission_handler/permission_handler.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:dio/dio.dart';
+import 'package:intent/flag.dart';
+import 'package:intent/intent.dart' as android_intent;
+import 'package:intent/action.dart' as android_action;
 
 void main() {
   runApp(MyApp());
@@ -8,106 +16,147 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // aqui requisita a permissão para gravar algum arquivo no celular
+    final statuses = [
+      Permission.storage,
+    ].request();
+
+    // aqui faz com que a tela fique no modo fullscreen
+    SystemChrome.setEnabledSystemUIOverlays([]);
+
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      title: 'Magica',
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+  MyHomePage({Key? key}) : super(key: key);
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
+
+  final PageController _controller = PageController(
+    initialPage: 0,
+  );
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    final pages = PageView(
+      controller: _controller,
+      children: [
+        FirstScreenWidget(),
+        SecondScreenWidget(),
+      ],
     );
+    return pages;
+  }
+}
+
+class FirstScreenWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final child = new Scaffold(
+      // a imagem pega dentro do app salvo na pasta images
+      // ela cobre toda tela com o maior tamanho que ela puder
+      body: new Image.asset(
+        "images/home1.png",
+        fit: BoxFit.cover,
+        height: double.infinity,
+        width: double.infinity,
+      ),
+    );
+    return new GestureDetector(
+      onTapDown: _onTapDown,
+      child: child,
+    );
+  }
+
+  void _onTapDown(TapDownDetails details) {
+    // pega os valores das coordenadas onde o dedo tocou na tela
+    var x = details.globalPosition.dx;
+    var y = details.globalPosition.dy;
+
+    int dx = (x / 80).floor(); // considera que tem 80px cada espaço
+    int dy = ((y - 180) / 100).floor(); // considera que tem 100px cada espaço
+    int position = dy * 5 + dx; // calcula a posição que o dedo tocou
+
+    print("x=$x y=$y $dx $dy $position");
+
+    _save(position);
+
+    // +----------------------------------+ -----
+    // | 80px | 80px | 80px | 80px | 80px |
+    // |                                  | 180px
+    // |                                  |
+    // |                            ----- | -----
+    // |                            100px |
+    // |                            ----- |
+    // |                            100px |
+    // |                            ----- |
+    // |                            100px |
+    // |                            ----- |
+    // |                            100px |
+    // |                            ----- |
+    // |                            100px |
+    // |                            ----- | -----
+    // |                                  |
+    // |                                  | XXXpx
+    // |                                  |
+    // +----------------------------------+ -----
+  }
+
+  void _save(int position) async {
+    // a função dá o acesso à pasta temporária
+    var appDocDir = await getTemporaryDirectory();
+    String savePath = appDocDir.path + "/efeito-$position.jpg";
+    print(savePath);
+
+    // o link é algum local na internet que contém a imagem. esse link é igual o exemplo do vídeo
+    await Dio().download(
+        "https://github.com/guilhermesilveira/flutter-magic/raw/main/efeito-$position.jpg",
+        savePath);
+
+    // slava a imagem na galeria
+    final result = await ImageGallerySaver.saveFile(savePath);
+    print(result);
+  }
+}
+
+class SecondScreenWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final child = new Scaffold(
+      // a imagem pega dentro do app salvo na pasta images
+      // ela cobre toda tela com o maior tamanho que ela puder
+      body: new Image.asset(
+        "images/home1.png",
+        fit: BoxFit.cover,
+        height: double.infinity,
+        width: double.infinity,
+      ),
+    );
+    return new GestureDetector(
+      onTap: _openGallery,
+      child: child,
+    );
+  }
+
+  void _openGallery() {
+    // quando clica na tela, ele abre a galeria
+    android_intent.Intent()
+      ..setAction(android_action.Action.ACTION_VIEW)
+      ..setType("image/*")
+      ..addFlag(Flag.FLAG_ACTIVITY_NEW_TASK)
+      ..startActivity().catchError((e) => print(e));
   }
 }

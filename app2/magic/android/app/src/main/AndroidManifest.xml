@@ -38,4 +38,8 @@
             android:name="flutterEmbedding"
             android:value="2" />
     </application>
+
+    <!-- Adiciona as permissões do celular aqui
+         https://github.com/Baseflow/flutter-permission-handler/blob/develop/permission_handler/example/android/app/src/main/AndroidManifest.xml -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>
