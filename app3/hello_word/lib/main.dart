@@ -29,11 +29,7 @@ class MyApp extends StatelessWidget {
             ],
           ),
         ),
-        Icon(
-          Icons.star,
-          color: Colors.red[500],
-        ),
-        Text("41"),
+        FavoriteWidget(),
       ],
     ),
   );
@@ -107,5 +103,55 @@ class MyApp extends StatelessWidget {
         )
       ],
     );
+  }
+}
+
+class FavoriteWidget extends StatefulWidget {
+  @override
+  _FavoriteWidgetState createState() => _FavoriteWidgetState();
+}
+
+class _FavoriteWidgetState extends State<FavoriteWidget> {
+  // variaveis mutaveis
+  bool _isFavorited = true;
+  int _favoriteCount = 41;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          padding: EdgeInsets.all(0),
+          child: IconButton(
+            padding: EdgeInsets.all(0),
+            alignment: Alignment.centerRight,
+            icon: (_isFavorited ? Icon(Icons.star) : Icon(Icons.star_border)),
+            color: Colors.red[500],
+            onPressed: _toggleFavorite,
+          ),
+        ),
+        SizedBox(
+            width: 18,
+            child: Container(
+              child: Text("$_favoriteCount"),
+            ))
+      ],
+    );
+  }
+
+  // metodo chamado quando clica no container que contem a imagem
+  void _toggleFavorite() {
+    // serve para atualizar os dados e em seguida chama o build pai, nesse caso
+    // o build do _FavoriteWidgetState
+    setState(() {
+      if (_isFavorited) {
+        _favoriteCount -= 1;
+        _isFavorited = false;
+      } else {
+        _favoriteCount += 1;
+        _isFavorited = true;
+      }
+    });
   }
 }
