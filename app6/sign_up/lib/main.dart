@@ -8,6 +8,7 @@ class SignUpApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         "/": (context) => SignUpScreen(),
+        "/welcome": (context) => WelcomeScreen(),
       },
     );
   }
@@ -30,6 +31,19 @@ class SignUpScreen extends StatelessWidget {
   }
 }
 
+class WelcomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+      child: Text(
+        "Welcome!",
+        style: Theme.of(context).textTheme.headline2,
+      ),
+    ));
+  }
+}
+
 class SignUpForm extends StatefulWidget {
   @override
   _SignUpFormState createState() => _SignUpFormState();
@@ -45,6 +59,7 @@ class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      onChanged: _updateFormProgress,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -86,11 +101,34 @@ class _SignUpFormState extends State<SignUpForm> {
                     : Colors.blue;
               }),
             ),
-            onPressed: null,
+            onPressed: _formProgress == 1 ? _showWelcomeScreen : null,
             child: Text("Sign up"),
           ),
         ],
       ),
     );
+  }
+
+  void _updateFormProgress() {
+    var progress = 0.0;
+    final controllers = [
+      _firstNameTextController,
+      _lastNameTextController,
+      _usernameTextController,
+    ];
+
+    for (final controller in controllers) {
+      if (controller.value.text.isNotEmpty) {
+        progress += 1 / controllers.length;
+      }
+    }
+
+    setState(() {
+      _formProgress = progress;
+    });
+  }
+
+  void _showWelcomeScreen() {
+    Navigator.of(context).pushNamed("/welcome");
   }
 }
