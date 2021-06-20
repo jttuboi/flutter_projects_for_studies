@@ -1,5 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 import 'kitten.dart';
 
@@ -8,16 +9,26 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Kitten Selection',
-      theme: ThemeData(primarySwatch: Colors.purple),
-      home: const MyHomePage(),
+    return PlatformProvider(
+      settings: PlatformSettingsData(
+        platformStyle: PlatformStyleData(
+          android: PlatformStyle.Material,
+          fuchsia: PlatformStyle.Material,
+          ios: PlatformStyle.Cupertino,
+          linux: PlatformStyle.Material,
+          macos: PlatformStyle.Cupertino,
+          web: PlatformStyle.Cupertino,
+          windows: PlatformStyle.Material,
+        ),
+      ),
+      builder: (context) => PlatformApp(
+        title: 'Kitten Selection',
+        //theme: ThemeData(primarySwatch: Colors.purple),
+        home: MyHomePage(),
+      ),
     );
   }
 }
-
-final String server =
-    defaultTargetPlatform == TargetPlatform.android ? "10.0.2.2" : "localhost";
 
 final List<Kitten> _kittens = <Kitten>[
   Kitten(
@@ -48,25 +59,25 @@ final List<Kitten> _kittens = <Kitten>[
 ];
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
+    return PlatformScaffold(
+      appBar: PlatformAppBar(
         title: Text("Available Kittens"),
+        backgroundColor: Colors.purple,
       ),
       body: ListView.builder(
         itemCount: _kittens.length,
         itemExtent: 60.0,
         itemBuilder: _listItemBuilder,
       ),
+      backgroundColor: Colors.white,
     );
   }
 
   Widget _listItemBuilder(BuildContext context, int index) {
     return GestureDetector(
-      onTap: () => showDialog(
+      onTap: () => showPlatformDialog(
         context: context,
         builder: (context) => _dialogBuilder(context, _kittens[index]),
       ),
@@ -75,7 +86,19 @@ class MyHomePage extends StatelessWidget {
         alignment: Alignment.centerLeft,
         child: Text(
           _kittens[index].name,
-          style: Theme.of(context).textTheme.headline5,
+          style: platformThemeData(
+            context,
+            material: (data) {
+              return data.textTheme.headline5?.copyWith(
+                color: Colors.black87,
+              );
+            },
+            cupertino: (data) {
+              return data.textTheme.navTitleTextStyle.copyWith(
+                color: Colors.black87,
+              );
+            },
+          ),
         ),
       ),
     );
@@ -83,7 +106,9 @@ class MyHomePage extends StatelessWidget {
 
   Widget _dialogBuilder(BuildContext context, Kitten kitten) {
     ThemeData localTheme = Theme.of(context);
-
+    // IT DOESN'T HAVE A SUBSTITUTE FOR SIMPLE DIALOG YET, SO
+    // FOR iOS DOESN'T SUPPORT IMAGES ON DIALOG.
+    // IF I FIND AN WAY, I'LL UPDATE HERE.
     return SimpleDialog(
       children: [
         Image.network(
@@ -97,7 +122,19 @@ class MyHomePage extends StatelessWidget {
             children: [
               Text(
                 kitten.name,
-                style: localTheme.textTheme.headline4,
+                style: platformThemeData(
+                  context,
+                  material: (data) {
+                    return data.textTheme.headline4?.copyWith(
+                      color: Colors.black,
+                    );
+                  },
+                  cupertino: (data) {
+                    return data.textTheme.navTitleTextStyle.copyWith(
+                      color: Colors.black,
+                    );
+                  },
+                ),
               ),
               Text(
                 "${kitten.age} months old",
@@ -124,7 +161,7 @@ class MyHomePage extends StatelessWidget {
                     SizedBox(width: 6.0),
                     ElevatedButton(
                       onPressed: () {},
-                      child: const Text("Adopt"),
+                      child: Text("Adopt"),
                     ),
                   ],
                 ),
