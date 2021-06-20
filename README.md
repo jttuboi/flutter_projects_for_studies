@@ -14,19 +14,17 @@ Flutter 2.12
 https://flutter.dev/docs/get-started/codelab
 https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2
 
-
 ## Magic - showing the pokemon (app2)
 
 ##### Description
 An app it can use to show the pokemon in cellphone that one person choice.
 
 ##### Version
-Flutter 2.12
+Flutter 2.22
 
 ##### Tutorial
 https://www.youtube.com/watch?v=J4BVaXkwmM8
 https://www.youtube.com/watch?v=I36seuWUe5s
-
 
 ## Hello World (app3)
 
@@ -34,7 +32,18 @@ https://www.youtube.com/watch?v=I36seuWUe5s
 A simple page to show data about a place that it can be favorited and unfavorited.
 
 ##### Version
-Flutter 2.12
+Flutter 2.22
 
 ##### Tutorial
 https://flutter.dev/docs/development/ui/layout/tutorial
+
+## To Do List (app4)
+
+##### Description
+A simple app to do list.
+
+##### Version
+Flutter 2.22
+
+##### Tutorial
+https://www.udemy.com/course/flutter-crie-aplicativos-android-e-ios-com-sdk-mobile-do-google-e-dart/
