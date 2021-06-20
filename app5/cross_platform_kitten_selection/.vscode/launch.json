@@ -1,0 +1,47 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+		{
+			"name": "Selected platform",
+			"request": "launch",
+			"type": "dart"
+		},
+		{
+			"name": "Pixel 4",
+			"request": "launch",
+			"type": "dart",
+			"deviceId": "emulator-5554",
+            "flutterMode": "debug"
+		},
+		{
+			"name": "iPhone",
+			"request": "launch",
+			"type": "dart",
+			"deviceId": "iPhone",
+            "flutterMode": "debug"
+		},
+		{
+			"name": "Chrome",
+			"request": "launch",
+			"type": "dart",
+			"deviceId": "chrome",
+            "flutterMode": "debug"
+		},
+		{
+			"name": "Windows 10",
+			"request": "launch",
+			"type": "dart",
+			"deviceId": "windows",
+            "flutterMode": "debug"
+		},
+    ],
+	"compounds": [
+		{
+			"name": "All Devices (debug)",
+			"configurations": [ "Pixel 4", "Windows 10", "Chrome" ],
+		}
+	]
+}
