@@ -10,6 +10,9 @@ A simple app that generates proposed names for a startup company. The user can s
 ##### Version
 Flutter 2.12
 
+##### Date
+13/jun/2021
+
 ##### Tutorial
 https://flutter.dev/docs/get-started/codelab
 https://codelabs.developers.google.com/codelabs/first-flutter-app-pt2
@@ -21,6 +24,9 @@ An app it can use to show the pokemon in cellphone that one person choice.
 
 ##### Version
 Flutter 2.22
+
+##### Date
+14/jun/2021
 
 ##### Tutorial
 https://www.youtube.com/watch?v=J4BVaXkwmM8
@@ -34,6 +40,9 @@ A simple page to show data about a place that it can be favorited and unfavorite
 ##### Version
 Flutter 2.22
 
+##### Date
+19/jun/2021
+
 ##### Tutorial
 https://flutter.dev/docs/development/ui/layout/tutorial
 
@@ -44,6 +53,9 @@ A simple app to do list.
 
 ##### Version
 Flutter 2.22
+
+##### Date
+19/jun/2021
 
 ##### Tutorial
 https://www.udemy.com/course/flutter-crie-aplicativos-android-e-ios-com-sdk-mobile-do-google-e-dart/
