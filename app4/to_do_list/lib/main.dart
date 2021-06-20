@@ -49,12 +49,12 @@ class _TaskListState extends State<TaskList> {
       children: [
         IconButton(
           icon: Icon(
-            Icons.check_box,
+            task.finished ? Icons.check_box : Icons.check_box_outline_blank,
             size: 42.0,
             color: Colors.green,
           ),
           padding: EdgeInsets.only(left: 10.0, right: 30.0),
-          onPressed: () {},
+          onPressed: () => _finishTask(task),
         ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -62,6 +62,9 @@ class _TaskListState extends State<TaskList> {
             Text(
               task.text,
               style: TextStyle(
+                decoration: task.finished
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
               ),
@@ -71,6 +74,12 @@ class _TaskListState extends State<TaskList> {
         ),
       ],
     );
+  }
+
+  void _finishTask(Task task) {
+    setState(() {
+      task.finished = !task.finished;
+    });
   }
 
   @override
