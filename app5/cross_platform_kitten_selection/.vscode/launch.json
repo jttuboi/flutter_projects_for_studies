@@ -2,6 +2,11 @@
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+
+	// Para executar multi devices, neste projeto precisa selecionar a opção "All Devices (debug)",
+	// que pode ser visto na aba da esquerda Run and Debug (ou Ctrl+Shift+D), na combobox no topo.
+	// Depois que selecionar, clicar na seta play (verde) que está ao lado. Ele executará todos os
+	// devices configurados para esse comando.
     "version": "0.2.0",
     "configurations": [
 		{

@@ -59,3 +59,17 @@ Flutter 2.22
 
 ##### Tutorial
 https://www.udemy.com/course/flutter-crie-aplicativos-android-e-ios-com-sdk-mobile-do-google-e-dart/
+
+## kitten Selection (app5)
+
+##### Description
+A simple app select a kitten to adopt
+
+##### Version
+Flutter 2.22
+
+##### Date
+20/jun/2021
+
+##### Tutorial
+https://www.youtube.com/watch?v=DL0Ix1lnC4w
