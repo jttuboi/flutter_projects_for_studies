@@ -9,6 +9,7 @@ class Calculator extends StatelessWidget {
       home: Column(
         children: [
           Display("123"),
+          Keyboard(),
         ],
       ),
     );
