@@ -88,3 +88,18 @@ Flutter 2.22
 
 ##### Tutorial
 https://flutter.dev/docs/get-started/codelab-web
+
+## Calculator (app7)
+
+##### Description
+A calculator
+
+##### Version
+Flutter 2.22
+
+##### Date
+27/jun/2021
+
+##### Tutorial
+https://github.com/cod3rcursos/youtube
+https://www.youtube.com/watch?v=jyjdXFsQoYw
