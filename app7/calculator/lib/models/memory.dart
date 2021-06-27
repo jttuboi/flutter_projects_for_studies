@@ -27,6 +27,8 @@ class Memory {
     }
 
     _lastCommand = command;
+    print(_buffer);
+    print(_lastCommand);
   }
 
   bool _isReplacingOperation(String command) {
