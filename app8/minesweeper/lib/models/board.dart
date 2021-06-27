@@ -1,6 +1,4 @@
 import 'dart:math';
-
-import 'package:flutter/foundation.dart';
 import 'package:minesweeper/models/field.dart';
 
 class Board {
@@ -11,9 +9,9 @@ class Board {
   final List<Field> _fields = [];
 
   Board({
-    @required this.rows = 10,
-    @required this.columns = 10,
-    @required this.bombsQuantity = 10, // default is 10% of board 10x10
+    required this.rows,
+    required this.columns,
+    required this.bombsQuantity,
   }) {
     _createFields();
     _connectNeighbors();

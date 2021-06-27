@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:minesweeper/models/explosion_exception.dart';
 
 class Field {
@@ -12,8 +11,8 @@ class Field {
   bool _exploded = false;
 
   Field({
-    @required this.row = 0,
-    @required this.column = 0,
+    required this.row,
+    required this.column,
   });
 
   addNeighbor(Field neighbor) {
