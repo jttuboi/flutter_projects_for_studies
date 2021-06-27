@@ -1,49 +1,42 @@
 import 'package:flutter/material.dart';
 
+enum ButtonType { NORMAL, DARK, OPERATION }
+
 class Button extends StatelessWidget {
   static const DEFAULT = Color(0xff707070);
   static const DARK = Color(0xff525252);
   static const OPERATION = Color(0xfffa9e0d);
-  static const HOVER = Color(0xff808080);
 
   final String? text;
   final bool bigButton;
-  final Color color;
+  final ButtonType? type;
   final void Function(String)? callback;
 
   Button({
     @required this.text,
     this.bigButton = false,
-    this.color = DEFAULT,
+    @required this.type,
     @required this.callback,
   });
 
   Button.bigButton({
     @required this.text,
     this.bigButton = true,
-    this.color = DEFAULT,
-    @required this.callback,
-  });
-
-  Button.operation({
-    @required this.text,
-    this.bigButton = false,
-    this.color = OPERATION,
+    @required this.type,
     @required this.callback,
   });
 
   @override
   Widget build(BuildContext context) {
     Color getColor(Set<MaterialState> states) {
-      const Set<MaterialState> interactiveStates = <MaterialState>{
-        MaterialState.pressed,
-        MaterialState.hovered,
-        MaterialState.focused,
-      };
-      if (states.any(interactiveStates.contains)) {
-        return HOVER;
+      switch (type!) {
+        case ButtonType.NORMAL:
+          return DEFAULT;
+        case ButtonType.DARK:
+          return DARK;
+        case ButtonType.OPERATION:
+          return OPERATION;
       }
-      return color;
     }
 
     return Expanded(
