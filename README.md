@@ -101,5 +101,19 @@ Flutter 2.22
 27/jun/2021
 
 ##### Tutorial
-https://github.com/cod3rcursos/youtube
+https://github.com/cod3rcursos/youtube/tree/master/calculator
 https://www.youtube.com/watch?v=jyjdXFsQoYw
+
+## minesweeper (app8)
+
+##### Description
+The game minesweeper
+
+##### Version
+Flutter 2.22
+
+##### Date
+27/jun/2021
+
+##### Tutorial
+https://www.youtube.com/watch?v=i3w3Wnouowo
