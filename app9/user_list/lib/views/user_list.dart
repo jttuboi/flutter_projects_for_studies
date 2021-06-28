@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:user_list/components/user_tile.dart';
 import 'package:user_list/provider/users.dart';
+import 'package:user_list/routes/app_routes.dart';
 
 class UserList extends StatelessWidget {
   final String title;
@@ -19,12 +20,7 @@ class UserList extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              // teste da inserção de um usuário
-              // users.put(User(
-              //   name: "test",
-              //   email: "asdasd@asd.com",
-              //   avatarUrl: "",
-              // ));
+              Navigator.of(context).pushNamed(AppRoutes.USER_FORM);
             },
             icon: Icon(Icons.add),
           ),
