@@ -15,6 +15,7 @@ class Board {
   }) {
     _createFields();
     _connectNeighbors();
+    _randomMines();
   }
 
   reset() {
@@ -50,7 +51,7 @@ class Board {
     int quantity = 0;
     while (quantity < bombsQuantity) {
       int i = Random().nextInt(_fields.length);
-      if (_fields[i].mined) {
+      if (!_fields[i].mined) {
         _fields[i].mine();
         quantity++;
       }
