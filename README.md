@@ -104,7 +104,7 @@ Flutter 2.22
 https://github.com/cod3rcursos/youtube/tree/master/calculator
 https://www.youtube.com/watch?v=jyjdXFsQoYw
 
-## minesweeper (app8)
+## Minesweeper (app8)
 
 ##### Description
 The game minesweeper
@@ -117,3 +117,17 @@ Flutter 2.22
 
 ##### Tutorial
 https://www.youtube.com/watch?v=i3w3Wnouowo
+
+## User list (app9)
+
+##### Description
+An app to add, edit, remove user from a list.
+
+##### Version
+Flutter 2.22
+
+##### Date
+28/jun/2021
+
+##### Tutorial
+https://www.youtube.com/watch?v=ViahqKZzZ7Y
