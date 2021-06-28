@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:minesweeper/components/game_state.dart';
 
 class ResultWidget extends StatelessWidget implements PreferredSizeWidget {
-  final bool? won;
+  final GameState gameState;
   final Function() onReset;
 
   ResultWidget({
-    required this.won,
+    required this.gameState,
     required this.onReset,
   });
 
@@ -14,23 +15,26 @@ class ResultWidget extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO precisará refatorar para evitar null
     Color? _getColor() {
-      if (won == null) {
-        return Colors.yellow;
-      } else if (won!) {
-        return Colors.green[300];
+      switch (gameState) {
+        case GameState.RUNNING:
+          return Colors.yellow;
+        case GameState.WON:
+          return Colors.green[300];
+        case GameState.ENDED:
+          return Colors.red[300];
       }
-      return Colors.red[300];
     }
 
     IconData? _getIcon() {
-      if (won == null) {
-        return Icons.sentiment_satisfied_outlined;
-      } else if (won!) {
-        return Icons.sentiment_very_satisfied_outlined;
+      switch (gameState) {
+        case GameState.RUNNING:
+          return Icons.sentiment_satisfied_outlined;
+        case GameState.WON:
+          return Icons.sentiment_very_satisfied_outlined;
+        case GameState.ENDED:
+          return Icons.sentiment_very_dissatisfied_outlined;
       }
-      return Icons.sentiment_very_dissatisfied_outlined;
     }
 
     return Container(

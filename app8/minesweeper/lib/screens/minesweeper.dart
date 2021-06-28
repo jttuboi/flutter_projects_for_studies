@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minesweeper/components/board_widget.dart';
-import 'package:minesweeper/components/field_widget.dart';
+import 'package:minesweeper/components/game_state.dart';
 import 'package:minesweeper/components/result_widget.dart';
 import 'package:minesweeper/models/board.dart';
 import 'package:minesweeper/models/explosion_exception.dart';
@@ -12,42 +12,42 @@ class Minesweeper extends StatefulWidget {
 }
 
 class _MinesweeperState extends State<Minesweeper> {
-  bool? _won;
-  Board _board = Board(rows: 1, columns: 1, bombsQuantity: 1);
+  GameState _gameState = GameState.RUNNING;
+  Board? _board;
 
   _onReset() {
     setState(() {
-      _won = null;
-      _board.reset();
+      _gameState = GameState.RUNNING;
+      _board!.reset();
     });
   }
 
   _onOpen(Field field) {
     setState(() {
-      if (_won != null) {
+      if (!_gameState.isRunning()) {
         return;
       }
 
       try {
         field.open();
-        if (_board.resolved) {
-          _won = true;
+        if (_board!.resolved) {
+          _gameState = GameState.WON;
         }
       } on ExplosionException {
-        _won = false;
-        _board.revealBombs();
+        _gameState = GameState.ENDED;
+        _board!.revealBombs();
       }
     });
   }
 
   _onChangeFlag(Field field) {
     setState(() {
-      if (_won != null) {
+      if (!_gameState.isRunning()) {
         return;
       }
       field.changeFlag();
-      if (_board.resolved) {
-        _won = true;
+      if (_board!.resolved) {
+        _gameState = GameState.WON;
       }
     });
   }
@@ -57,14 +57,16 @@ class _MinesweeperState extends State<Minesweeper> {
       int qtyColumns = 15;
       double fieldSize = width / qtyColumns;
       int qtyRows = (height / fieldSize).floor();
+      int qtyBombs =
+          ((qtyRows * qtyColumns) * 0.05).toInt(); // 5% of the size board
 
       _board = Board(
         rows: qtyRows,
         columns: qtyColumns,
-        bombsQuantity: 3,
+        bombsQuantity: qtyBombs,
       );
     }
-    return _board;
+    return _board!;
   }
 
   @override
@@ -72,7 +74,7 @@ class _MinesweeperState extends State<Minesweeper> {
     return MaterialApp(
       home: Scaffold(
         appBar: ResultWidget(
-          won: _won,
+          gameState: _gameState,
           onReset: _onReset,
         ),
         body: Container(
