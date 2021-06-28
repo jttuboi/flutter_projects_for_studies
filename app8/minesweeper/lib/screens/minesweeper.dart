@@ -12,19 +12,44 @@ class Minesweeper extends StatefulWidget {
 }
 
 class _MinesweeperState extends State<Minesweeper> {
-  bool? _won = null;
+  bool? _won;
   Board _board = Board(rows: 12, columns: 12, bombsQuantity: 3);
 
   _onReset() {
-    print("reset");
+    setState(() {
+      _won = null;
+      _board.reset();
+    });
   }
 
   _onOpen(Field field) {
-    print("open");
+    setState(() {
+      if (_won != null) {
+        return;
+      }
+
+      try {
+        field.open();
+        if (_board.resolved) {
+          _won = true;
+        }
+      } on ExplosionException {
+        _won = false;
+        _board.revealBombs();
+      }
+    });
   }
 
   _onChangeFlag(Field field) {
-    print("altenra marcacao");
+    setState(() {
+      if (_won != null) {
+        return;
+      }
+      field.changeFlag();
+      if (_board.resolved) {
+        _won = true;
+      }
+    });
   }
 
   @override
