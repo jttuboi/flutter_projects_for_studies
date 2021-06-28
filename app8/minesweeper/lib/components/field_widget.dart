@@ -31,8 +31,8 @@ class FieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       // for gesture recognize
-      onTap: onOpen(field),
-      onLongPress: onChangeFlag(field),
+      onTap: () => onOpen(field),
+      onLongPress: () => onChangeFlag(field),
       child: _getImage(),
     );
   }
