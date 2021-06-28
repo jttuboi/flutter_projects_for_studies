@@ -13,7 +13,7 @@ class Minesweeper extends StatefulWidget {
 
 class _MinesweeperState extends State<Minesweeper> {
   bool? _won;
-  Board _board = Board(rows: 12, columns: 12, bombsQuantity: 3);
+  Board _board = Board(rows: 1, columns: 1, bombsQuantity: 1);
 
   _onReset() {
     setState(() {
@@ -52,6 +52,21 @@ class _MinesweeperState extends State<Minesweeper> {
     });
   }
 
+  Board _getBoard(double width, double height) {
+    if (_board == null) {
+      int qtyColumns = 15;
+      double fieldSize = width / qtyColumns;
+      int qtyRows = (height / fieldSize).floor();
+
+      _board = Board(
+        rows: qtyRows,
+        columns: qtyColumns,
+        bombsQuantity: 3,
+      );
+    }
+    return _board;
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -61,10 +76,15 @@ class _MinesweeperState extends State<Minesweeper> {
           onReset: _onReset,
         ),
         body: Container(
-          child: BoardWidget(
-            board: _board,
-            onOpen: _onOpen,
-            onChangeFlag: _onChangeFlag,
+          color: Colors.grey,
+          child: LayoutBuilder(
+            builder: (ctx, constraints) {
+              return BoardWidget(
+                board: _getBoard(constraints.maxWidth, constraints.maxHeight),
+                onOpen: _onOpen,
+                onChangeFlag: _onChangeFlag,
+              );
+            },
           ),
         ),
       ),
