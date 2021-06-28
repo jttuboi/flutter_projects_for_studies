@@ -10,6 +10,7 @@ class UserForm extends StatefulWidget {
 
 class _UserFormState extends State<UserForm> {
   final _form = GlobalKey<FormState>();
+  bool _isLoading = false;
 
   final Map<String, String> _formData = {"id": ""};
 
@@ -54,16 +55,26 @@ class _UserFormState extends State<UserForm> {
     return null;
   }
 
-  _onSave() {
+  _onSave() async {
     bool isValid = _form.currentState!.validate();
     if (isValid) {
       _form.currentState!.save();
-      Provider.of<Users>(context, listen: false).put(User(
+
+      setState(() {
+        _isLoading = true;
+      });
+      // dentro do put() tem o uso de async, ou seja, é bloqueado a execução desse método
+      // até o put() terminar de ser executado
+      await Provider.of<Users>(context, listen: false).put(User(
         id: _formData["id"]!,
         name: _formData["name"]!,
         email: _formData["email"]!,
         avatarUrl: _formData["avatarUrl"]!,
       ));
+      // só passa para esse código a partir do momento que o await termina de ser executado
+      setState(() {
+        _isLoading = false;
+      });
       Navigator.of(context).pop();
     }
   }
@@ -80,37 +91,39 @@ class _UserFormState extends State<UserForm> {
           ),
         ],
       ),
-      body: Padding(
-        padding: EdgeInsets.all(15),
-        child: Form(
-          key: _form,
-          child: Column(
-            children: [
-              TextFormField(
-                initialValue: _formData["name"],
-                keyboardType: TextInputType.name,
-                validator: _nameValidator,
-                onSaved: (value) => _formData["name"] = value!,
-                decoration: InputDecoration(labelText: "Name"),
+      body: _isLoading
+          ? Center(child: CircularProgressIndicator())
+          : Padding(
+              padding: EdgeInsets.all(15),
+              child: Form(
+                key: _form,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      initialValue: _formData["name"],
+                      keyboardType: TextInputType.name,
+                      validator: _nameValidator,
+                      onSaved: (value) => _formData["name"] = value!,
+                      decoration: InputDecoration(labelText: "Name"),
+                    ),
+                    TextFormField(
+                      initialValue: _formData["email"],
+                      keyboardType: TextInputType.emailAddress,
+                      validator: _emailValidator,
+                      onSaved: (value) => _formData["email"] = value!,
+                      decoration: InputDecoration(labelText: "E-mail"),
+                    ),
+                    TextFormField(
+                      initialValue: _formData["avatarUrl"],
+                      keyboardType: TextInputType.url,
+                      validator: _urlValidator,
+                      onSaved: (value) => _formData["avatarUrl"] = value!,
+                      decoration: InputDecoration(labelText: "Avatar URL"),
+                    ),
+                  ],
+                ),
               ),
-              TextFormField(
-                initialValue: _formData["email"],
-                keyboardType: TextInputType.emailAddress,
-                validator: _emailValidator,
-                onSaved: (value) => _formData["email"] = value!,
-                decoration: InputDecoration(labelText: "E-mail"),
-              ),
-              TextFormField(
-                initialValue: _formData["avatarUrl"],
-                keyboardType: TextInputType.url,
-                validator: _urlValidator,
-                onSaved: (value) => _formData["avatarUrl"] = value!,
-                decoration: InputDecoration(labelText: "Avatar URL"),
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
     );
   }
 }

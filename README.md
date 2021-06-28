@@ -131,3 +131,6 @@ Flutter 2.22
 
 ##### Tutorial
 https://www.youtube.com/watch?v=ViahqKZzZ7Y
+
+For firebase connection:
+https://www.youtube.com/watch?v=Z-uJPNk0Moo

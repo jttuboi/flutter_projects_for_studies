@@ -1,10 +1,14 @@
-import 'dart:math';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:user_list/data/dummy_users.dart';
 import 'package:user_list/models/user.dart';
 
 class Users with ChangeNotifier {
+  // this database is closed
+  static const BASE_URL =
+      "https://flutter-firebase-connect-569c7-default-rtdb.firebaseio.com/";
   final Map<String, User> _users = {...DUMMY_USERS};
 
   List<User> get all {
@@ -21,8 +25,17 @@ class Users with ChangeNotifier {
     return _users.values.elementAt(i);
   }
 
-  void put(User user) {
+  Future<void> put(User user) async {
     if (user.id.trim().isNotEmpty && _users.containsKey(user.id)) {
+      await http.patch(
+        Uri.parse("$BASE_URL/users/${user.id}.json"),
+        body: jsonEncode({
+          "name": user.name,
+          "email": user.email,
+          "avatarUrl": user.avatarUrl,
+        }),
+      );
+
       // update User
       _users.update(
           user.id,
@@ -34,7 +47,17 @@ class Users with ChangeNotifier {
               ));
     } else {
       // add new User
-      final id = Random().nextDouble().toString();
+      final response = await http.post(
+        Uri.parse("$BASE_URL/users.json"),
+        body: jsonEncode({
+          "name": user.name,
+          "email": user.email,
+          "avatarUrl": user.avatarUrl,
+        }),
+      );
+
+      final id = jsonDecode(response.body)["name"];
+      print(jsonDecode(response.body));
       _users.putIfAbsent(
         id,
         () => User(
@@ -52,8 +75,13 @@ class Users with ChangeNotifier {
     notifyListeners();
   }
 
-  remove(User user) {
+////////////////////////////////http.delete
+  Future<void> remove(User user) async {
     if (user.id.trim().isNotEmpty) {
+      await http.delete(
+        Uri.parse("$BASE_URL/users/${user.id}.json"),
+      );
+
       _users.remove(user.id);
       notifyListeners();
     }

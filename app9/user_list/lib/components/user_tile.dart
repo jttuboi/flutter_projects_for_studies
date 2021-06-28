@@ -52,9 +52,10 @@ class UserTile extends StatelessWidget {
                       ),
                     ],
                   ),
-                ).then((confirmed) {
+                ).then((confirmed) async {
                   if (confirmed) {
-                    Provider.of<Users>(context, listen: false).remove(user);
+                    await Provider.of<Users>(context, listen: false)
+                        .remove(user);
                   }
                 });
               },
