@@ -5,6 +5,15 @@ import 'package:http/http.dart' as http;
 import 'package:user_list/data/dummy_users.dart';
 import 'package:user_list/models/user.dart';
 
+// login in with google account in firebase.google.com
+// click "go to console"
+// click "add project"
+// after finish to create, click "build->realtime database"
+// click "create database"
+// select a database location and click "next"
+// next screen select "start in test mode" and click "enable"
+// copy the url in the first open page.
+
 class Users with ChangeNotifier {
   // this database is closed
   static const BASE_URL =
