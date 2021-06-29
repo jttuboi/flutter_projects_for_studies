@@ -21,10 +21,16 @@ class Home extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // é testado animações diferenciadas para mudanças de tela.
+            // obs: as animações funcionam com qualquer widget que aceite animações.
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/animation_1"),
               child: Text("animation 1"),
             ),
+
+            // é testado animações arrastar e soltar em um widget com imagem.
+            // o efeito da animação utilizada é mais complexa, usando controller
+            // e SpringSimulation.
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/animation_2"),
               child: Text("animation 2"),
