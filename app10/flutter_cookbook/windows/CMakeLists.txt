@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(flutter_cookbook_animation_1 LANGUAGES CXX)
+project(flutter_cookbook LANGUAGES CXX)
 
-set(BINARY_NAME "flutter_cookbook_animation_1")
+set(BINARY_NAME "flutter_cookbook")
 
 cmake_policy(SET CMP0063 NEW)
 
