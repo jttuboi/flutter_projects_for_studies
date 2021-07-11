@@ -7,6 +7,7 @@ import 'package:flutter_cookbook/design_1.dart';
 import 'package:flutter_cookbook/design_2.dart';
 import 'package:flutter_cookbook/design_3.dart';
 import 'package:flutter_cookbook/design_4.dart';
+import 'package:flutter_cookbook/design_5.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -20,7 +21,20 @@ void main() => runApp(
           "/design_2": (context) => Design2(),
           "/design_3": (context) => Design3(),
           "/design_4": (context) => Design4(),
+          "/design_5": (context) => Design5(),
         },
+        // design 5
+        theme: ThemeData(
+          brightness: Brightness.light,
+          primaryColor: Colors.lightBlue[800],
+          accentColor: Colors.cyan[600],
+          fontFamily: "Georgia",
+          textTheme: TextTheme(
+            headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+            headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
+            bodyText2: TextStyle(fontSize: 16.0, fontFamily: "Hind"),
+          ),
+        ),
       ),
     );
 
@@ -98,6 +112,13 @@ class Home extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/design_4"),
               child: Text("design - orientation"),
+            ),
+
+            // uso de themes
+            // https://flutter.dev/docs/cookbook/design/themes
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed("/design_5"),
+              child: Text("design - theme"),
             ),
           ],
         ),
