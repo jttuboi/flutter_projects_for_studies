@@ -3,6 +3,7 @@ import 'package:flutter_cookbook/animation_1.dart';
 import 'package:flutter_cookbook/animation_2.dart';
 import 'package:flutter_cookbook/animation_3.dart';
 import 'package:flutter_cookbook/animation_4.dart';
+import 'package:flutter_cookbook/design_1.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -12,6 +13,7 @@ void main() => runApp(
           "/animation_2": (context) => Animation2(),
           "/animation_3": (context) => Animation3(),
           "/animation_4": (context) => Animation4(),
+          "/design_1": (context) => Design1(),
         },
       ),
     );
@@ -48,9 +50,16 @@ class Home extends StatelessWidget {
               child: Text("animation - animation container"),
             ),
 
+            // é testado animação de aparecer e desaparecer com widget AnimatedOpacity.
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/animation_4"),
               child: Text("animation - animation fade in/out"),
+            ),
+
+            // uso do Drawer.
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed("/design_1"),
+              child: Text("design - drawer"),
             ),
           ],
         ),
