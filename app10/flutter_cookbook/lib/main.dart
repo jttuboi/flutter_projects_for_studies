@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cookbook/animation_1.dart';
 import 'package:flutter_cookbook/animation_2.dart';
 import 'package:flutter_cookbook/animation_3.dart';
+import 'package:flutter_cookbook/animation_4.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -10,6 +11,7 @@ void main() => runApp(
           "/animation_1": (context) => Animation1(),
           "/animation_2": (context) => Animation2(),
           "/animation_3": (context) => Animation3(),
+          "/animation_4": (context) => Animation4(),
         },
       ),
     );
@@ -44,6 +46,11 @@ class Home extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/animation_3"),
               child: Text("animation - animation container"),
+            ),
+
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed("/animation_4"),
+              child: Text("animation - animation fade in/out"),
             ),
           ],
         ),
