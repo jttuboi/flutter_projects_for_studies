@@ -5,6 +5,7 @@ import 'package:flutter_cookbook/animation_3.dart';
 import 'package:flutter_cookbook/animation_4.dart';
 import 'package:flutter_cookbook/design_1.dart';
 import 'package:flutter_cookbook/design_2.dart';
+import 'package:flutter_cookbook/design_3.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -16,6 +17,7 @@ void main() => runApp(
           "/animation_4": (context) => Animation4(),
           "/design_1": (context) => Design1(),
           "/design_2": (context) => Design2(),
+          "/design_3": (context) => Design3(),
         },
       ),
     );
@@ -69,6 +71,14 @@ class Home extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/design_2"),
               child: Text("design - snackbar"),
+            ),
+
+            // uso de fonts diferenciadas.
+            // tem a forma padrão via projeto e a forma via google_fonts
+            // https://pub.dev/packages/google_fonts
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed("/design_3"),
+              child: Text("design - fonts"),
             ),
           ],
         ),
