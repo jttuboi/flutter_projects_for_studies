@@ -13,6 +13,9 @@ class _Design1State extends State<Design1> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Drawer sample"),
+        actions: [
+          BackButton(),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
