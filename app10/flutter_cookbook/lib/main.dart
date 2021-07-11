@@ -4,6 +4,7 @@ import 'package:flutter_cookbook/animation_2.dart';
 import 'package:flutter_cookbook/animation_3.dart';
 import 'package:flutter_cookbook/animation_4.dart';
 import 'package:flutter_cookbook/design_1.dart';
+import 'package:flutter_cookbook/design_2.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -14,6 +15,7 @@ void main() => runApp(
           "/animation_3": (context) => Animation3(),
           "/animation_4": (context) => Animation4(),
           "/design_1": (context) => Design1(),
+          "/design_2": (context) => Design2(),
         },
       ),
     );
@@ -60,6 +62,13 @@ class Home extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/design_1"),
               child: Text("design - drawer"),
+            ),
+
+            // uso do SnackBar.
+            // como se fosse a notificação, porém dentro do app e é mostrado na parte inferior
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed("/design_2"),
+              child: Text("design - snackbar"),
             ),
           ],
         ),
