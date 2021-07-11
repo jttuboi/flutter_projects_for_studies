@@ -8,6 +8,7 @@ import 'package:flutter_cookbook/design_2.dart';
 import 'package:flutter_cookbook/design_3.dart';
 import 'package:flutter_cookbook/design_4.dart';
 import 'package:flutter_cookbook/design_5.dart';
+import 'package:flutter_cookbook/design_6.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -22,6 +23,7 @@ void main() => runApp(
           "/design_3": (context) => Design3(),
           "/design_4": (context) => Design4(),
           "/design_5": (context) => Design5(),
+          "/design_6": (context) => Design6(),
         },
         // design 5
         theme: ThemeData(
@@ -45,7 +47,7 @@ class Home extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // é testado animações diferenciadas para mudanças de tela.
             // obs: as animações funcionam com qualquer widget que aceite animações.
@@ -115,10 +117,18 @@ class Home extends StatelessWidget {
             ),
 
             // uso de themes
+            // olhar no topo que tem o theme default descrito no MaterialApp
             // https://flutter.dev/docs/cookbook/design/themes
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/design_5"),
               child: Text("design - theme"),
+            ),
+
+            // uso de tabs
+            // https://flutter.dev/docs/cookbook/design/tabs
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed("/design_6"),
+              child: Text("design - tabs"),
             ),
           ],
         ),
