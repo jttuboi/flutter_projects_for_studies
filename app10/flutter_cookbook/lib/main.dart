@@ -6,6 +6,7 @@ import 'package:flutter_cookbook/animation_4.dart';
 import 'package:flutter_cookbook/design_1.dart';
 import 'package:flutter_cookbook/design_2.dart';
 import 'package:flutter_cookbook/design_3.dart';
+import 'package:flutter_cookbook/design_4.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -18,6 +19,7 @@ void main() => runApp(
           "/design_1": (context) => Design1(),
           "/design_2": (context) => Design2(),
           "/design_3": (context) => Design3(),
+          "/design_4": (context) => Design4(),
         },
       ),
     );
@@ -79,6 +81,14 @@ class Home extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/design_3"),
               child: Text("design - fonts"),
+            ),
+
+            // uso de orientação
+            // para celular, tem que girar o celular
+            // para desktop e web, tem que mudar o tamanho da tela
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed("/design_4"),
+              child: Text("design - orientation"),
             ),
           ],
         ),
