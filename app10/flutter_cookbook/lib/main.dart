@@ -9,6 +9,7 @@ import 'package:flutter_cookbook/design_3.dart';
 import 'package:flutter_cookbook/design_4.dart';
 import 'package:flutter_cookbook/design_5.dart';
 import 'package:flutter_cookbook/design_6.dart';
+import 'package:flutter_cookbook/effect_1.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -24,6 +25,7 @@ void main() => runApp(
           "/design_4": (context) => Design4(),
           "/design_5": (context) => Design5(),
           "/design_6": (context) => Design6(),
+          "/effect_1": (context) => Effect1(),
         },
         // design 5
         theme: ThemeData(
@@ -129,6 +131,13 @@ class Home extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/design_6"),
               child: Text("design - tabs"),
+            ),
+
+            // download effect
+            // https://flutter.dev/docs/cookbook/effects/download-button
+            ElevatedButton(
+              onPressed: () => Navigator.of(context).pushNamed("/effect_1"),
+              child: Text("design - download"),
             ),
           ],
         ),
