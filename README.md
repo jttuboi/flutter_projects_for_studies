@@ -134,3 +134,31 @@ https://www.youtube.com/watch?v=ViahqKZzZ7Y
 
 For firebase connection:
 https://www.youtube.com/watch?v=Z-uJPNk0Moo
+
+## Flutter cookbook (app10)
+
+##### Description
+An app that has several small tests taken from the cookbook content on flutter's website.
+
+##### Version
+Flutter 2.22
+
+##### Date
+jun/2021, jul/2021
+
+##### Tutorial
+look at main.dart of project. tehre are all citations about each tests.
+
+## Draggable Stack Items (app11)
+
+##### Description
+An app to move the squares freely.
+
+##### Version
+Flutter 2.22
+
+##### Date
+12/jul/2021
+
+##### Tutorial
+https://www.filledstacks.com/snippet/widget-tricks-create-movable-stack-widgets/
