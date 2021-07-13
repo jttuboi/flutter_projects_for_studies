@@ -22,10 +22,12 @@ flutter:
   fonts:
     - family: Qahiri
       fonts:
-        - asset: fonts/Qahiri-Regular.ttf
+        - asset: assets/fonts/Qahiri-Regular.ttf
     - family: Raleway
       fonts:
-        - asset: fonts/Raleway-Regular.ttf
-        - asset: fonts/Raleway-Bold.ttf
+        - asset: assets/fonts/Raleway-Regular.ttf
+        - asset: assets/fonts/Raleway-Bold.ttf
           weight: 700
+  assets:
+    - assets/images/cat-5855647_1920.jpg
   uses-material-design: true

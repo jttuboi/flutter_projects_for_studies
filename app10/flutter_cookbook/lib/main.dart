@@ -11,6 +11,7 @@ import 'package:flutter_cookbook/design_5.dart';
 import 'package:flutter_cookbook/design_6.dart';
 import 'package:flutter_cookbook/effect_1.dart';
 import 'package:flutter_cookbook/effect_2.dart';
+import 'package:flutter_cookbook/effect_3.dart';
 
 class Routes {
   static const String home = "/";
@@ -26,6 +27,7 @@ class Routes {
   static const String design_6 = "/design_6";
   static const String effect_1 = "/effect_1";
   static const String effect_2 = "/effect_2";
+  static const String effect_3 = "/effect_3";
 }
 
 void main() => runApp(
@@ -44,6 +46,7 @@ void main() => runApp(
           Routes.design_6: (context) => Design6(),
           Routes.effect_1: (context) => Effect1(),
           Routes.effect_2: (context) => Effect2(),
+          Routes.effect_3: (context) => Effect3(),
         },
         debugShowCheckedModeBanner: false,
         // design 5
@@ -190,6 +193,15 @@ class Home extends StatelessWidget {
             ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, Routes.effect_2),
               child: Text("effect - nested navigation flow"),
+            ),
+
+            // photo filter carousel
+            // utiliza o PageView para fazer o efeito do carousel, onde troca a
+            // cor dos filtros pra foto
+            // https://flutter.dev/docs/cookbook/effects/photo-filter-carousel
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, Routes.effect_3),
+              child: Text("effect - photo filter carousel"),
             ),
           ],
         ),
