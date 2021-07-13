@@ -172,6 +172,13 @@ class _HomeState extends State<Home> {
       // cor dos filtros pra foto
       // https://flutter.dev/docs/cookbook/effects/photo-filter-carousel
       Detail(title: "effect - photo filter carousel", route: Routes.effect_3),
+
+      // scrolling parallax effect
+      // é um efeito em que a imagem de cada card anda mais devagar
+      // do que os cards, dando impressão de movimento nas imagens
+      // https://flutter.dev/docs/cookbook/effects/parallax-scrolling
+      Detail(
+          title: "effect - scrolling parallax effect", route: Routes.effect_4),
     ];
     super.initState();
   }
