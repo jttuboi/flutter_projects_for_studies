@@ -10,23 +10,42 @@ import 'package:flutter_cookbook/design_4.dart';
 import 'package:flutter_cookbook/design_5.dart';
 import 'package:flutter_cookbook/design_6.dart';
 import 'package:flutter_cookbook/effect_1.dart';
+import 'package:flutter_cookbook/effect_2.dart';
+
+class Routes {
+  static const String home = "/";
+  static const String animation_1 = "/animation_1";
+  static const String animation_2 = "/animation_2";
+  static const String animation_3 = "/animation_3";
+  static const String animation_4 = "/animation_4";
+  static const String design_1 = "/design_1";
+  static const String design_2 = "/design_2";
+  static const String design_3 = "/design_3";
+  static const String design_4 = "/design_4";
+  static const String design_5 = "/design_5";
+  static const String design_6 = "/design_6";
+  static const String effect_1 = "/effect_1";
+  static const String effect_2 = "/effect_2";
+}
 
 void main() => runApp(
       MaterialApp(
         routes: {
-          "/": (context) => Home(),
-          "/animation_1": (context) => Animation1(),
-          "/animation_2": (context) => Animation2(),
-          "/animation_3": (context) => Animation3(),
-          "/animation_4": (context) => Animation4(),
-          "/design_1": (context) => Design1(),
-          "/design_2": (context) => Design2(),
-          "/design_3": (context) => Design3(),
-          "/design_4": (context) => Design4(),
-          "/design_5": (context) => Design5(),
-          "/design_6": (context) => Design6(),
-          "/effect_1": (context) => Effect1(),
+          Routes.home: (context) => Home(),
+          Routes.animation_1: (context) => Animation1(),
+          Routes.animation_2: (context) => Animation2(),
+          Routes.animation_3: (context) => Animation3(),
+          Routes.animation_4: (context) => Animation4(),
+          Routes.design_1: (context) => Design1(),
+          Routes.design_2: (context) => Design2(),
+          Routes.design_3: (context) => Design3(),
+          Routes.design_4: (context) => Design4(),
+          Routes.design_5: (context) => Design5(),
+          Routes.design_6: (context) => Design6(),
+          Routes.effect_1: (context) => Effect1(),
+          Routes.effect_2: (context) => Effect2(),
         },
+        debugShowCheckedModeBanner: false,
         // design 5
         theme: ThemeData(
           brightness: Brightness.light,
@@ -39,7 +58,30 @@ void main() => runApp(
             bodyText2: TextStyle(fontSize: 16.0, fontFamily: "Hind"),
           ),
         ),
-        debugShowCheckedModeBanner: false,
+        // effect 2
+        onGenerateRoute: (settings) {
+          late Widget page;
+
+          if (settings.name == Effect2Routes.home) {
+            page = Effect2();
+          } else if (settings.name == Effect2Routes.settings) {
+            page = Effect2Settings();
+          } else if (settings.name!
+              .startsWith(Effect2Routes.prefixDeviceSetup)) {
+            final subRoute = settings.name!
+                .substring(Effect2Routes.prefixDeviceSetup.length);
+            page = Effect2SetupFlow(setupPageRoute: subRoute);
+          } else {
+            throw Exception('Unknown route: ${settings.name}');
+          }
+
+          return MaterialPageRoute<dynamic>(
+            builder: (context) {
+              return page;
+            },
+            settings: settings,
+          );
+        },
       ),
     );
 
@@ -56,7 +98,7 @@ class Home extends StatelessWidget {
             // obs: as animações funcionam com qualquer widget que aceite animações.
             // https://flutter.dev/docs/cookbook/animation/page-route-animation.html
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/animation_1"),
+              onPressed: () => Navigator.pushNamed(context, Routes.animation_1),
               child: Text("animation - change screen"),
             ),
 
@@ -65,7 +107,7 @@ class Home extends StatelessWidget {
             // e SpringSimulation.
             // https://flutter.dev/docs/cookbook/animation/physics-simulation.html
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/animation_2"),
+              onPressed: () => Navigator.pushNamed(context, Routes.animation_2),
               child: Text("animation - drag/drop container"),
             ),
 
@@ -74,21 +116,21 @@ class Home extends StatelessWidget {
             // voltado para animação, já que a outra parte é o container em si
             // https://flutter.dev/docs/cookbook/animation/animated-container.html
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/animation_3"),
+              onPressed: () => Navigator.pushNamed(context, Routes.animation_3),
               child: Text("animation - animation container"),
             ),
 
             // é testado animação de aparecer e desaparecer com widget AnimatedOpacity.
             // https://flutter.dev/docs/cookbook/animation/opacity-animation.html
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/animation_4"),
+              onPressed: () => Navigator.pushNamed(context, Routes.animation_4),
               child: Text("animation - animation fade in/out"),
             ),
 
             // uso do Drawer.
             // https://flutter.dev/docs/cookbook/design/drawer.html
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/design_1"),
+              onPressed: () => Navigator.pushNamed(context, Routes.design_1),
               child: Text("design - drawer"),
             ),
 
@@ -96,7 +138,7 @@ class Home extends StatelessWidget {
             // como se fosse a notificação, porém dentro do app e é mostrado na parte inferior
             // https://flutter.dev/docs/cookbook/design/snackbars.html
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/design_2"),
+              onPressed: () => Navigator.pushNamed(context, Routes.design_2),
               child: Text("design - snackbar"),
             ),
 
@@ -106,7 +148,7 @@ class Home extends StatelessWidget {
             // https://flutter.dev/docs/cookbook/design/fonts.html
             // https://flutter.dev/docs/cookbook/design/package-fonts.html (this is not made it)
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/design_3"),
+              onPressed: () => Navigator.pushNamed(context, Routes.design_3),
               child: Text("design - fonts"),
             ),
 
@@ -115,7 +157,7 @@ class Home extends StatelessWidget {
             // para desktop e web, tem que mudar o tamanho da tela
             // https://flutter.dev/docs/cookbook/design/orientation.html
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/design_4"),
+              onPressed: () => Navigator.pushNamed(context, Routes.design_4),
               child: Text("design - orientation"),
             ),
 
@@ -123,22 +165,31 @@ class Home extends StatelessWidget {
             // olhar no topo que tem o theme default descrito no MaterialApp
             // https://flutter.dev/docs/cookbook/design/themes
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/design_5"),
+              onPressed: () => Navigator.pushNamed(context, Routes.design_5),
               child: Text("design - theme"),
             ),
 
             // uso de tabs
             // https://flutter.dev/docs/cookbook/design/tabs
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/design_6"),
+              onPressed: () => Navigator.pushNamed(context, Routes.design_6),
               child: Text("design - tabs"),
             ),
 
             // download effect
             // https://flutter.dev/docs/cookbook/effects/download-button
             ElevatedButton(
-              onPressed: () => Navigator.of(context).pushNamed("/effect_1"),
+              onPressed: () => Navigator.pushNamed(context, Routes.effect_1),
               child: Text("effect - download"),
+            ),
+
+            // nested navigation flow
+            // um controle alternativo das routes, onde pode concentrar o controle
+            // do fluxo.
+            // https://flutter.dev/docs/cookbook/effects/nested-nav
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, Routes.effect_2),
+              child: Text("effect - nested navigation flow"),
             ),
           ],
         ),
