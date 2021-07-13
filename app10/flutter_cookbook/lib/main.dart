@@ -39,6 +39,7 @@ void main() => runApp(
             bodyText2: TextStyle(fontSize: 16.0, fontFamily: "Hind"),
           ),
         ),
+        debugShowCheckedModeBanner: false,
       ),
     );
 
@@ -137,7 +138,7 @@ class Home extends StatelessWidget {
             // https://flutter.dev/docs/cookbook/effects/download-button
             ElevatedButton(
               onPressed: () => Navigator.of(context).pushNamed("/effect_1"),
-              child: Text("design - download"),
+              child: Text("effect - download"),
             ),
           ],
         ),
