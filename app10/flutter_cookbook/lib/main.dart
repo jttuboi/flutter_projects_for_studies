@@ -134,6 +134,7 @@ class Routes {
 
 void main() => runApp(
       MaterialApp(
+        initialRoute: Routes.home,
         routes: {
           Routes.home: (context) => Home(),
           Routes.animation_1: (context) => Animation1(),
@@ -200,6 +201,13 @@ void main() => runApp(
           Routes.testing_widget_1: (context) => TestingWidget1(),
           Routes.testing_widget_2: (context) => TestingWidget2(),
           Routes.testing_widget_3: (context) => TestingWidget3(),
+
+          // navigation 3
+          "/navigation_other": (context) => OtherScreen(),
+
+          // navigation 4
+          Navigation4Routes.extract_screen: (context) =>
+              ExtractArgumentsScreen(),
         },
         debugShowCheckedModeBanner: false,
         // design 5
@@ -214,28 +222,40 @@ void main() => runApp(
             bodyText2: TextStyle(fontSize: 16.0, fontFamily: "Hind"),
           ),
         ),
-        // effect 2
         onGenerateRoute: (settings) {
-          late Widget page;
+          // navigation 4
+          if (settings.name == Navigation4Routes.extract2_screen) {
+            final args = settings.arguments as ScreenArguments;
+            return MaterialPageRoute(
+              builder: (context) => PassArgumentsScreen(
+                title: args.title,
+                message: args.message,
+              ),
+            );
+          }
 
-          if (settings.name == Effect2Routes.home) {
-            page = Effect2();
+          // effect 2
+          else if (settings.name == Effect2Routes.home) {
+            return MaterialPageRoute(
+              builder: (context) => Effect2(),
+              settings: settings,
+            );
           } else if (settings.name == Effect2Routes.settings) {
-            page = Effect2Settings();
+            return MaterialPageRoute(
+              builder: (context) => Effect2Settings(),
+              settings: settings,
+            );
           } else if (settings.name!
               .startsWith(Effect2Routes.prefixDeviceSetup)) {
             final subRoute = settings.name!
                 .substring(Effect2Routes.prefixDeviceSetup.length);
-            page = Effect2SetupFlow(setupPageRoute: subRoute);
+            return MaterialPageRoute(
+              builder: (context) => Effect2SetupFlow(setupPageRoute: subRoute),
+              settings: settings,
+            );
           } else {
             throw Exception('Unknown route: ${settings.name}');
           }
-          return MaterialPageRoute<dynamic>(
-            builder: (context) {
-              return page;
-            },
-            settings: settings,
-          );
         },
       ),
     );
@@ -343,21 +363,37 @@ class _HomeState extends State<Home> {
       Detail(
           title: "effect - staggered menu animation", route: Routes.effect_6),
 
-      ///
-      ///
-      ///
-      ///
-      ///
-      ///
-      ///
-      // // https://flutter.dev/docs/cookbook/navigation/named-routes
-      // Detail(title: "navigation - named routes", route: Routes.navigation_3),
-      // // https://flutter.dev/docs/cookbook/navigation/navigate-with-arguments
-      // Detail(title: "navigation - pass arguments by routes", route: Routes.navigation_4),
-      // // https://flutter.dev/docs/cookbook/navigation/returning-data
-      // Detail(title: "navigation - return data from a screen", route: Routes.navigation_5),
-      // // https://flutter.dev/docs/cookbook/navigation/passing-data
-      // Detail(title: "navigation - send data to a new screen", route: Routes.navigation_6),
+      // https://flutter.dev/docs/cookbook/navigation/hero-animations.html
+      Detail(
+          title: "navigation - animate a widget across screens",
+          route: Routes.navigation_1),
+
+      // https://flutter.dev/docs/cookbook/navigation/navigation-basics.html
+      Detail(
+          title: "navigation - navigate to a new screen and back",
+          route: Routes.navigation_2),
+
+      // usando rotas nomeadas
+      // https://flutter.dev/docs/cookbook/navigation/named-routes
+      Detail(title: "navigation - named routes", route: Routes.navigation_3),
+
+      // como enviar os dados para outra tela via uso dod argumentos das rotas
+      // https://flutter.dev/docs/cookbook/navigation/navigate-with-arguments
+      Detail(
+          title: "navigation - pass arguments by routes",
+          route: Routes.navigation_4),
+
+      // como devolver os dados para tela anterior a partir da atual
+      // https://flutter.dev/docs/cookbook/navigation/returning-data
+      Detail(
+          title: "navigation - return data from a screen",
+          route: Routes.navigation_5),
+
+      // https://flutter.dev/docs/cookbook/navigation/passing-data
+      Detail(
+          title: "navigation - send data to a new screen",
+          route: Routes.navigation_6),
+
       // // https://flutter.dev/docs/cookbook/persistence/sqlite
       // Detail(title: "persistence - persist data with SQLite", route: Routes.persistence_1),
       // // https://flutter.dev/docs/cookbook/persistence/key-value
@@ -407,10 +443,6 @@ class _HomeState extends State<Home> {
       // Detail(title: "list - ", route: Routes.list_6),
       // // https://flutter.dev/docs/cookbook/maintenance/error-reporting.html
       // Detail(title: "maintenance - ", route: Routes.maintenance_1),
-      // // https://flutter.dev/docs/cookbook/navigation/hero-animations.html
-      // Detail(title: "navigation - ", route: Routes.navigation_1),
-      // // https://flutter.dev/docs/cookbook/navigation/navigation-basics.html
-      // Detail(title: "navigation - ", route: Routes.navigation_2),
       // // https://flutter.dev/docs/cookbook/networking/delete-data.html
       // Detail(title: "networking - ", route: Routes.networking_1),
       // // https://flutter.dev/docs/cookbook/networking/fetch-data.html
