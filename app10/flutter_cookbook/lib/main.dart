@@ -14,6 +14,7 @@ import 'package:flutter_cookbook/effect_2.dart';
 import 'package:flutter_cookbook/effect_3.dart';
 import 'package:flutter_cookbook/effect_4.dart';
 import 'package:flutter_cookbook/effect_5.dart';
+import 'package:flutter_cookbook/effect_6.dart';
 
 class Routes {
   static const String home = "/";
@@ -32,6 +33,7 @@ class Routes {
   static const String effect_3 = "/effect_3";
   static const String effect_4 = "/effect_4";
   static const String effect_5 = "/effect_5";
+  static const String effect_6 = "/effect_6";
 }
 
 void main() => runApp(
@@ -53,6 +55,7 @@ void main() => runApp(
           Routes.effect_3: (context) => Effect3(),
           Routes.effect_4: (context) => Effect4(),
           Routes.effect_5: (context) => Effect5(),
+          Routes.effect_6: (context) => Effect6(),
         },
         debugShowCheckedModeBanner: false,
         // design 5
@@ -190,6 +193,11 @@ class _HomeState extends State<Home> {
       // dos componentes a mostra.
       // https://flutter.dev/docs/cookbook/effects/shimmer-loading
       Detail(title: "effect - shimmer loading effect", route: Routes.effect_5),
+
+      // cria o efeito ao abrir o menu do app bar.
+      // https://flutter.dev/docs/cookbook/effects/staggered-menu-animation
+      Detail(
+          title: "effect - staggered menu animation", route: Routes.effect_6),
     ];
     super.initState();
   }
