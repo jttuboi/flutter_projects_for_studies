@@ -13,6 +13,7 @@ import 'package:flutter_cookbook/effect_1.dart';
 import 'package:flutter_cookbook/effect_2.dart';
 import 'package:flutter_cookbook/effect_3.dart';
 import 'package:flutter_cookbook/effect_4.dart';
+import 'package:flutter_cookbook/effect_5.dart';
 
 class Routes {
   static const String home = "/";
@@ -30,6 +31,7 @@ class Routes {
   static const String effect_2 = "/effect_2";
   static const String effect_3 = "/effect_3";
   static const String effect_4 = "/effect_4";
+  static const String effect_5 = "/effect_5";
 }
 
 void main() => runApp(
@@ -50,6 +52,7 @@ void main() => runApp(
           Routes.effect_2: (context) => Effect2(),
           Routes.effect_3: (context) => Effect3(),
           Routes.effect_4: (context) => Effect4(),
+          Routes.effect_5: (context) => Effect5(),
         },
         debugShowCheckedModeBanner: false,
         // design 5
@@ -179,6 +182,14 @@ class _HomeState extends State<Home> {
       // https://flutter.dev/docs/cookbook/effects/parallax-scrolling
       Detail(
           title: "effect - scrolling parallax effect", route: Routes.effect_4),
+
+      // uso do efeito de pré loading quando os componentes não estão carregados
+      // e fica com um visual cinza e seus contornos a mostra
+      // isso funciona quando está carregando algo da internet e tem um tempo de
+      // espera. até que os dados sejam completamente carregados, tem os contornos
+      // dos componentes a mostra.
+      // https://flutter.dev/docs/cookbook/effects/shimmer-loading
+      Detail(title: "effect - shimmer loading effect", route: Routes.effect_5),
     ];
     super.initState();
   }
