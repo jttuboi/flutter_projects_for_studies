@@ -363,11 +363,14 @@ class _HomeState extends State<Home> {
       Detail(
           title: "effect - staggered menu animation", route: Routes.effect_6),
 
+      // usa a chamada pelo Navigation.push() e retorna Navigation.pop()
+      // utilizando uma forma animada
       // https://flutter.dev/docs/cookbook/navigation/hero-animations.html
       Detail(
           title: "navigation - animate a widget across screens",
           route: Routes.navigation_1),
 
+      // usa a chamada pelo Navigation.push() e retorna Navigation.pop()
       // https://flutter.dev/docs/cookbook/navigation/navigation-basics.html
       Detail(
           title: "navigation - navigate to a new screen and back",
