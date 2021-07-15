@@ -392,15 +392,37 @@ class _HomeState extends State<Home> {
           title: "navigation - return data from a screen",
           route: Routes.navigation_5),
 
+      // como enviar os dados para outra tela via uso do construtor da nova página
       // https://flutter.dev/docs/cookbook/navigation/passing-data
       Detail(
           title: "navigation - send data to a new screen",
           route: Routes.navigation_6),
 
-      // // https://flutter.dev/docs/cookbook/persistence/sqlite
-      // Detail(title: "persistence - persist data with SQLite", route: Routes.persistence_1),
-      // // https://flutter.dev/docs/cookbook/persistence/key-value
-      // Detail(title: "persistence - store key-value data on disk", route: Routes.persistence_3),
+      // guardar os dados no banco de dados
+      // recomendado para dados em geral, principalmente para dados brutos
+      // da regra de negócio
+      // https://flutter.dev/docs/cookbook/persistence/sqlite
+      Detail(
+          title: "persistence - persist data with SQLite",
+          route: Routes.persistence_1),
+
+      // guardar os dados em arquivos
+      // recomendação variada, como exemplo, se quiser criptografar os dados,
+      // se precisa guardar dados como feito em jogos
+      // https://flutter.dev/docs/cookbook/persistence/reading-writing-files.html
+      Detail(
+          title: "persistence - read and write files",
+          route: Routes.persistence_2),
+
+      // guardar os dados utilizando chave/valor
+      // esse é bom para dados de configurações e dados importantes
+      // não é recomendado guardar dados brutos da regra de negócio
+      // Only primitive types can be used: int, double, bool, string, and stringList.
+      // It’s not designed to store a lot of data.
+      // https://flutter.dev/docs/cookbook/persistence/key-value
+      Detail(
+          title: "persistence - store key-value data on disk",
+          route: Routes.persistence_3),
 
       // // https://flutter.dev/docs/cookbook/effects/typing-indicator.html
       // Detail(title: "effect - create a typing indicator", route: Routes.effect_7),
@@ -460,8 +482,6 @@ class _HomeState extends State<Home> {
       // Detail(title: "networking - ", route: Routes.networking_6),
       // // https://flutter.dev/docs/cookbook/networking/web-sockets.html
       // Detail(title: "networking - ", route: Routes.networking_7),
-      // // https://flutter.dev/docs/cookbook/persistence/reading-writing-files.html
-      // Detail(title: "persistence - ", route: Routes.persistence_2),
       // // https://flutter.dev/docs/cookbook/plugins/play-video.html
       // Detail(title: "plugin - ", route: Routes.plugin_1),
       // // https://flutter.dev/docs/cookbook/plugins/picture-using-camera.html
