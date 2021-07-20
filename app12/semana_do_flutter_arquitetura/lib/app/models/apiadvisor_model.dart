@@ -5,6 +5,12 @@ class ApiadvisorModel {
     required this.text,
   });
 
+  ApiadvisorModel.empty() {
+    country = "";
+    date = "";
+    text = "";
+  }
+
   ApiadvisorModel.fromJson(Map<String, dynamic> json) {
     country = json['country'];
     date = json['date'];

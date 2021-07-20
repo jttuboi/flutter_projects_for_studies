@@ -6,10 +6,14 @@ class ApiadvisorViewModel {
   ApiadvisorViewModel(this.repository);
 
   final IApiadvisor repository;
-  final apiadvisorModel = ValueNotifier<ApiadvisorModel>(
-      ApiadvisorModel(country: "TEST", date: "2020-01-01", text: "blablabla"));
+  final apiadvisorModel =
+      ValueNotifier<ApiadvisorModel>(ApiadvisorModel.empty());
 
   void fill() async {
-    apiadvisorModel.value = await repository.getTime();
+    try {
+      apiadvisorModel.value = await repository.getTime();
+    } catch (e) {
+      apiadvisorModel.value = ApiadvisorModel.empty();
+    }
   }
 }
