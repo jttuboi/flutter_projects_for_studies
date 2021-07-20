@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:semana_do_flutter_arquitetura/app/controllers/app_controller.dart';
+import 'package:semana_do_flutter_arquitetura/app/pages/app_controller.dart';
 import 'package:semana_do_flutter_arquitetura/app/pages/home/home_page.dart';
 
 class AppWidget extends StatelessWidget {
