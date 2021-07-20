@@ -424,6 +424,26 @@ class _HomeState extends State<Home> {
           title: "persistence - store key-value data on disk",
           route: Routes.persistence_3),
 
+      // https://flutter.dev/docs/cookbook/testing/unit/introduction.html
+      Detail(title: "testing unit - ", route: Routes.testing_unit_1),
+
+      // https://flutter.dev/docs/cookbook/testing/unit/mocking.html
+      Detail(title: "testing unit - ", route: Routes.testing_unit_2),
+
+      // // https://flutter.dev/docs/cookbook/testing/widget/introduction.html
+      // Detail(title: "testing widget - ", route: Routes.testing_widget_1),
+      // // https://flutter.dev/docs/cookbook/testing/widget/finders.html
+      // Detail(title: "testing widget - ", route: Routes.testing_widget_2),
+      // // https://flutter.dev/docs/cookbook/testing/widget/tap-drag.html
+      // Detail(title: "testing widget - ", route: Routes.testing_widget_3),
+
+      // // https://flutter.dev/docs/cookbook/testing/integration/introduction.html
+      // Detail(title: "testing integration - ", route: Routes.testing_integration_1),
+      // // https://flutter.dev/docs/cookbook/testing/integration/scrolling.html
+      // Detail(title: "testing integration - ", route: Routes.testing_integration_2),
+      // // https://flutter.dev/docs/cookbook/testing/integration/profiling.html
+      // Detail(title: "testing integration - ", route: Routes.testing_integration_3),
+
       // // https://flutter.dev/docs/cookbook/effects/typing-indicator.html
       // Detail(title: "effect - create a typing indicator", route: Routes.effect_7),
       // // https://flutter.dev/docs/cookbook/effects/expandable-fab.html
@@ -486,22 +506,6 @@ class _HomeState extends State<Home> {
       // Detail(title: "plugin - ", route: Routes.plugin_1),
       // // https://flutter.dev/docs/cookbook/plugins/picture-using-camera.html
       // Detail(title: "plugin - ", route: Routes.plugin_2),
-      // // https://flutter.dev/docs/cookbook/testing/integration/introduction.html
-      // Detail(title: "testing integration - ", route: Routes.testing_integration_1),
-      // // https://flutter.dev/docs/cookbook/testing/integration/scrolling.html
-      // Detail(title: "testing integration - ", route: Routes.testing_integration_2),
-      // // https://flutter.dev/docs/cookbook/testing/integration/profiling.html
-      // Detail(title: "testing integration - ", route: Routes.testing_integration_3),
-      // // https://flutter.dev/docs/cookbook/testing/unit/introduction.html
-      // Detail(title: "testing unit - ", route: Routes.testing_unit_1),
-      // // https://flutter.dev/docs/cookbook/testing/unit/mocking.html
-      // Detail(title: "testing unit - ", route: Routes.testing_unit_2),
-      // // https://flutter.dev/docs/cookbook/testing/widget/introduction.html
-      // Detail(title: "testing widget - ", route: Routes.testing_widget_1),
-      // // https://flutter.dev/docs/cookbook/testing/widget/finders.html
-      // Detail(title: "testing widget - ", route: Routes.testing_widget_2),
-      // // https://flutter.dev/docs/cookbook/testing/widget/tap-drag.html
-      // Detail(title: "testing widget - ", route: Routes.testing_widget_3),
     ];
     super.initState();
   }
