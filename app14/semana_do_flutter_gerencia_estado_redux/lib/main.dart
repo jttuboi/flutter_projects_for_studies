@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:semana_do_flutter_gerencia_estado_redux/bloc/app_bloc.dart';
 import 'package:semana_do_flutter_gerencia_estado_redux/redux/app_store.dart';
 
 void main() => runApp(MyApp());
@@ -42,7 +43,12 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('You have pushed the button this many times:'),
+            // REDUX ///////////////////////////////////////////////////////////
+            // aqui ativa o tipo de ação que deve ser enviado para o store através desse dispatcher
+            ElevatedButton(
+              onPressed: () => appStore.dispatcher(AppAction.increment),
+              child: Row(children: [Text('redux '), Icon(Icons.add)]),
+            ),
             //Text('$_counter', style: Theme.of(context).textTheme.headline4),
             // pelo appStore utilizar o Store que extende de ChangeNotifier,
             // pode conectar diretamente pelo animation, já que ele é um listener
@@ -55,26 +61,23 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
+            // BLOC ////////////////////////////////////////////////////////////
+            ElevatedButton(
+              onPressed: () => appBloc.add(AppEvent.increment),
+              child: Row(children: [Text('bloc '), Icon(Icons.add)]),
+            ),
+            StreamBuilder(
+              stream: appBloc.stream,
+              builder: (_, __) {
+                return Text(
+                  appBloc.state.toString(),
+                  style: Theme.of(context).textTheme.headline4,
+                );
+              },
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        // aqui ativa o tipo de ação que deve ser enviado para o store através desse dispatcher
-        onPressed: () => appStore.dispatcher(AppAction.increment),
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
       ),
     );
   }
 }
-
-// class MyHomePage extends StatefulWidget {
-//   MyHomePage({Key? key, required this.title}) : super(key: key);
-
-//   final String title;
-
-//   @override
-//   _MyHomePageState createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
