@@ -1,4 +1,4 @@
-import 'package:semana_do_flutter_arquitetura/app/interfaces/local_storage_interface.dart';
+import 'package:semana_do_flutter_arquitetura/app/services/local_storage_interface.dart';
 import 'package:semana_do_flutter_arquitetura/app/models/appconfig_model.dart';
 
 // o ViewModel é onde ficará as regras de negócio, assim deixando para o controller

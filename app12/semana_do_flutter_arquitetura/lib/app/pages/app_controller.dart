@@ -1,6 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:semana_do_flutter_arquitetura/app/interfaces/local_storage_interface.dart';
-import 'package:semana_do_flutter_arquitetura/app/models/appconfig_model.dart';
 import 'package:semana_do_flutter_arquitetura/app/services/shared_local_storage_service.dart';
 import 'package:semana_do_flutter_arquitetura/app/viewmodels/change_theme_viewmodel.dart';
 

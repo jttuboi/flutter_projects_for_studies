@@ -1,4 +1,4 @@
-import 'package:semana_do_flutter_arquitetura/app/interfaces/local_storage_interface.dart';
+import 'package:semana_do_flutter_arquitetura/app/services/local_storage_interface.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedLocalStorageService implements ILocalStorage {
