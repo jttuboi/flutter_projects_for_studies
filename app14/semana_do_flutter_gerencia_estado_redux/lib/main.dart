@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:semana_do_flutter_gerencia_estado_redux/bloc/app_bloc.dart';
+import 'package:semana_do_flutter_gerencia_estado_redux/mobx/app_store_mobx.dart';
 import 'package:semana_do_flutter_gerencia_estado_redux/redux/app_store.dart';
 
 void main() => runApp(MyApp());
@@ -75,6 +77,20 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
+            // MOBX ////////////////////////////////////////////////////////////
+            ElevatedButton(
+              onPressed: () => appStoreMobx.increment(),
+              child: Row(children: [Text('mobx '), Icon(Icons.add)]),
+            ),
+            Observer(
+              builder: (_) {
+                return Text(
+                  appStoreMobx.counter.value.toString(),
+                  style: Theme.of(context).textTheme.headline4,
+                );
+              },
+            )
+            //
           ],
         ),
       ),
