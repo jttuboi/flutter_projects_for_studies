@@ -162,3 +162,33 @@ Flutter 2.22
 
 ##### Tutorial
 https://www.filledstacks.com/snippet/widget-tricks-create-movable-stack-widgets/
+
+## Semana do Flutter - Arquitetura (app12)
+
+##### Description
+An tutorial to learn about architecture in flutter.
+Obs: unfortunally, the versions of package change a lot and null safety in new version broke most of code and I still don't know how to fix it,
+so I stopped to code in video 6, but I watched until the end.
+
+##### Version
+Flutter 2.22
+
+##### Date
+20/jul/2021
+
+##### Tutorial
+https://www.youtube.com/playlist?list=PLlBnICoI-g-c_ZIHqzQjg5E4Re92-qYXn
+
+## Semana do Flutter - Testes unitarios (app13)
+
+##### Description
+An tutorial to learn how to use unit test.
+
+##### Version
+Flutter 2.22
+
+##### Date
+20/jul/2021
+
+##### Tutorial
+https://www.youtube.com/playlist?list=PLlBnICoI-g-etEtbvgDnO40SYKOSktCj4

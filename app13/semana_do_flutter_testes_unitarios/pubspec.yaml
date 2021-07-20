@@ -1,0 +1,19 @@
+name: semana_do_flutter_testes_unitarios
+description: A simple command-line application.
+version: 1.0.0
+
+environment:
+  sdk: '>=2.12.0 <3.0.0'
+
+dependencies:
+  bloc: ^7.0.0
+  flutter:
+    sdk: flutter
+  http: ^0.13.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  pedantic: ^1.10.0
+  mocktail: ^0.1.4
+  #test: ^1.17.10 -> só servia para dart, para flutter, precisa adicionar o flutter_test
