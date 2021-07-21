@@ -9,6 +9,7 @@ class IosApp extends StatelessWidget {
     return CupertinoApp(
       title: 'IMC',
       home: HomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
