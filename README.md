@@ -192,3 +192,31 @@ Flutter 2.22
 
 ##### Tutorial
 https://www.youtube.com/playlist?list=PLlBnICoI-g-etEtbvgDnO40SYKOSktCj4
+
+## Semana do Flutter - Gerencia de estados (app14)
+
+##### Description
+An app to test different ways to use state management
+
+##### Version
+Flutter 2.22
+
+##### Date
+20/jul/2021
+
+##### Tutorial
+https://www.youtube.com/watch?v=kAZK0QniI5c&list=PLlBnICoI-g-fAG1Z-0n5VpwXmbVQd7DRf
+
+## Android and iOS - calculate IMC (app15)
+
+##### Description
+An app to use android and iOS design with bloc. The content is calculate IMC.
+
+##### Version
+Flutter 2.22
+
+##### Date
+21/jul/2021
+
+##### Tutorial
+https://balta.io/cursos/flutter-apps-imc-material-cupertino-bloc
