@@ -1,4 +1,4 @@
-import 'package:semana_do_flutter_gerencia_estado_redux/redux/store.dart';
+import 'package:semana_do_flutter_gerencia_estado/redux/store.dart';
 
 enum AppAction {
   increment,

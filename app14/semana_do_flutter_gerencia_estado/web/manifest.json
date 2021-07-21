@@ -1,6 +1,6 @@
 {
-    "name": "semana_do_flutter_gerencia_estado_redux",
-    "short_name": "semana_do_flutter_gerencia_estado_redux",
+    "name": "semana_do_flutter_gerencia_estado",
+    "short_name": "semana_do_flutter_gerencia_estado",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

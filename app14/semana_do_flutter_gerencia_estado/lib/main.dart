@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:rx_notifier/rx_notifier.dart';
-import 'package:semana_do_flutter_gerencia_estado_redux/bloc/app_bloc.dart';
-import 'package:semana_do_flutter_gerencia_estado_redux/mobx/app_store_mobx.dart';
-import 'package:semana_do_flutter_gerencia_estado_redux/redux/app_store.dart';
-import 'package:semana_do_flutter_gerencia_estado_redux/rx_notifier/app_store_rx_notifier.dart';
+import 'package:semana_do_flutter_gerencia_estado/bloc/app_bloc.dart';
+import 'package:semana_do_flutter_gerencia_estado/mobx/app_store_mobx.dart';
+import 'package:semana_do_flutter_gerencia_estado/redux/app_store.dart';
+import 'package:semana_do_flutter_gerencia_estado/rx_notifier/app_store_rx_notifier.dart';
 
 void main() => runApp(MyApp());
 

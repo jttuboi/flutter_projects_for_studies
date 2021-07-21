@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:semana_do_flutter_gerencia_estado_redux/main.dart';
+import 'package:semana_do_flutter_gerencia_estado/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {

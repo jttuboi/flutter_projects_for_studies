@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15)
-project(semana_do_flutter_gerencia_estado_redux LANGUAGES CXX)
+project(semana_do_flutter_gerencia_estado LANGUAGES CXX)
 
-set(BINARY_NAME "semana_do_flutter_gerencia_estado_redux")
+set(BINARY_NAME "semana_do_flutter_gerencia_estado")
 
 cmake_policy(SET CMP0063 NEW)
 
