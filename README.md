@@ -248,3 +248,17 @@ Flutter 2.23
 
 ##### Tutorial
 https://www.youtube.com/watch?v=4KBqWANDbE4
+
+## balta.io - alcool or gasoline (app18)
+
+##### Description
+An app to calculate the value of gasoline or alcool
+
+##### Version
+Flutter 2.23
+
+##### Date
+22/jul/2021
+
+##### Tutorial
+https://balta.io/cursos/flutter-apps-alcool-ou-gasolina
