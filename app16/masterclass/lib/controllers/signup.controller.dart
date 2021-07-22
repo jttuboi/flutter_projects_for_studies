@@ -8,7 +8,9 @@ class SignupController {
   final IAccountRepository repository;
 
   Future<UserModel> create(SignupViewModel viewModel) async {
+    viewModel.busy = true;
     final UserModel user = await repository.createAccount(viewModel);
+    viewModel.busy = false;
     return user;
   }
 }

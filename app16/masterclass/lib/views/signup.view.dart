@@ -99,15 +99,11 @@ class _SignupViewState extends State<SignupView> {
                       if (_formKey.currentState!.validate()) {
                         _formKey.currentState!.save();
                       }
-                      print(_viewModel);
-                      setState(() {
-                        _viewModel.busy = true;
-                      });
+                      setState(() {});
+                      //print(_viewModel);
                       _controller.create(_viewModel).then((UserModel value) {
-                        print(value);
-                        setState(() {
-                          _viewModel.busy = false;
-                        });
+                        //print(value);
+                        setState(() {});
                       });
                     },
                     child: const Text('Cadastrar'),
