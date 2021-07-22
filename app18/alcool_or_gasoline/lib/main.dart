@@ -1,3 +1,4 @@
+import 'package:alcool_or_gasoline/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(App());
@@ -9,9 +10,9 @@ class App extends StatelessWidget {
       title: 'Alcool ou Gasolina',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.deepPurple,
       ),
-      home: Container(),
+      home: HomePage(),
     );
   }
 }
