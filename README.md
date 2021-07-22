@@ -262,3 +262,16 @@ Flutter 2.23
 
 ##### Tutorial
 https://balta.io/cursos/flutter-apps-alcool-ou-gasolina
+
+## balta.io - alcool or gasoline (app18)
+
+##### Description
+Um teste sobre o PageView para mudar de página via outras actions ao viés de usar o gesture (vulgo dedo). Esse teste faz a página ser mudada quando terminar algo, por exemplo, passando de página de um form para outra página.
+
+Outro teste visto foi verificar a quantidade de widgets utilizados pelo PageView. O PageView faz automaticamente o controle de Widgets utilizados, então quando está numa página, ele cria outra e no momento que finaliza a transição, ele deleta a antiga.
+
+##### Version
+Flutter 2.23
+
+##### Date
+22/jul/2021
