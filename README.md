@@ -171,7 +171,7 @@ Obs: unfortunally, the versions of package change a lot and null safety in new v
 so I stopped to code in video 6, but I watched until the end.
 
 ##### Version
-Flutter 2.22
+Flutter 2.23
 
 ##### Date
 20/jul/2021
@@ -185,7 +185,7 @@ https://www.youtube.com/playlist?list=PLlBnICoI-g-c_ZIHqzQjg5E4Re92-qYXn
 An tutorial to learn how to use unit test.
 
 ##### Version
-Flutter 2.22
+Flutter 2.23
 
 ##### Date
 20/jul/2021
@@ -199,7 +199,7 @@ https://www.youtube.com/playlist?list=PLlBnICoI-g-etEtbvgDnO40SYKOSktCj4
 An app to test different ways to use state management
 
 ##### Version
-Flutter 2.22
+Flutter 2.23
 
 ##### Date
 20/jul/2021
@@ -213,10 +213,38 @@ https://www.youtube.com/watch?v=kAZK0QniI5c&list=PLlBnICoI-g-fAG1Z-0n5VpwXmbVQd7
 An app to use android and iOS design with bloc. The content is calculate IMC.
 
 ##### Version
-Flutter 2.22
+Flutter 2.23
 
 ##### Date
 21/jul/2021
 
 ##### Tutorial
 https://balta.io/cursos/flutter-apps-imc-material-cupertino-bloc
+
+## balta.io - signup (app16)
+
+##### Description
+An app to use simple MVC architecture and learn when to use setStates() for local states and mobx & provider for global states
+
+##### Version
+Flutter 2.23
+
+##### Date
+21/jul/2021
+
+##### Tutorial
+https://www.youtube.com/watch?v=fsrJ_tNrOFk
+
+## flutterando - architectures (app17)
+
+##### Description
+An app to show 3 kinds of architectures. MVC, MVP and MVVM.
+
+##### Version
+Flutter 2.23
+
+##### Date
+22/jul/2021
+
+##### Tutorial
+https://www.youtube.com/watch?v=4KBqWANDbE4
