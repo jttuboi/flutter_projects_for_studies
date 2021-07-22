@@ -10,45 +10,91 @@ class App extends StatefulWidget {
   _AppState createState() => _AppState();
 }
 
+class Data {
+  Data(this.value);
+  final String value;
+}
+
 class _AppState extends State<App> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   final PageController _controller = PageController(initialPage: 0);
+  List<Data> datas = [
+    Data("oi"),
+    Data("tchau"),
+    Data("outro data"),
+    Data("pulando"),
+    Data("correndo"),
+    Data("dando voltas"),
+    Data("caindo"),
+  ];
+
   int _pageIdx = 0;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        key: _scaffoldKey,
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
           backgroundColor: Colors.white.withOpacity(0.0),
           elevation: 0.1,
           leading: IconButton(
             icon: Icon(Icons.close),
-            onPressed: () {},
+            onPressed: () {
+              // GESTURE
+              // qualquer widget que não esteja sendo criado pelo PageView()
+              // pode sofrer interação, então esse botão que não tem relação
+              // com o PageView() pode ser ativado durante a animação de mudança de pagina
+              ScaffoldMessenger.of(_scaffoldKey.currentContext!).showSnackBar(
+                SnackBar(
+                  content: Text("botao de sair"),
+                  duration: Duration(milliseconds: 300),
+                ),
+              );
+            },
           ),
           actions: [
             IconButton(
               icon: Icon(Icons.navigate_next),
-              onPressed: () {},
+              onPressed: () {
+                _pageIdx++;
+                if (_pageIdx < datas.length) {
+                  _controller.animateToPage(
+                    _pageIdx,
+                    duration: Duration(milliseconds: 1000),
+                    curve: Curves.linear,
+                  );
+                }
+              },
             )
           ],
         ),
-        extendBodyBehindAppBar: true,
 
+        // BLOQUEIO DE GESTURE
+        // quando está trocando de página, os botoes e qualquer coisa na tela
+        // é automaticamente bloqueado
+
+        // EXCESSO DE WIDGETS CONSTRUÍDOS
         // o page view builder é dinamico, entao ele nao cria um monte de telas e vai acumulando
         // na memoria. cada vez que ele muda de pagina completa, ele deleta o page que era o
-        // anterior.
+        // anterior apenas sobrando o atual.
         body: PageView.builder(
           itemCount: 10,
+          physics: NeverScrollableScrollPhysics(),
           controller: _controller,
           itemBuilder: (context, index) {
-            return Content(pageNumber: index);
+            return Content(pageNumber: index, data: datas[index].value);
           },
         ),
 
+        // PAGE VIEW BASICO
         // body: PageView(
         //   physics: NeverScrollableScrollPhysics(),
         //   children: [
@@ -62,91 +108,3 @@ class _AppState extends State<App> {
     );
   }
 }
-
-// class A {
-//   int pageViewIndex = 9;
-//   ActionMenu actionMenu;
-//   final PageController pageController = PageController();
-//   int currentPageIndex = 0;
-//   int pageCount = 1;
-
-//   void initState() { actionMenu = ActionMenu(this.addPageView, this.removePageView); }
-//   addPageView() { setState(() {  pageCount++; }); }
-//   removePageView(BuildContext context) {
-//     if (pageCount > 1)
-//       setState(() {  pageCount--;  });
-//     else
-//       Scaffold.of(context).showSnackBar(SnackBar(
-//         content: Text("Last page"),
-//       ));
-//   }
-
-//   navigateToPage(int index) {
-//     pageController.animateToPage(
-//       index,
-//       duration: Duration(milliseconds: 300),
-//       curve: Curves.ease,
-//     );
-//   }
-
-//   getCurrentPage(int page) {  pageViewIndex = page;}
-
-//   createPage(int page) {
-//     return Container(  child: Center(  child: Text('Page $page'), ), );
-//   }
-
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         actions: <Widget>[  actionMenu,  ],
-//       ),
-//       body: Container(
-//         child: PageView.builder(
-//           controller: pageController,
-//           onPageChanged: getCurrentPage,
-//           // itemCount: pageCount,
-//           itemBuilder: (context, position) {
-//             if (position == 5) return null;
-//             return createPage(position + 1);
-//           },
-//         ),
-//       ),
-//     );
-//   }
-
-//   setState(VoidCallback call) {}
-// }
-
-// enum MenuOptions { addPageAtEnd, deletePageCurrent }
-// List<Widget> listPageView = List();
-
-// class ActionMenu extends StatelessWidget {
-//   final Function addPageView, removePageView;
-//   ActionMenu(this.addPageView, this.removePageView);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return PopupMenuButton<MenuOptions>(
-//       onSelected: (MenuOptions value) {
-//         switch (value) {
-//           case MenuOptions.addPageAtEnd:
-//             this.addPageView();
-//             break;
-//           case MenuOptions.deletePageCurrent:
-//             this.removePageView(context);
-//             break;
-//         }
-//       },
-//       itemBuilder: (BuildContext context) => <PopupMenuItem<MenuOptions>>[
-//         PopupMenuItem<MenuOptions>(
-//           value: MenuOptions.addPageAtEnd,
-//           child: const Text('Add Page at End'),
-//         ),
-//         const PopupMenuItem<MenuOptions>(
-//           value: MenuOptions.deletePageCurrent,
-//           child: Text('Delete Current Page'),
-//         ),
-//       ],
-//     );
-//   }
-// }

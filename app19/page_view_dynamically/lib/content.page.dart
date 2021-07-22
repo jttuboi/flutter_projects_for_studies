@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:page_view_dynamically/main.dart';
 
 class Content extends StatelessWidget {
-  const Content({Key? key, required this.pageNumber}) : super(key: key);
+  const Content({Key? key, required this.pageNumber, required this.data})
+      : super(key: key);
 
   final int pageNumber;
+  final String data;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,14 @@ class Content extends StatelessWidget {
             constraints: BoxConstraints.expand(height: 300),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.amberAccent),
-              onPressed: () {},
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("page: $pageNumber, data: $data"),
+                    duration: Duration(milliseconds: 300),
+                  ),
+                );
+              },
               child: Text("top"),
             ),
           ),
@@ -23,7 +33,7 @@ class Content extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(primary: Colors.blueAccent),
               onPressed: () {},
-              child: Text("page: $pageNumber"),
+              child: Text("page: $pageNumber, data: $data"),
             ),
           ),
           Container(
