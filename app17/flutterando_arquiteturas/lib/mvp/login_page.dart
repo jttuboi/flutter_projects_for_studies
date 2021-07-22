@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutterando_arquiteturas/home_page.dart';
-import 'package:flutterando_arquiteturas/mvc/login_controller.dart';
-import 'package:flutterando_arquiteturas/mvc/login_repository.dart';
+import 'package:flutterando_arquiteturas/mvp/login_repository.dart';
+import 'package:flutterando_arquiteturas/mvp/login_presenter.dart';
 
-class LoginPageMVC extends StatefulWidget {
+class LoginPageMVP extends StatefulWidget {
   @override
-  _LoginPageMVCState createState() => _LoginPageMVCState();
+  _LoginPageMVPState createState() => _LoginPageMVPState();
 }
 
-class _LoginPageMVCState extends State<LoginPageMVC> {
-  late LoginController _controller;
-  bool _isLoading = false;
+class _LoginPageMVPState extends State<LoginPageMVP>
+    implements LoginPageContract {
+  late LoginPresenter _presenter;
 
   @override
   void initState() {
     super.initState();
-    _controller = LoginController(LoginRepository());
+    _presenter = LoginPresenter(this, repository: LoginRepository());
   }
 
-  void _loginSuccess() {
+  @override
+  void loginSuccess() {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => HomePage()),
     );
   }
 
-  void _loginError() {
+  @override
+  void loginError() {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text('Login error'),
       backgroundColor: Colors.red,
@@ -33,10 +35,15 @@ class _LoginPageMVCState extends State<LoginPageMVC> {
   }
 
   @override
+  void loginManager() {
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
-        key: _controller.formKey,
+        key: _presenter.formKey,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -55,7 +62,7 @@ class _LoginPageMVCState extends State<LoginPageMVC> {
                   }
                   return null;
                 },
-                onSaved: _controller.userEmail,
+                onSaved: _presenter.userEmail,
               ),
               SizedBox(height: 10),
               TextFormField(
@@ -70,27 +77,11 @@ class _LoginPageMVCState extends State<LoginPageMVC> {
                   }
                   return null;
                 },
-                onSaved: _controller.userPassword,
+                onSaved: _presenter.userPassword,
               ),
               SizedBox(height: 30),
               ElevatedButton(
-                onPressed: _isLoading
-                    ? null
-                    : () async {
-                        setState(() {
-                          _isLoading = true;
-                        });
-
-                        if (await _controller.login()) {
-                          _loginSuccess();
-                        } else {
-                          _loginError();
-                        }
-
-                        setState(() {
-                          _isLoading = false;
-                        });
-                      },
+                onPressed: _presenter.isLoading ? null : _presenter.login,
                 child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 80.0),
                   child: Text('ENTER'),
