@@ -1,96 +1,43 @@
+import 'package:cards/heart_shaker.dart';
+import 'package:cards/mars.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              // https://www.woolha.com/tutorials/flutter-card-widget-example
-              Card1(),
-              Card2(),
-              Card3(),
-              Card4(),
-              Card5(),
-            ],
-          ),
-        ),
-      ),
+  runApp(MaterialApp(
+    title: 'Flutter Demo',
+    theme: ThemeData(
+      primarySwatch: Colors.blue,
     ),
-  );
+    routes: {
+      "/": (context) => Home(),
+      "/heart_shaker": (context) => HeartShaker(),
+      "/mars": (context) => Mars(),
+    },
+  ));
 }
 
-class Card1 extends StatelessWidget {
+class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 200,
-      child: Card(
-        color: Colors.blue,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        elevation: 10,
+    return Scaffold(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const ListTile(
-              leading: Icon(Icons.album, size: 50),
-              title: Text("Heart Shaker"),
-              subtitle: Text("TWICE"),
+            // https://www.woolha.com/tutorials/flutter-card-widget-example
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "/heart_shaker"),
+              child: Text("Heart Shaker"),
             ),
-            ButtonTheme(
-              child: ButtonBar(
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text('Edit',
-                        style: TextStyle(color: Colors.white)),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text('Delete',
-                        style: TextStyle(color: Colors.white)),
-                  ),
-                ],
-              ),
+            // https://github.com/sergiandreplace/flutter_planets_tutorial
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, "/mars"),
+              child: Text("Mars"),
             ),
           ],
         ),
       ),
     );
-  }
-}
-
-class Card2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Card();
-  }
-}
-
-class Card3 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Card();
-  }
-}
-
-class Card4 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Card();
-  }
-}
-
-class Card5 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Card();
   }
 }
