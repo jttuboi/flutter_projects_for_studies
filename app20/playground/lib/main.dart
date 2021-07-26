@@ -1,16 +1,16 @@
-import 'package:playground/shader.dart';
-import 'package:playground/grid1.dart';
-import 'package:playground/grid2.dart';
-import 'package:playground/grid3.dart';
-import 'package:playground/grid4.dart';
-import 'package:playground/hero.dart';
-import 'package:playground/hero1.dart';
-import 'package:playground/hero2.dart';
-import 'package:playground/hero3.dart';
-import 'package:playground/hero4.dart';
-import 'package:playground/hero5.dart';
-import 'package:playground/heart_shaker.dart';
-import 'package:playground/mars.dart';
+import 'package:playground/shader/shader.dart';
+import 'package:playground/grids/grid1.dart';
+import 'package:playground/grids/grid2.dart';
+import 'package:playground/grids/grid3.dart';
+import 'package:playground/grids/grid4.dart';
+import 'package:playground/hero/hero.dart';
+import 'package:playground/hero/hero1.dart';
+import 'package:playground/hero/hero2.dart';
+import 'package:playground/hero/hero3.dart';
+import 'package:playground/hero/hero4.dart';
+import 'package:playground/hero/hero5.dart';
+import 'package:playground/cards/heart_shaker.dart';
+import 'package:playground/cards/mars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -47,7 +47,7 @@ class Home extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Title("playground"),
+            Title("cards"),
             // https://www.woolha.com/tutorials/flutter-card-widget-example
             Button("Heart Shaker", route: "/heart_shaker"),
             // https://github.com/sergiandreplace/flutter_planets_tutorial
@@ -57,15 +57,15 @@ class Home extends StatelessWidget {
             // nesse utiliza grid view builder que utiliza delegate
             // SliverGridDelegateWithMaxCrossAxisExtent para limitar o tamanho dos playground
             // a quantidade de colunas não é fixa, ela muda respeitando o tamanho maximo dos playground
-            Button("Grid1", route: "/grid1"),
+            Button("GridView.builder() fixa tam filhos", route: "/grid1"),
             // nesse utiliza grid view builder que utiliza delegate
             // SliverGridDelegateWithFixedCrossAxisCount para limitar a quantidade de colunas
             // o tamanho do playground é de acordo com o tamanho da tela
-            Button("Grid2", route: "/grid2"),
+            Button("GridView.builder() fixa nro col", route: "/grid2"),
             // nesse utiliza grid view count que fixa diretamente a quantidade de coluna
             // os playground precisam ser colocados diretamente no children
             // o tamanho do playground é de acordo com o tamanho da tela
-            Button("Grid3", route: "/grid3"),
+            Button("GridView.count() fixa nro col", route: "/grid3"),
             Title("shader"),
             // tentativa de uso de mascaras nos playground da grid
             // o efeito é transformar a picture em uma imagem parcialemente dissipada
@@ -73,17 +73,16 @@ class Home extends StatelessWidget {
             // e é mesclado nas imagens
             // NAO FUNCIONA DIREITO, para celular do android funciona, mas quando vai pra
             // telas maiores ou web a imagem fica distorcida
-            Button("Shader", route: "/shader"),
+            Button("Imagem + mask cria efeito dissolve", route: "/shader"),
 
             Title("hero"),
             Button("Hero", route: "/hero"),
             // https://flutter.dev/docs/development/ui/animations/hero-animations
-            Button("Hero animação grande -> pequeno", route: "/hero1"),
-            Button("Hero animação grande -> pequeno", route: "/hero2"),
-            Button("Hero animação p/ centro completo", route: "/hero3"),
-            Button("Hero animação p/ centro simplificado", route: "/hero4"),
-            Button("Hero animação p/ centro completo suavizado",
-                route: "/hero5"),
+            Button("animação grande -> pequeno", route: "/hero1"),
+            Button("animação grande -> pequeno", route: "/hero2"),
+            Button("animação p/ centro completo", route: "/hero3"),
+            Button("animação p/ centro simplificado", route: "/hero4"),
+            Button("animação p/ centro completo suavizado", route: "/hero5"),
           ],
         ),
       ),

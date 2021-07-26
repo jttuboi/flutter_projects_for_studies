@@ -1,6 +1,6 @@
-import 'package:playground/mask1.dart';
-import 'package:playground/mask2.dart';
-import 'package:playground/mask3.dart';
+import 'package:playground/shader/mask1.dart';
+import 'package:playground/shader/mask2.dart';
+import 'package:playground/shader/mask3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
