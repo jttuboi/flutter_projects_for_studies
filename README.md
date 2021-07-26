@@ -263,7 +263,7 @@ Flutter 2.23
 ##### Tutorial
 https://balta.io/cursos/flutter-apps-alcool-ou-gasolina
 
-## balta.io - alcool or gasoline (app18)
+## page view dinamically (app19)
 
 ##### Description
 Um teste sobre o PageView para mudar de página via outras actions ao viés de usar o gesture (vulgo dedo). Esse teste faz a página ser mudada quando terminar algo, por exemplo, passando de página de um form para outra página.
@@ -275,3 +275,34 @@ Flutter 2.23
 
 ##### Date
 22/jul/2021
+
+## playground (app20)
+
+##### Description
+Varios testes relacionados a cards, grids views, shaders e hero transition
+
+##### Version
+Flutter 2.23
+
+##### Date
+26/jul/2021
+
+
+
+
+
+
+## (app21)
+
+##### Description
+
+##### Version
+Flutter 2.23
+
+##### Date
+23/jul/2021
+
+##### Tutorial
+
+
+

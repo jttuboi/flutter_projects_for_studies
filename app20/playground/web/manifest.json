@@ -1,6 +1,6 @@
 {
-    "name": "cards",
-    "short_name": "cards",
+    "name": "playground",
+    "short_name": "playground",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

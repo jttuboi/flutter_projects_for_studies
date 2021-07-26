@@ -1,16 +1,16 @@
-import 'package:cards/shader.dart';
-import 'package:cards/grid1.dart';
-import 'package:cards/grid2.dart';
-import 'package:cards/grid3.dart';
-import 'package:cards/grid4.dart';
-import 'package:cards/hero.dart';
-import 'package:cards/hero1.dart';
-import 'package:cards/hero2.dart';
-import 'package:cards/hero3.dart';
-import 'package:cards/hero4.dart';
-import 'package:cards/hero5.dart';
-import 'package:cards/heart_shaker.dart';
-import 'package:cards/mars.dart';
+import 'package:playground/shader.dart';
+import 'package:playground/grid1.dart';
+import 'package:playground/grid2.dart';
+import 'package:playground/grid3.dart';
+import 'package:playground/grid4.dart';
+import 'package:playground/hero.dart';
+import 'package:playground/hero1.dart';
+import 'package:playground/hero2.dart';
+import 'package:playground/hero3.dart';
+import 'package:playground/hero4.dart';
+import 'package:playground/hero5.dart';
+import 'package:playground/heart_shaker.dart';
+import 'package:playground/mars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -47,7 +47,7 @@ class Home extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Title("cards"),
+            Title("playground"),
             // https://www.woolha.com/tutorials/flutter-card-widget-example
             Button("Heart Shaker", route: "/heart_shaker"),
             // https://github.com/sergiandreplace/flutter_planets_tutorial
@@ -55,19 +55,19 @@ class Home extends StatelessWidget {
             Title("grids"),
             // https://www.kindacode.com/article/flutter-gridview-builder-example/
             // nesse utiliza grid view builder que utiliza delegate
-            // SliverGridDelegateWithMaxCrossAxisExtent para limitar o tamanho dos cards
-            // a quantidade de colunas não é fixa, ela muda respeitando o tamanho maximo dos cards
+            // SliverGridDelegateWithMaxCrossAxisExtent para limitar o tamanho dos playground
+            // a quantidade de colunas não é fixa, ela muda respeitando o tamanho maximo dos playground
             Button("Grid1", route: "/grid1"),
             // nesse utiliza grid view builder que utiliza delegate
             // SliverGridDelegateWithFixedCrossAxisCount para limitar a quantidade de colunas
-            // o tamanho do cards é de acordo com o tamanho da tela
+            // o tamanho do playground é de acordo com o tamanho da tela
             Button("Grid2", route: "/grid2"),
             // nesse utiliza grid view count que fixa diretamente a quantidade de coluna
-            // os cards precisam ser colocados diretamente no children
-            // o tamanho do cards é de acordo com o tamanho da tela
+            // os playground precisam ser colocados diretamente no children
+            // o tamanho do playground é de acordo com o tamanho da tela
             Button("Grid3", route: "/grid3"),
             Title("shader"),
-            // tentativa de uso de mascaras nos cards da grid
+            // tentativa de uso de mascaras nos playground da grid
             // o efeito é transformar a picture em uma imagem parcialemente dissipada
             // para isso utiliza-se uma imagem preto e branco com transparencia
             // e é mesclado nas imagens
@@ -82,7 +82,8 @@ class Home extends StatelessWidget {
             Button("Hero animação grande -> pequeno", route: "/hero2"),
             Button("Hero animação p/ centro completo", route: "/hero3"),
             Button("Hero animação p/ centro simplificado", route: "/hero4"),
-            Button("Hero", route: "/hero5"),
+            Button("Hero animação p/ centro completo suavizado",
+                route: "/hero5"),
           ],
         ),
       ),

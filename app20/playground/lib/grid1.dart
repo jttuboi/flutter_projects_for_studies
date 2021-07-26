@@ -15,9 +15,9 @@ class Grid1 extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: GridView.builder(
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-            // define o tamanho dos cards na vertical
+            // define o tamanho dos playground na vertical
             //mainAxisExtent: 201,
-            // define o tamanho maximo dos cards na horizontal
+            // define o tamanho maximo dos playground na horizontal
             maxCrossAxisExtent: 190,
             childAspectRatio: 3 / 2, // vertical / horizontal
             crossAxisSpacing: 8,
