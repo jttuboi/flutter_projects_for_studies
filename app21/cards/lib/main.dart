@@ -3,6 +3,12 @@ import 'package:cards/grid1.dart';
 import 'package:cards/grid2.dart';
 import 'package:cards/grid3.dart';
 import 'package:cards/grid4.dart';
+import 'package:cards/hero.dart';
+import 'package:cards/hero1.dart';
+import 'package:cards/hero2.dart';
+import 'package:cards/hero3.dart';
+import 'package:cards/hero4.dart';
+import 'package:cards/hero5.dart';
 import 'package:cards/heart_shaker.dart';
 import 'package:cards/mars.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +29,12 @@ void main() {
       "/grid3": (context) => Grid3(),
       "/grid4": (context) => Grid4(),
       "/shader": (context) => Shader(),
+      "/hero": (context) => Hero1(),
+      "/hero1": (context) => Hero2Page(),
+      "/hero2": (context) => Hero3Page(),
+      "/hero3": (context) => Hero4Page(),
+      "/hero4": (context) => Hero5Page(),
+      "/hero5": (context) => Hero6Page(),
     },
   ));
 }
@@ -35,7 +47,7 @@ class Home extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Title("only cards"),
+            Title("cards"),
             // https://www.woolha.com/tutorials/flutter-card-widget-example
             Button("Heart Shaker", route: "/heart_shaker"),
             // https://github.com/sergiandreplace/flutter_planets_tutorial
@@ -62,6 +74,15 @@ class Home extends StatelessWidget {
             // NAO FUNCIONA DIREITO, para celular do android funciona, mas quando vai pra
             // telas maiores ou web a imagem fica distorcida
             Button("Shader", route: "/shader"),
+
+            Title("hero"),
+            Button("Hero", route: "/hero"),
+            // https://flutter.dev/docs/development/ui/animations/hero-animations
+            Button("Hero animação grande -> pequeno", route: "/hero1"),
+            Button("Hero animação grande -> pequeno", route: "/hero2"),
+            Button("Hero animação p/ centro completo", route: "/hero3"),
+            Button("Hero animação p/ centro simplificado", route: "/hero4"),
+            Button("Hero", route: "/hero5"),
           ],
         ),
       ),
