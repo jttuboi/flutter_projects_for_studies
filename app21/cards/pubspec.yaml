@@ -35,3 +35,17 @@ flutter:
     - assets/img/mercury.png
     - assets/img/ic_distance.png
     - assets/img/ic_gravity.png
+
+    - assets/img/animals/filter.png
+
+    - assets/img/animals/grasshopper.png
+    - assets/img/animals/moth.png
+    - assets/img/animals/spider.png
+    - assets/img/animals/koala.png
+    - assets/img/animals/mule.png
+    - assets/img/animals/partridge.png
+    - assets/img/animals/dolphin.png
+    - assets/img/animals/dove.png
+    - assets/img/animals/cheetah.png
+    - assets/img/animals/crocodile.png
+    - assets/img/animals/penguin.png
