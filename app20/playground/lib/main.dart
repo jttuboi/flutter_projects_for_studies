@@ -41,6 +41,9 @@ void main() {
       "/draw1": (context) => Draw1(),
       "/draw2": (context) => Draw2(),
       "/draw3": (context) => Draw3(),
+      "/pan1": (context) => Pan1(),
+      "/pan2": (context) => Pan2(),
+      "/pan3": (context) => Pan3(),
     },
   ));
 }
@@ -96,9 +99,16 @@ class Home extends StatelessWidget {
             // como cortar a imagem deixando as bordas decoradas pelo curve bezier
             // https://iiro.dev/clipping-widgets-with-bezier-curves-in-flutter/
             Button("bezierTo em imagem", route: "/draw2"),
+            Title("pan e zoom"),
             // move pela tela, dá o zoom, igual os softwares de imagem
             // https://github.com/AlexanderArendar/overflow
-            Button("move and zoom", route: "/draw3"),
+            Button("move and zoom", route: "/pan1"),
+            // uso do interactive viewer
+            // https://api.flutter.dev/flutter/widgets/InteractiveViewer-class.html
+            Button("move and zoom com interactive viewer", route: "/pan2"),
+
+            // https://letusflutter.com/2021/01/29/flutter-interactiveviewer/
+            //Button("jogo go com interactive viewer", route: "/pan3"),
           ],
         ),
       ),
