@@ -28,8 +28,8 @@ class MaskedImage2 extends StatelessWidget {
     ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
     ui.FrameInfo fi = await codec.getNextFrame();
 
-    ByteData data2 = await rootBundle.load(mask);
-    ui.Codec codec2 = await ui.instantiateImageCodec(data.buffer.asUint8List());
+    // ByteData data2 = await rootBundle.load(mask);
+    // ui.Codec codec2 = await ui.instantiateImageCodec(data.buffer.asUint8List());
     ui.FrameInfo fi2 = await codec.getNextFrame();
 
     return [fi.image, fi2.image];
