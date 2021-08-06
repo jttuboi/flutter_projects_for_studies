@@ -12,6 +12,9 @@ import 'package:playground/hero/hero5.dart';
 import 'package:playground/draw/draw1.dart';
 import 'package:playground/draw/draw2.dart';
 import 'package:playground/draw/draw3.dart';
+import 'package:playground/pan/pan1.dart';
+import 'package:playground/pan/pan2.dart';
+import 'package:playground/pan/pan3.dart';
 import 'package:playground/cards/heart_shaker.dart';
 import 'package:playground/cards/mars.dart';
 import 'package:flutter/material.dart';
@@ -99,6 +102,8 @@ class Home extends StatelessWidget {
             // como cortar a imagem deixando as bordas decoradas pelo curve bezier
             // https://iiro.dev/clipping-widgets-with-bezier-curves-in-flutter/
             Button("bezierTo em imagem", route: "/draw2"),
+            // https://ptyagicodecamp.github.io/building-cross-platform-finger-painting-app-in-flutter.html
+            Button("paint 1", route: "/draw3"),
             Title("pan e zoom"),
             // move pela tela, dá o zoom, igual os softwares de imagem
             // https://github.com/AlexanderArendar/overflow

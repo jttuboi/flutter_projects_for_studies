@@ -1,422 +1,286 @@
-import 'dart:ui' as ui;
-import 'dart:math' as math;
-import 'package:flutter/gestures.dart';
+import 'dart:ui';
+
+//import 'package:animated_floatactionbuttons/animated_floatactionbuttons.dart';
 import 'package:flutter/material.dart';
 
-class Draw3 extends StatelessWidget {
+class Draw3 extends StatefulWidget {
   const Draw3({Key? key}) : super(key: key);
+
+  @override
+  _Draw3State createState() => _Draw3State();
+}
+
+class _Draw3State extends State<Draw3> {
+  List<TouchPoints?> points = [];
+
+  Color selectedColor = Colors.black;
+  double opacity = 1.0;
+  StrokeCap strokeType = StrokeCap.round;
+  double strokeWidth = 3.0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: ZoomContainer(
-          zoomLevel: 4,
-          imageProvider: Image.asset("assets/img/map/map.png").image,
-          objects: [
-            MapObject(
-              offset: Offset(0, 0),
-              size: Size(10, 10),
-              child: Container(color: Colors.red),
+      body: GestureDetector(
+        onPanStart: (details) => setState(() {
+          RenderBox renderBox = context.findRenderObject() as RenderBox;
+          points.add(TouchPoints(
+            points: renderBox.globalToLocal(details.globalPosition),
+            paint: Paint()
+              ..isAntiAlias = true
+              ..color = selectedColor.withOpacity(opacity)
+              ..strokeCap = strokeType
+              ..strokeWidth = strokeWidth,
+          ));
+        }),
+        onPanUpdate: (details) => setState(() {
+          RenderBox renderBox = context.findRenderObject() as RenderBox;
+          points.add(TouchPoints(
+            points: renderBox.globalToLocal(details.globalPosition),
+            paint: Paint()
+              ..isAntiAlias = true
+              ..color = selectedColor.withOpacity(opacity)
+              ..strokeCap = strokeType
+              ..strokeWidth = strokeWidth,
+          ));
+        }),
+        onPanEnd: (details) => setState(() {
+          points.add(null);
+        }),
+        child: Stack(
+          children: [
+            Center(
+              child: Image.asset("assets/img/animals/spider.png"),
+            ),
+            CustomPaint(
+              size: Size.infinite,
+              painter: MyPainter(pointsList: points),
             ),
           ],
+        ),
+      ),
+      // floatingActionButton: AnimatedFloatingActionButton(
+      //   fabButtons: fabOption(),
+      //   colorStartAnimation: Colors.blue,
+      //   colorEndAnimation: Colors.cyan,
+      //   animatedIconData: AnimatedIcons.menu_close,
+      // ),
+    );
+  }
+
+  List<Widget> fabOption() {
+    return [
+      FloatingActionButton(
+        heroTag: "paint_stroke",
+        child: Icon(Icons.brush),
+        tooltip: 'Stroke',
+        //min: 0, max: 50
+        onPressed: () => setState(() {
+          _pickStroke();
+        }),
+      ),
+      FloatingActionButton(
+        heroTag: "paint_opacity",
+        child: Icon(Icons.opacity),
+        tooltip: 'Opacity',
+        //min:0, max:1
+        onPressed: () => setState(() {
+          _opacity();
+        }),
+      ),
+
+      //FAB for resetting screen
+      FloatingActionButton(
+        heroTag: "erase",
+        child: Icon(Icons.clear),
+        tooltip: "Erase",
+        onPressed: () => setState(() {
+          points.clear();
+        }),
+      ),
+      FloatingActionButton(
+        backgroundColor: Colors.white,
+        heroTag: "color_red",
+        child: colorMenuItem(Colors.red),
+        tooltip: 'Color',
+        onPressed: () => setState(() {
+          selectedColor = Colors.red;
+        }),
+      ),
+      FloatingActionButton(
+        backgroundColor: Colors.white,
+        heroTag: "color_green",
+        child: colorMenuItem(Colors.green),
+        tooltip: 'Color',
+        onPressed: () => setState(() {
+          selectedColor = Colors.green;
+        }),
+      ),
+      FloatingActionButton(
+        backgroundColor: Colors.white,
+        heroTag: "color_pink",
+        child: colorMenuItem(Colors.pink),
+        tooltip: 'Color',
+        onPressed: () => setState(() {
+          selectedColor = Colors.pink;
+        }),
+      ),
+      FloatingActionButton(
+        backgroundColor: Colors.white,
+        heroTag: "color_blue",
+        child: colorMenuItem(Colors.blue),
+        tooltip: 'Color',
+        onPressed: () => setState(() {
+          selectedColor = Colors.blue;
+        }),
+      ),
+    ];
+  }
+
+  Future<void> _opacity() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return ClipOval(
+          child: AlertDialog(
+            actions: [
+              IconButton(
+                icon: Icon(Icons.opacity, size: 24),
+                onPressed: () {
+                  opacity = 0.1;
+                  Navigator.of(context).pop();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.opacity, size: 40),
+                onPressed: () {
+                  opacity = 0.5;
+                  Navigator.of(context).pop();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.opacity, size: 60),
+                onPressed: () {
+                  opacity = 1.0;
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future<void> _pickStroke() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true, // user must tap button!
+      builder: (BuildContext context) {
+        return ClipOval(
+          child: AlertDialog(
+            actions: [
+              IconButton(
+                icon: Icon(Icons.clear),
+                onPressed: () {
+                  strokeWidth = 3.0;
+                  Navigator.of(context).pop();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.brush, size: 24),
+                onPressed: () {
+                  strokeWidth = 10.0;
+                  Navigator.of(context).pop();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.brush, size: 40),
+                onPressed: () {
+                  strokeWidth = 30.0;
+                  Navigator.of(context).pop();
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.brush, size: 60),
+                onPressed: () {
+                  strokeWidth = 50.0;
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Widget colorMenuItem(Color color) {
+    return GestureDetector(
+      onTap: () => setState(() {
+        selectedColor = color;
+      }),
+      child: ClipOval(
+        child: Container(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          height: 36,
+          width: 36,
+          color: color,
         ),
       ),
     );
   }
 }
 
-class ZoomContainer extends StatefulWidget {
-  const ZoomContainer({
-    Key? key,
-    this.zoomLevel = 1,
-    required this.imageProvider,
-    this.objects = const [],
-  }) : super(key: key);
-
-  final double zoomLevel;
-  final ImageProvider<Object> imageProvider;
-  final List<MapObject> objects;
-
-  @override
-  _ZoomContainerState createState() => _ZoomContainerState();
-}
-
-class _ZoomContainerState extends State<ZoomContainer> {
-  late double _zoomLevel;
-  late ImageProvider _imageProvider;
-  late List<MapObject> _objects;
-
-  @override
-  void initState() {
-    super.initState();
-    _zoomLevel = widget.zoomLevel;
-    _imageProvider = widget.imageProvider;
-    _objects = widget.objects;
-  }
-
-  @override
-  void didUpdateWidget(covariant ZoomContainer oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    // ????????????
-    if (widget.imageProvider != _imageProvider) {
-      _imageProvider = widget.imageProvider;
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        ImageViewport(
-          zoomLevel: _zoomLevel,
-          imageProvider: _imageProvider,
-          objects: _objects,
-        ),
-        // botões para zoom in/out
-        Row(children: [
-          IconButton(
-            color: Colors.red,
-            icon: Icon(Icons.zoom_in),
-            onPressed: () => setState(() {
-              _zoomLevel = _zoomLevel * 2;
-            }),
-          ),
-          SizedBox(width: 5),
-          IconButton(
-            color: Colors.red,
-            icon: Icon(Icons.zoom_out),
-            onPressed: () => setState(() {
-              _zoomLevel = _zoomLevel / 2;
-            }),
-          ),
-        ]),
-      ],
-    );
-  }
-}
-
-class ImageViewport extends StatefulWidget {
-  const ImageViewport({
-    Key? key,
-    required this.zoomLevel,
-    required this.imageProvider,
-    this.objects = const [],
-  }) : super(key: key);
-
-  final double zoomLevel;
-  final ImageProvider imageProvider;
-  final List<MapObject> objects;
-
-  @override
-  _ImageViewportState createState() => _ImageViewportState();
-}
-
-class _ImageViewportState extends State<ImageViewport> {
-  late double _zoomLevel;
-  late ImageProvider _imageProvider;
-  late List<MapObject> _objects;
-
-  late ui.Image _image;
-
-  bool _resolved = false;
-  bool _denormalized = false;
-  Offset _centerOffset = Offset(0, 0);
-
-  late Offset _normalized;
-  late double _maxHorizontalDelta;
-  late double _maxVerticalDelta;
-  late Size _actualImageSize;
-  late Size _viewportSize;
-
-  @override
-  void initState() {
-    super.initState();
-    _zoomLevel = widget.zoomLevel;
-    _imageProvider = widget.imageProvider;
-    _objects = widget.objects;
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    _resolveImageProvider();
-  }
-
-  @override
-  void didUpdateWidget(covariant ImageViewport oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (widget.imageProvider != _imageProvider) {
-      _imageProvider = widget.imageProvider;
-      _resolveImageProvider();
-    }
-    _normalized = Offset(
-      (_maxHorizontalDelta == 0) ? 0 : _centerOffset.dx / _maxHorizontalDelta,
-      (_maxVerticalDelta == 0) ? 0 : _centerOffset.dy / _maxVerticalDelta,
-    );
-    _denormalized = true;
-    _zoomLevel = widget.zoomLevel;
-    _updateActualImageDimensions();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    print(_objects);
-    return !_resolved
-        ? SizedBox()
-        : LayoutBuilder(
-            builder: (context, constraints) {
-              _recalculate(constraints.maxWidth, constraints.maxHeight);
-              return GestureDetector(
-                onPanUpdate: (canReactOnPan) ? handleDrag : null,
-                onHorizontalDragUpdate:
-                    (canReactOnHorizontalDrag) ? handleDrag : null,
-                onVerticalDragUpdate:
-                    (canReactOnVerticalDrag) ? handleDrag : null,
-                onLongPressEnd: (details) => _addBlueObjectOnMap(details),
-                child: Stack(children: [
-                  _buildImageMap(),
-                  ..._buildObjects(),
-                ]),
-              );
-            },
-          );
-  }
-
-  List<Widget> _buildObjects() {
-    return _objects
-        .map(
-          (object) => Positioned(
-            left: _getLeftPositionFromMapObject(object),
-            top: _getTopPositionFromMapObject(object),
-            child: GestureDetector(
-              onTapUp: (details) {
-                late MapObject info;
-                info = MapObject(
-                  offset: object.offset,
-                  size: Size.zero,
-                  // não funciona. como está se auto referenciando na função
-                  // _removeMapObject(info) sem estar completamente criada,
-                  // o valor passado para remover não é ele mesmo.
-                  // ainda não sei como consertar isso.
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(border: Border.all(width: 1)),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text("Close me"),
-                        SizedBox(width: 5),
-                        IconButton(
-                          icon: Icon(Icons.close),
-                          onPressed: () => _removeMapObject(info),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-                _addMapObject(info);
-              },
-              child: Container(
-                width: (object.size.isEmpty)
-                    ? null
-                    : object.size.width * _zoomLevel,
-                height: (object.size.isEmpty)
-                    ? null
-                    : object.size.height * _zoomLevel,
-                child: object.child,
-              ),
-            ),
-          ),
-        )
-        .toList();
-  }
-
-  double _getLeftPositionFromMapObject(MapObject object) {
-    return _globaltoLocalOffset(object.offset).dx -
-        ((object.size.isEmpty) ? 0 : (object.size.width * _zoomLevel) / 2);
-  }
-
-  double _getTopPositionFromMapObject(MapObject object) {
-    return _globaltoLocalOffset(object.offset).dy -
-        ((object.size.isEmpty) ? 0 : (object.size.height * _zoomLevel) / 2);
-  }
-
-  void _recalculate(double maxWidth, double maxHeight) {
-    _viewportSize = Size(
-      math.min(maxWidth, _actualImageSize.width),
-      math.min(maxHeight, _actualImageSize.height),
-    );
-    _maxHorizontalDelta = (_actualImageSize.width - _viewportSize.width) / 2;
-    _maxVerticalDelta = (_actualImageSize.height - _viewportSize.height) / 2;
-    if (_denormalized) {
-      _centerOffset = Offset(
-        _maxHorizontalDelta * _normalized.dx,
-        _maxVerticalDelta * _normalized.dy,
-      );
-      _denormalized = false;
-    }
-  }
-
-  bool get canReactOnPan => _maxHorizontalDelta > 0 && _maxVerticalDelta > 0;
-
-  bool get canReactOnHorizontalDrag =>
-      _maxHorizontalDelta > _maxVerticalDelta && !canReactOnPan;
-
-  bool get canReactOnVerticalDrag =>
-      !(_maxHorizontalDelta > _maxVerticalDelta) && !canReactOnPan;
-
-  Widget _buildImageMap() {
-    return CustomPaint(
-      size: _viewportSize,
-      painter: MapPainter(_image, _zoomLevel, _centerOffset),
-    );
-  }
-
-  void _addBlueObjectOnMap(LongPressEndDetails details) {
-    RenderBox box = context.findRenderObject() as RenderBox;
-    Offset localPosition = box.globalToLocal(details.globalPosition);
-    MapObject newObject = MapObject(
-      offset: _localToGlobalOffset(localPosition),
-      size: Size(10, 10),
-      child: Container(color: Colors.blue),
-    );
-    _addMapObject(newObject);
-  }
-
-  // converte global coordinates do long press para global coordinates relativo ao centro do mapa
-  Offset _localToGlobalOffset(Offset value) {
-    double dx = value.dx - _viewportSize.width / 2;
-    double dy = value.dy - _viewportSize.height / 2;
-    double dh = dx + _centerOffset.dx;
-    double dv = dy + _centerOffset.dy;
-    return Offset(
-      dh / (_actualImageSize.width / 2),
-      dv / (_actualImageSize.height / 2),
-    );
-  }
-
-  void handleDrag(DragUpdateDetails updateDetails) {
-    Offset newOffset = _centerOffset.translate(
-      -updateDetails.delta.dx,
-      -updateDetails.delta.dy,
-    );
-    if (newOffset.dx.abs() <= _maxHorizontalDelta &&
-        newOffset.dy.abs() <= _maxVerticalDelta) {
-      setState(() {
-        _centerOffset = newOffset;
-      });
-    }
-  }
-
-  void _addMapObject(MapObject object) {
-    setState(() => _objects.add(object));
-  }
-
-  void _removeMapObject(MapObject object) {
-    setState(() => _objects.remove(object));
-  }
-
-  // aqui onde acontece a recuperação da imagem e a atualização do tamanho
-  // é calculado pelo _updateActualImageDimensions()
-  void _resolveImageProvider() {
-    // o context aqui vem do State
-    ImageStream stream =
-        _imageProvider.resolve(createLocalImageConfiguration(context));
-
-    // aqui cria a _image para que possa ser desenhado pelo MapPainter
-    // o _resolved libera o build da imagem na tela
-    // o set state dá o refresh
-    stream.addListener(ImageStreamListener((imageInfo, synchronousCall) {
-      _image = imageInfo.image;
-      _resolved = true;
-      _updateActualImageDimensions();
-      setState(() {});
-    }));
-  }
-
-  void _updateActualImageDimensions() {
-    _actualImageSize = Size(
-      (_image.width / ui.window.devicePixelRatio) * _zoomLevel,
-      (_image.height / ui.window.devicePixelRatio) * _zoomLevel,
-    );
-  }
-
-  // converte global coordinates relativo ao centro do mapa para local coordinates do canto superior esquerdo do viewport
-  Offset _globaltoLocalOffset(Offset value) {
-    double hDelta = (_actualImageSize.width / 2) * value.dx;
-    double vDelta = (_actualImageSize.height / 2) * value.dy;
-    return Offset(
-      (hDelta - _centerOffset.dx) + (_viewportSize.width / 2),
-      (vDelta - _centerOffset.dy) + (_viewportSize.height / 2),
-    );
-  }
-}
-
-class MapObject {
-  MapObject({
-    required this.offset,
-    required this.size,
-    required this.child,
+class TouchPoints {
+  TouchPoints({
+    required this.paint,
+    required this.points,
   });
 
-  // posição de acordo com o centro do ZoomContainer
-  // a posição varia entre -1 a 1, tanto x quanto y
-  final Offset offset;
-  // tamanho do objeto quando o zoom é o padrão
-  final Size size;
-  final Widget child;
-
-  @override
-  String toString() {
-    return "MO($offset, $size)";
-  }
+  Paint paint;
+  Offset points;
 }
 
-class MapPainter extends CustomPainter {
-  MapPainter(this.image, this.zoomLevel, this.centerOffset);
+class MyPainter extends CustomPainter {
+  MyPainter({required this.pointsList});
 
-  final ui.Image image;
-  final double zoomLevel;
-  final Offset centerOffset;
+  List<TouchPoints?> pointsList;
+  List<Offset> offsetPoints = [];
 
   @override
   void paint(Canvas canvas, Size size) {
-    // recalcula as posições e tamanho para que possa desenhar o mapa no local certo
-    double pixelRatio = ui.window.devicePixelRatio;
-    Size sizeInDevicePixels = Size(
-      size.width * pixelRatio,
-      size.height * pixelRatio,
-    );
-    Paint paint = Paint();
-    paint.style = PaintingStyle.fill;
-    Offset centerOffsetInDevicePixels = centerOffset.scale(
-      pixelRatio / zoomLevel,
-      pixelRatio / zoomLevel,
-    );
-    Offset centerInDevicePixels = Offset(
-      image.width / 2,
-      image.height / 2,
-    ).translate(
-      centerOffsetInDevicePixels.dx,
-      centerOffsetInDevicePixels.dy,
-    );
-    Offset topLeft = centerInDevicePixels.translate(
-      -sizeInDevicePixels.width / (2 * zoomLevel),
-      -sizeInDevicePixels.height / (2 * zoomLevel),
-    );
-    Offset rightBottom = centerInDevicePixels.translate(
-      sizeInDevicePixels.width / (2 * zoomLevel),
-      sizeInDevicePixels.height / (2 * zoomLevel),
-    );
-    canvas.drawImageRect(
-      image,
-      Rect.fromPoints(topLeft, rightBottom),
-      Rect.fromPoints(Offset(0, 0), Offset(size.width, size.height)),
-      paint,
-    );
+    for (int i = 0; i < pointsList.length - 1; i++) {
+      if (pointsList[i] != null && pointsList[i + 1] != null) {
+        // se o ponto atual e o ponto seguinte estão disponíveis
+        // desenha a linha
+        canvas.drawLine(
+          pointsList[i]!.points,
+          pointsList[i + 1]!.points,
+          pointsList[i]!.paint,
+        );
+      } else if (pointsList[i] != null && pointsList[i + 1] == null) {
+        // se apenas o ponto atual está disponível
+
+        offsetPoints.clear();
+        offsetPoints.add(pointsList[i]!.points);
+        offsetPoints.add(Offset(
+          pointsList[i]!.points.dx + 0.1,
+          pointsList[i]!.points.dy + 0.1,
+        ));
+
+        //Draw points when two points are not next to each other
+        canvas.drawPoints(
+          PointMode.points,
+          offsetPoints,
+          pointsList[i]!.paint,
+        );
+      }
+    }
   }
 
+  // retorna true para pintar novamente a cada alteração feita
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
