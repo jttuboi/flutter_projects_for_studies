@@ -11,6 +11,7 @@ import 'package:playground/hero/hero4.dart';
 import 'package:playground/hero/hero5.dart';
 import 'package:playground/draw/draw1.dart';
 import 'package:playground/draw/draw2.dart';
+import 'package:playground/draw/draw3.dart';
 import 'package:playground/cards/heart_shaker.dart';
 import 'package:playground/cards/mars.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,7 @@ void main() {
       "/hero5": (context) => Hero6Page(),
       "/draw1": (context) => Draw1(),
       "/draw2": (context) => Draw2(),
+      "/draw3": (context) => Draw3(),
     },
   ));
 }
@@ -94,6 +96,9 @@ class Home extends StatelessWidget {
             // como cortar a imagem deixando as bordas decoradas pelo curve bezier
             // https://iiro.dev/clipping-widgets-with-bezier-curves-in-flutter/
             Button("bezierTo em imagem", route: "/draw2"),
+            // move pela tela, dá o zoom, igual os softwares de imagem
+            // https://github.com/AlexanderArendar/overflow
+            Button("move and zoom", route: "/draw3"),
           ],
         ),
       ),
