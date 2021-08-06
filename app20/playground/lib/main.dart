@@ -9,6 +9,7 @@ import 'package:playground/hero/hero2.dart';
 import 'package:playground/hero/hero3.dart';
 import 'package:playground/hero/hero4.dart';
 import 'package:playground/hero/hero5.dart';
+import 'package:playground/draw/draw1.dart';
 import 'package:playground/cards/heart_shaker.dart';
 import 'package:playground/cards/mars.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,7 @@ void main() {
       "/hero3": (context) => Hero4Page(),
       "/hero4": (context) => Hero5Page(),
       "/hero5": (context) => Hero6Page(),
+      "/draw1": (context) => Draw1(),
     },
   ));
 }
@@ -74,7 +76,6 @@ class Home extends StatelessWidget {
             // NAO FUNCIONA DIREITO, para celular do android funciona, mas quando vai pra
             // telas maiores ou web a imagem fica distorcida
             Button("Imagem + mask cria efeito dissolve", route: "/shader"),
-
             Title("hero"),
             Button("Hero", route: "/hero"),
             // https://flutter.dev/docs/development/ui/animations/hero-animations
@@ -83,6 +84,11 @@ class Home extends StatelessWidget {
             Button("animação p/ centro completo", route: "/hero3"),
             Button("animação p/ centro simplificado", route: "/hero4"),
             Button("animação p/ centro completo suavizado", route: "/hero5"),
+            Title("draw"),
+            // como desenhar Containers com linha curvadas utilizando CustomClip
+            // e a curvatura de bezier
+            // https://medium.com/flutter-comunidade-br/flutter-lineto-quadraticbezierto-34a880afa1ef
+            Button("lineTo e bezierTo", route: "/draw1"),
           ],
         ),
       ),
