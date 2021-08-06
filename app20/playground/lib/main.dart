@@ -10,6 +10,7 @@ import 'package:playground/hero/hero3.dart';
 import 'package:playground/hero/hero4.dart';
 import 'package:playground/hero/hero5.dart';
 import 'package:playground/draw/draw1.dart';
+import 'package:playground/draw/draw2.dart';
 import 'package:playground/cards/heart_shaker.dart';
 import 'package:playground/cards/mars.dart';
 import 'package:flutter/material.dart';
@@ -37,6 +38,7 @@ void main() {
       "/hero4": (context) => Hero5Page(),
       "/hero5": (context) => Hero6Page(),
       "/draw1": (context) => Draw1(),
+      "/draw2": (context) => Draw2(),
     },
   ));
 }
@@ -89,6 +91,9 @@ class Home extends StatelessWidget {
             // e a curvatura de bezier
             // https://medium.com/flutter-comunidade-br/flutter-lineto-quadraticbezierto-34a880afa1ef
             Button("lineTo e bezierTo", route: "/draw1"),
+            // como cortar a imagem deixando as bordas decoradas pelo curve bezier
+            // https://iiro.dev/clipping-widgets-with-bezier-curves-in-flutter/
+            Button("bezierTo em imagem", route: "/draw2"),
           ],
         ),
       ),
