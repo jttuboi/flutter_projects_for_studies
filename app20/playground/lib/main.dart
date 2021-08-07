@@ -13,6 +13,8 @@ import 'package:playground/draw/draw1.dart';
 import 'package:playground/draw/draw2.dart';
 import 'package:playground/draw/draw3.dart';
 import 'package:playground/draw/draw4.dart';
+import 'package:playground/draw/draw5.dart';
+import 'package:playground/draw/draw6.dart';
 import 'package:playground/pan/pan1.dart';
 import 'package:playground/pan/pan2.dart';
 import 'package:playground/pan/pan3.dart';
@@ -22,6 +24,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 void main() {
+  debugRepaintRainbowEnabled = true;
   runApp(MaterialApp(
     title: 'Flutter Demo',
     theme: ThemeData(
@@ -46,6 +49,8 @@ void main() {
       "/draw2": (context) => Draw2(),
       "/draw3": (context) => Draw3(),
       "/draw4": (context) => Draw4(),
+      "/draw5": (context) => Draw5(),
+      "/draw6": (context) => Draw6(),
       "/pan1": (context) => Pan1(),
       "/pan2": (context) => Pan2(),
       "/pan3": (context) => Pan3(),
@@ -110,6 +115,12 @@ class Home extends StatelessWidget {
             // um app de paint
             // https://github.com/jenthone/flutter_paint
             Button("paint 2", route: "/draw4"),
+            // um teste para entender como utilizar o repaint boundary
+            // https://www.woolha.com/tutorials/flutter-using-repaintboundary-examples
+            Button("repaint boundary", route: "/draw5"),
+            // outro teste para entender como utilizar o repaint boundary
+            // https://www.woolha.com/tutorials/flutter-using-repaintboundary-examples
+            Button("repaint boundary lista", route: "/draw6"),
             Title("pan e zoom"),
             // move pela tela, dá o zoom, igual os softwares de imagem
             // https://github.com/AlexanderArendar/overflow
