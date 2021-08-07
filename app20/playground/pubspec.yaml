@@ -13,6 +13,13 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.2
   #animated_floatactionbuttons: ^0.1.0
+ # flutter_colorpicker: ^0.5.0
+  image_picker: ^0.8.3
+  provider: ^5.0.0
+  image_gallery_saver: ^1.6.9
+  permission_handler: ^8.1.4+2
+  share_plus: ^2.1.4
+  fluttertoast: ^8.0.8
 
 dev_dependencies:
   flutter_test:
@@ -52,3 +59,4 @@ flutter:
     - assets/img/animals/penguin.png
 
     - assets/img/map/map.png
+    - assets/img/painter/
