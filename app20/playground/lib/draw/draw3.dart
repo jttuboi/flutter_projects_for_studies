@@ -11,7 +11,7 @@ class Draw3 extends StatefulWidget {
 }
 
 class _Draw3State extends State<Draw3> {
-  List<TouchPoints?> points = [];
+  List<TouchPoints> points = [];
 
   Color selectedColor = Colors.black;
   double opacity = 1.0;
@@ -45,7 +45,7 @@ class _Draw3State extends State<Draw3> {
           ));
         }),
         onPanEnd: (details) => setState(() {
-          points.add(null);
+          points.add(TouchPoints.end());
         }),
         child: Stack(
           children: [
@@ -239,42 +239,50 @@ class TouchPoints {
     required this.points,
   });
 
-  Paint paint;
-  Offset points;
+  TouchPoints.end() {
+    paint = Paint();
+    points = Offset.infinite;
+  }
+
+  late Paint paint;
+  late Offset points;
+
+  bool get isEndPoint => points.isInfinite;
+  bool get isNotEndPoint => points.isFinite;
 }
 
 class MyPainter extends CustomPainter {
   MyPainter({required this.pointsList});
 
-  List<TouchPoints?> pointsList;
+  List<TouchPoints> pointsList;
   List<Offset> offsetPoints = [];
 
   @override
   void paint(Canvas canvas, Size size) {
     for (int i = 0; i < pointsList.length - 1; i++) {
-      if (pointsList[i] != null && pointsList[i + 1] != null) {
+      if (pointsList[i].isNotEndPoint && pointsList[i + 1].isNotEndPoint) {
         // se o ponto atual e o ponto seguinte estão disponíveis
         // desenha a linha
         canvas.drawLine(
-          pointsList[i]!.points,
-          pointsList[i + 1]!.points,
-          pointsList[i]!.paint,
+          pointsList[i].points,
+          pointsList[i + 1].points,
+          pointsList[i].paint,
         );
-      } else if (pointsList[i] != null && pointsList[i + 1] == null) {
+      } else if (pointsList[i].isNotEndPoint && pointsList[i + 1].isEndPoint) {
         // se apenas o ponto atual está disponível
 
         offsetPoints.clear();
-        offsetPoints.add(pointsList[i]!.points);
+        offsetPoints.add(pointsList[i].points);
         offsetPoints.add(Offset(
-          pointsList[i]!.points.dx + 0.1,
-          pointsList[i]!.points.dy + 0.1,
+          pointsList[i].points.dx + 0.1,
+          pointsList[i].points.dy + 0.1,
         ));
 
         //Draw points when two points are not next to each other
         canvas.drawPoints(
           PointMode.points,
           offsetPoints,
-          pointsList[i]!.paint,
+          pointsList[i].paint,
         );
       }
     }
