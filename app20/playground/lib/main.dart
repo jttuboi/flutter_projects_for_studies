@@ -15,6 +15,7 @@ import 'package:playground/draw/draw3.dart';
 import 'package:playground/draw/draw4.dart';
 import 'package:playground/draw/draw5.dart';
 import 'package:playground/draw/draw6.dart';
+import 'package:playground/draw/draw7.dart';
 import 'package:playground/pan/pan1.dart';
 import 'package:playground/pan/pan2.dart';
 import 'package:playground/pan/pan3.dart';
@@ -51,6 +52,7 @@ void main() {
       "/draw4": (context) => Draw4(),
       "/draw5": (context) => Draw5(),
       "/draw6": (context) => Draw6(),
+      "/draw7": (context) => Draw7(),
       "/pan1": (context) => Pan1(),
       "/pan2": (context) => Pan2(),
       "/pan3": (context) => Pan3(),
@@ -121,6 +123,15 @@ class Home extends StatelessWidget {
             // outro teste para entender como utilizar o repaint boundary
             // https://www.woolha.com/tutorials/flutter-using-repaintboundary-examples
             Button("repaint boundary lista", route: "/draw6"),
+            // esse tutorial ensina como controlar a performance no momento que desenha.
+            // ele contém 2 momentos. O momento que está desenhando a linha atual.
+            // e o momento que desenha todas as linhas, incluindo a atual.
+            // o segundo momento só é chamado quando tira o dedo da tela, assim só redesenhando
+            // todos os pontos só 1 vez a cada linha desenhada, e assim evitando desenhar
+            // todos pontos a todo momento que está desenhando a linha dando problema de performance
+            // do repaint.
+            // https://jaycoding.tech/tutorials/guides/efficient-sketching-app-using-flutter-icstum
+            Button("paint 3", route: "/draw7"),
             Title("pan e zoom"),
             // move pela tela, dá o zoom, igual os softwares de imagem
             // https://github.com/AlexanderArendar/overflow
