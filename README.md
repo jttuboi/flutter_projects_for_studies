@@ -287,12 +287,25 @@ Flutter 2.23
 ##### Date
 26/jul/2021
 
+## Google Maps Sample (app21)
+
+##### Description
+teste de como utilizar o google maps no flutter
+
+##### Version
+Flutter 2.5.2
+
+##### Date
+14/out/2021
+
+##### Tutorial
+
+https://www.youtube.com/watch?v=Zz5hMvgiWmY
 
 
 
 
-
-## (app21)
+## (app22)
 
 ##### Description
 
