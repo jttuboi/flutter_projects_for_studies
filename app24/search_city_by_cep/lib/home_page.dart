@@ -1,5 +1,5 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:search_city_by_cep/search_cep_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -10,10 +10,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _textFieldController = TextEditingController();
+  final _searchCepBloc = SearchCepBloc();
 
-  var _isLoading = false;
-  String? _error;
-  var _cepResult = {};
+  @override
+  void dispose() {
+    _searchCepBloc.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +34,28 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () => _searchCep(_textFieldController.text),
+              onPressed: () => _searchCepBloc.searchCep.add(_textFieldController.text),
               child: const Text('Search'),
             ),
             const SizedBox(height: 10),
-            if (_isLoading) const Expanded(child: Center(child: CircularProgressIndicator())),
-            if (_error != null) Text(_error!, style: const TextStyle(color: Colors.red)),
-            if (!_isLoading && _cepResult.isNotEmpty) Text('City: ${_cepResult['localidade']}'),
+            StreamBuilder<Map>(
+              stream: _searchCepBloc.cepResult,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Text('${snapshot.error}', style: const TextStyle(color: Colors.red));
+                }
+                if (!snapshot.hasData) {
+                  return Container();
+                }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Expanded(child: Center(child: CircularProgressIndicator()));
+                }
+                return Text('City: ${snapshot.data!['localidade']}');
+              },
+            ),
           ],
         ),
       ),
     );
-  }
-
-  Future<void> _searchCep(String cep) async {
-    try {
-      _cepResult = {};
-      _error = null;
-      setState(() => _isLoading = true);
-      final response = await Dio().get('https://viacep.com.br/ws/$cep/json/');
-      setState(() => _cepResult = response.data);
-    } catch (e) {
-      _error = 'Erro na pesquisa';
-    }
-    setState(() => _isLoading = false);
   }
 }
