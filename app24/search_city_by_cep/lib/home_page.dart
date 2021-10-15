@@ -38,19 +38,23 @@ class _HomePageState extends State<HomePage> {
               child: const Text('Search'),
             ),
             const SizedBox(height: 10),
-            StreamBuilder<Map>(
+            StreamBuilder<SearchCepState>(
               stream: _searchCepBloc.cepResult,
               builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Text('${snapshot.error}', style: const TextStyle(color: Colors.red));
-                }
                 if (!snapshot.hasData) {
                   return Container();
                 }
-                if (snapshot.connectionState == ConnectionState.waiting) {
+
+                final state = snapshot.data;
+                if (state is SearchCepError) {
+                  return Text(state.message, style: const TextStyle(color: Colors.red));
+                }
+
+                if (state is SearchCepLoading) {
                   return const Expanded(child: Center(child: CircularProgressIndicator()));
                 }
-                return Text('City: ${snapshot.data!['localidade']}');
+
+                return Text('City: ${(state as SearchCepSuccess).data['localidade']}');
               },
             ),
           ],
