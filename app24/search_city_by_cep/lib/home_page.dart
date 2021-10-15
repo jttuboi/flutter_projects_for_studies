@@ -12,13 +12,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _textFieldController = TextEditingController();
-  final _searchCepBloc = SearchCepBloc();
-
-  @override
-  void dispose() {
-    _searchCepBloc.close();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +29,11 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () => _searchCepBloc.add(_textFieldController.text),
+              onPressed: () => context.read<SearchCepBloc>().add(_textFieldController.text),
               child: const Text('Search'),
             ),
             const SizedBox(height: 10),
             BlocBuilder<SearchCepBloc, SearchCepState>(
-              bloc: _searchCepBloc,
               builder: (context, state) {
                 if (state is SearchCepError) {
                   return Text(state.message, style: const TextStyle(color: Colors.red));
@@ -52,6 +44,9 @@ class _HomePageState extends State<HomePage> {
                 }
 
                 state = state as SearchCepSuccess;
+                if (state.data.isEmpty) {
+                  return Container();
+                }
                 return Text('City: ${state.data['localidade']}/${state.data['uf']}');
               },
             ),
