@@ -299,23 +299,45 @@ Flutter 2.5.2
 14/out/2021
 
 ##### Tutorial
-
 https://www.youtube.com/watch?v=Zz5hMvgiWmY
-
-
-
 
 ## (app22)
 
 ##### Description
 
 ##### Version
-Flutter 2.23
+Flutter 2.5.2
 
 ##### Date
-23/jul/2021
+15/out/2021
 
 ##### Tutorial
 
+## Counter with Bloc (app23)
 
+##### Description
+Contador padrão para entender o básico de bloc
+
+##### Version
+Flutter 2.5.2
+
+##### Date
+15/out/2021
+
+##### Tutorial
+baseado no próprio package: https://pub.dev/packages/flutter_bloc
+
+
+
+## (app24)
+
+##### Description
+
+##### Version
+Flutter 2.5.2
+
+##### Date
+15/10/2021
+
+##### Tutorial
 
