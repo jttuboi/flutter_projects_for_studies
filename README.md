@@ -301,9 +301,10 @@ Flutter 2.5.2
 ##### Tutorial
 https://www.youtube.com/watch?v=Zz5hMvgiWmY
 
-## (app22)
+## Food with Bloc (app22)
 
 ##### Description
+adiciona comida na lista e deleta comida da lista usando bloc
 
 ##### Version
 Flutter 2.5.2
@@ -312,6 +313,7 @@ Flutter 2.5.2
 15/out/2021
 
 ##### Tutorial
+https://www.youtube.com/watch?v=vA_bBx92OH0
 
 ## Counter with Bloc (app23)
 
