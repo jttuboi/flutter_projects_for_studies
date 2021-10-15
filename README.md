@@ -329,11 +329,10 @@ Flutter 2.5.2
 ##### Tutorial
 baseado no próprio package: https://pub.dev/packages/flutter_bloc
 
-
-
-## (app24)
+## search_city_by_cep (app24)
 
 ##### Description
+procura por cidades consultando pelo via cep, passando o CEP. também foi feito o bloc desde a construção usando Sink/Stream até utilizar o flutter bloc package para enxutar o código.
 
 ##### Version
 Flutter 2.5.2
@@ -342,4 +341,4 @@ Flutter 2.5.2
 15/10/2021
 
 ##### Tutorial
-
+https://www.youtube.com/watch?v=UB28e59GmK8
