@@ -1,5 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:search_city_by_cep/home_page.dart';
 import 'package:search_city_by_cep/search_cep_bloc.dart';
 
@@ -9,12 +11,17 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider(create: (context) => SearchCepBloc()),
+        RepositoryProvider(create: (context) => Dio()),
       ],
-      child: const MaterialApp(
-        home: HomePage(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => SearchCepBloc(context.read<Dio>())),
+        ],
+        child: const MaterialApp(
+          home: HomePage(),
+        ),
       ),
     );
   }

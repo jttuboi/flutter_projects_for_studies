@@ -3,16 +3,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search_city_by_cep/search_cep_state.dart';
 
 class SearchCepBloc extends Bloc<String, SearchCepState> {
-  SearchCepBloc() : super(SearchCepSuccess({})) {
+  SearchCepBloc(this.dio) : super(SearchCepSuccess({})) {
     on<String>((event, emit) async {
       emit(SearchCepLoading());
 
       try {
-        final response = await Dio().get('https://viacep.com.br/ws/$event/json/');
+        final response = await dio.get('https://viacep.com.br/ws/$event/json/');
         emit(SearchCepSuccess(response.data as Map));
       } catch (e) {
         emit(SearchCepError('Erro na pesquisa'));
       }
     });
   }
+
+  final Dio dio;
 }
