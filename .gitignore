@@ -111,8 +111,8 @@ output.json
 *.log.*
 *.sig
 
-pkg/
-src/
+#pkg/
+#src/
 
 ### Dart ###
 # See https://www.dartlang.org/guides/libraries/private-files
