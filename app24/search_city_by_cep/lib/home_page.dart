@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:search_city_by_cep/search_cep_bloc.dart';
+import 'package:search_city_by_cep/search_cep_state.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void dispose() {
-    _searchCepBloc.dispose();
+    _searchCepBloc.close();
     super.dispose();
   }
 
@@ -34,12 +35,12 @@ class _HomePageState extends State<HomePage> {
             ),
             const SizedBox(height: 10),
             ElevatedButton(
-              onPressed: () => _searchCepBloc.searchCep.add(_textFieldController.text),
+              onPressed: () => _searchCepBloc.add(_textFieldController.text),
               child: const Text('Search'),
             ),
             const SizedBox(height: 10),
             StreamBuilder<SearchCepState>(
-              stream: _searchCepBloc.cepResult,
+              stream: _searchCepBloc.stream,
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return Container();
