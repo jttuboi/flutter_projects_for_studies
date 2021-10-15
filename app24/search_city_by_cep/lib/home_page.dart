@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search_city_by_cep/search_cep_bloc.dart';
 import 'package:search_city_by_cep/search_cep_state.dart';
 
@@ -39,14 +40,9 @@ class _HomePageState extends State<HomePage> {
               child: const Text('Search'),
             ),
             const SizedBox(height: 10),
-            StreamBuilder<SearchCepState>(
-              stream: _searchCepBloc.stream,
-              builder: (context, snapshot) {
-                if (!snapshot.hasData) {
-                  return Container();
-                }
-
-                final state = snapshot.data;
+            BlocBuilder<SearchCepBloc, SearchCepState>(
+              bloc: _searchCepBloc,
+              builder: (context, state) {
                 if (state is SearchCepError) {
                   return Text(state.message, style: const TextStyle(color: Colors.red));
                 }
@@ -55,7 +51,8 @@ class _HomePageState extends State<HomePage> {
                   return const Expanded(child: Center(child: CircularProgressIndicator()));
                 }
 
-                return Text('City: ${(state as SearchCepSuccess).data['localidade']}');
+                state = state as SearchCepSuccess;
+                return Text('City: ${state.data['localidade']}/${state.data['uf']}');
               },
             ),
           ],
