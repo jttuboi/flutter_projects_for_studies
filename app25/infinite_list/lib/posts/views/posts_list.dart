@@ -1,6 +1,6 @@
-import 'package:bloc_with_stream/posts/bloc/post_bloc.dart';
-import 'package:bloc_with_stream/posts/views/bottom_loader.dart';
-import 'package:bloc_with_stream/posts/views/post_list_item.dart';
+import 'package:infinite_list/posts/bloc/post_bloc.dart';
+import 'package:infinite_list/posts/views/bottom_loader.dart';
+import 'package:infinite_list/posts/views/post_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

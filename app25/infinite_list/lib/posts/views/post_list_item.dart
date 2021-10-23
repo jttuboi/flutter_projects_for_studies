@@ -1,4 +1,4 @@
-import 'package:bloc_with_stream/posts/models/models.dart';
+import 'package:infinite_list/posts/models/models.dart';
 import 'package:flutter/material.dart';
 
 class PostListItem extends StatelessWidget {

@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
-import 'package:bloc_with_stream/posts/models/post.dart';
+import 'package:infinite_list/posts/models/post.dart';
 import 'package:equatable/equatable.dart';
 import 'package:http/http.dart' as http;
 import 'package:stream_transform/stream_transform.dart';
