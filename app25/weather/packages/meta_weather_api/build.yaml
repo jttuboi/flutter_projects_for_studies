@@ -1,0 +1,20 @@
+# precisa entender como funciona isso
+# parece que tem relação com o build_runner package
+#
+# The purpose of this file is to handle discrepancies 
+# between naming conventions in the json_serializable field names.
+#
+# para gerar o código, precisa executar
+# flutter packages pub run build_runner build
+targets:
+  $default:
+    builders:
+      source_gen|combining_builder:
+        options:
+          ignore_for_file:
+            - implicit_dynamic_parameter
+      json_serializable:
+        options:
+          field_rename: snake
+          create_to_json: false
+          checked: true

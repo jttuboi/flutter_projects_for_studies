@@ -7,13 +7,27 @@ environment:
   sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
+  equatable: ^2.0.3
   flutter:
     sdk: flutter
+  flutter_bloc: ^7.3.1
+  google_fonts: ^2.1.0
+  hydrated_bloc: ^7.1.0
+  json_annotation: ^4.3.0
+  path_provider: ^2.0.5
+  weather_repository:
+    path: packages/weather_repository
 
 dev_dependencies:
+  bloc_test: ^8.3.0
+  build_runner: ^2.1.4
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
+  json_serializable: ^6.0.1
+  mocktail: ^0.1.1
 
 flutter:
+  assets:
+    - assets/
   uses-material-design: true
