@@ -342,3 +342,32 @@ Flutter 2.5.2
 
 ##### Tutorial
 https://www.youtube.com/watch?v=UB28e59GmK8
+
+## BloC tutorials (app25)
+
+##### Description
+são varios projetos tirados do site https://bloclibrary.dev/.
+Nesse site tem vários projetos bem explicados com exemplos bem completos que vão além do BloC.
+
+##### Version
+Flutter 2.5.3
+
+##### Date
+XX/11/2021
+
+##### Tutorial
+https://bloclibrary.dev/
+
+## BloC tutorials (app25)
+
+##### Description
+Um teste de MVC -> MVVM e uso do Mobx+Provider. 
+
+##### Version
+Flutter 2.5.3
+
+##### Date
+13/11/2021
+
+##### Tutorial
+https://www.youtube.com/watch?v=fsrJ_tNrOFk
