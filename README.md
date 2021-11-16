@@ -358,7 +358,7 @@ XX/11/2021
 ##### Tutorial
 https://bloclibrary.dev/
 
-## BloC tutorials (app25)
+## Architectures (app26)
 
 ##### Description
 Um teste de MVC -> MVVM e uso do Mobx+Provider. 
@@ -371,3 +371,33 @@ Flutter 2.5.3
 
 ##### Tutorial
 https://www.youtube.com/watch?v=fsrJ_tNrOFk
+
+
+## API playground (app27)
+
+##### Description
+Um tutorial básico de como acessar o HttpClient, HttpClient package, Dio e Uno com uma estrutura ideal de projeto.
+
+##### Version
+Flutter 2.5.3
+
+##### Date
+15/11/2021
+
+##### Tutorial
+https://www.youtube.com/watch?v=PUQEd7xRldM
+
+
+## Vakinha burguer (app28)
+
+##### Description
+Um app de burgueria que permite pagamento PIX. Vai ser construído desde o app até o servidor para API (com DNS e certificado digital também).
+
+##### Version
+Flutter X
+
+##### Date
+16/11/2021~
+
+##### Tutorial
+https://www.youtube.com/watch?v=vZ1sLouBoa8
