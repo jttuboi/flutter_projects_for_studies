@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
               const ExtraActions(),
             ],
           ),
-          body: state.isTodosTab ? const FilteredTodos() : const Stats(),
+          body: state.isTodosTab ? const FilteredTodosTab() : const StatsTab(),
           floatingActionButton: FloatingActionButton(
             key: Keys.addTodoFab,
             onPressed: () => Navigator.pushNamed(context, Routes.addTodo),

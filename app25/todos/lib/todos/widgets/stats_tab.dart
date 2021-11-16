@@ -4,8 +4,8 @@ import 'package:todos/todos/blocs/blocs.dart';
 import 'package:todos/todos/core/core.dart';
 import 'package:todos/todos/widgets/widgets.dart';
 
-class Stats extends StatelessWidget {
-  const Stats({Key? key}) : super(key: key);
+class StatsTab extends StatelessWidget {
+  const StatsTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

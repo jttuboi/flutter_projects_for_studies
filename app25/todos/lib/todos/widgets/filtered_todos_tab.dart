@@ -5,8 +5,8 @@ import 'package:todos/todos/core/core.dart';
 import 'package:todos/todos/pages/pages.dart';
 import 'package:todos/todos/widgets/widgets.dart';
 
-class FilteredTodos extends StatelessWidget {
-  const FilteredTodos({Key? key}) : super(key: key);
+class FilteredTodosTab extends StatelessWidget {
+  const FilteredTodosTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
