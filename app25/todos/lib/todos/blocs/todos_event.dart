@@ -8,6 +8,8 @@ abstract class TodosEvent extends Equatable {
 }
 
 class TodosLoaded extends TodosEvent {
+  const TodosLoaded();
+
   @override
   String toString() => 'TodosLoaded()';
 }

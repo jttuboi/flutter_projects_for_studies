@@ -4,13 +4,13 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:todos/todos/models/models.dart';
 import 'package:todos/todos/repository/repository.dart';
-import 'package:uuid/uuid.dart';
+import 'package:todos/todos/services/services.dart';
 
 part 'todos_event.dart';
 part 'todos_state.dart';
 
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
-  TodosBloc({required this.todosRepository}) : super(TodosLoadInProgress()) {
+  TodosBloc({required this.todosRepository, required this.uuidGenerator}) : super(TodosLoadInProgress()) {
     on<TodosLoaded>(_onTodosLoaded);
     on<TodoAdded>(_onTodoAdded);
     on<TodoUpdated>(_onTodoUpdated);
@@ -20,6 +20,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
   }
 
   final ITodosRepository todosRepository;
+  final IUuidGenerator uuidGenerator;
 
   Future<void> _onTodosLoaded(TodosLoaded event, Emitter<TodosState> emit) async {
     try {
@@ -34,7 +35,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   Future<void> _onTodoAdded(TodoAdded event, Emitter<TodosState> emit) async {
     if (state is TodosLoadSuccess) {
-      final todo = (event.todo.id.isNotEmpty) ? event.todo : event.todo.copyWith(id: const Uuid().v4());
+      final todo = (event.todo.id.isNotEmpty) ? event.todo : event.todo.copyWith(id: uuidGenerator.getV4());
       final updatedTodos = List<Todo>.from((state as TodosLoadSuccess).todos)..add(todo);
       emit(TodosLoadSuccess(updatedTodos));
       await _saveTodos(updatedTodos);
@@ -43,7 +44,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   Future<void> _onTodoUpdated(TodoUpdated event, Emitter<TodosState> emit) async {
     if (state is TodosLoadSuccess) {
-      final todoModified = (event.todo.id.isNotEmpty) ? event.todo : event.todo.copyWith(id: const Uuid().v4());
+      final todoModified = (event.todo.id.isNotEmpty) ? event.todo : event.todo.copyWith(id: uuidGenerator.getV4());
       final updatedTodos = (state as TodosLoadSuccess).todos.map((todo) {
         return (todo.id == todoModified.id) ? todoModified : todo;
       }).toList();
@@ -77,8 +78,8 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
     }
   }
 
-  Future<void> _saveTodos(List<Todo> todos) {
-    return todosRepository.saveTodos(
+  Future<void> _saveTodos(List<Todo> todos) async {
+    await todosRepository.saveTodos(
       todos.map((todo) => todo.toEntity()).toList(),
     );
   }

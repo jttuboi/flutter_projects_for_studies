@@ -16,7 +16,7 @@ class TodosLoadSuccess extends TodosState {
   List<Object> get props => [todos];
 
   @override
-  String toString() => 'TodosState($todos)';
+  String toString() => 'TodosLoadSuccess($todos)';
 }
 
 class TodosLoadInProgress extends TodosState {

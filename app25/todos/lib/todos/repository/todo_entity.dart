@@ -7,7 +7,7 @@ import 'dart:convert';
 // ignore_for_file: avoid_positional_boolean_parameters
 
 class TodoEntity {
-  TodoEntity(
+  const TodoEntity(
     this.id,
     this.task,
     this.note,

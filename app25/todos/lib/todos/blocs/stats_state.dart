@@ -8,6 +8,8 @@ abstract class StatsState extends Equatable {
 }
 
 class StatsLoadInProgress extends StatsState {
+  const StatsLoadInProgress();
+
   @override
   String toString() => 'StatsLoadInProgress()';
 }

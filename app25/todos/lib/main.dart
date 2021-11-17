@@ -7,13 +7,17 @@ import 'package:todos/todos/core/core.dart';
 import 'package:todos/todos/models/models.dart';
 import 'package:todos/todos/pages/pages.dart';
 import 'package:todos/todos/repository/repository.dart';
+import 'package:todos/todos/services/services.dart';
 
 void main() {
   Bloc.observer = SimpleBlocObserver();
   const _fileStorage = FileStorage('__flutter_bloc_app__', getApplicationDocumentsDirectory);
   runApp(
     BlocProvider(
-      create: (context) => TodosBloc(todosRepository: TodosRepository(fileStorage: _fileStorage))..add(TodosLoaded()),
+      create: (context) => TodosBloc(
+        todosRepository: TodosRepository(fileStorage: _fileStorage),
+        uuidGenerator: UuidGenerator(),
+      )..add(TodosLoaded()),
       child: const TodosApp(),
     ),
   );

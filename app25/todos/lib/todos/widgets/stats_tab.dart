@@ -11,9 +11,7 @@ class StatsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<StatsBloc, StatsState>(
       builder: (context, state) {
-        if (state is StatsLoadInProgress) {
-          return const LoadingIndicator(key: Keys.statsLoadInProgressIndicator);
-        } else if (state is StatsLoadSuccess) {
+        if (state is StatsLoadSuccess) {
           return Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -51,9 +49,8 @@ class StatsTab extends StatelessWidget {
               ],
             ),
           );
-        } else {
-          return Container(key: Keys.emptyStatsContainer);
         }
+        return const LoadingIndicator(key: Keys.statsLoadInProgressIndicator);
       },
     );
   }

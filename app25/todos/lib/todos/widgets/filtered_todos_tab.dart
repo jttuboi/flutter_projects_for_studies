@@ -12,9 +12,7 @@ class FilteredTodosTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FilteredTodosBloc, FilteredTodosState>(
       builder: (context, state) {
-        if (state is FilteredTodosLoadInProgress) {
-          return const LoadingIndicator(key: Keys.todosLoading);
-        } else if (state is FilteredTodosLoadSuccess) {
+        if (state is FilteredTodosLoadSuccess) {
           final todos = state.filteredTodos;
           return ListView.builder(
             key: Keys.todoList,
@@ -54,9 +52,8 @@ class FilteredTodosTab extends StatelessWidget {
               );
             },
           );
-        } else {
-          return Container(key: Keys.filteredTodosEmptyContainer);
         }
+        return const LoadingIndicator(key: Keys.todosLoading);
       },
     );
   }

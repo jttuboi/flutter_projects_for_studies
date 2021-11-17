@@ -8,6 +8,8 @@ abstract class FilteredTodosState extends Equatable {
 }
 
 class FilteredTodosLoadInProgress extends FilteredTodosState {
+  const FilteredTodosLoadInProgress();
+
   @override
   String toString() => 'FilteredTodosLoadInProgress()';
 }

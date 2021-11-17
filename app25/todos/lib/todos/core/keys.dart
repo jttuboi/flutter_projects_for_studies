@@ -10,7 +10,6 @@ class Keys {
   static const todoList = Key('__todoList__');
   static const todosLoading = Key('__todosLoading__');
   static const snackbar = Key('__snackbar__');
-  static const filteredTodosEmptyContainer = Key('__filteredTodosEmptyContainer__');
 
   static const statsTab = Key('__statsTab__');
   static const emptyStatsContainer = Key('__emptyStatsContainer__');

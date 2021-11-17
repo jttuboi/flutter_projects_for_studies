@@ -39,7 +39,7 @@ class Todo extends Equatable {
   }
 
   TodoEntity toEntity() {
-    return TodoEntity(task, id, note, complete);
+    return TodoEntity(id, task, note, complete);
   }
 
   // ignore: sort_constructors_first
