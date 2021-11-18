@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.firebase_login">
+    package="br.com.tuboistudios.firebase_login">
    <application
         android:label="firebase_login"
         android:icon="@mipmap/ic_launcher">

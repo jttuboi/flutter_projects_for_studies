@@ -7,16 +7,15 @@ environment:
   sdk: '>=2.14.4 <3.0.0'
 
 dependencies:
-  #cache:
-  #  path: ../cache
+  cache:
+    path: ../cache
   equatable: ^2.0.3
   fireauth: ^0.9.0
   firebase_core: ^1.10.0
   flutter:
     sdk: flutter
   google_sign_in: ^5.2.1
-  #meta: ^1.3.0
-  #very_good_analysis: ^2.3.0
+  meta: ^1.7.0
 
 dev_dependencies:
   flutter_lints: ^1.0.4
