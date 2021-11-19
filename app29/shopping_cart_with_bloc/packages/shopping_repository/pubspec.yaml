@@ -5,8 +5,7 @@ version: 1.0.0
 environment:
   sdk: '>=2.14.4 <3.0.0'
 
-dependency:
-dependencies: 
+dependencies:
   equatable: ^2.0.3
   flutter: 
     sdk: flutter
