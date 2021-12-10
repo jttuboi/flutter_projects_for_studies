@@ -401,3 +401,33 @@ Flutter X
 
 ##### Tutorial
 https://www.youtube.com/watch?v=vZ1sLouBoa8
+
+
+## Shoping cart with bloc (app29)
+
+##### Description
+App de shopping cart para entender mais sobre o bloc.
+
+##### Version
+Flutter 2.5.3
+
+##### Date
+19/11/2021
+
+##### Tutorial
+https://github.com/felangel/bloc/tree/master/examples/flutter_shopping_cart
+
+
+## Contacts (app30)
+
+##### Description
+App de contatos para entender melhor o sqflite (contém implementação de foto, url launcher, geolocation)
+
+##### Version
+Flutter 2.5.3
+
+##### Date
+10/12/2021
+
+##### Tutorial
+https://balta.io/blog/flutter-sqlite
