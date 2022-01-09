@@ -431,3 +431,18 @@ Flutter 2.5.3
 
 ##### Tutorial
 https://balta.io/blog/flutter-sqlite
+
+
+## JWT test (app31)
+
+##### Description
+simples servidor em dart que mostra como é utilizado o JWT para parte de segurança na comunicação entre app e servidor
+
+##### Version
+Flutter 2.8.1
+
+##### Date
+09/01/2022
+
+##### Tutorial
+https://www.youtube.com/watch?v=BCbO4iRNNsM
