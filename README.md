@@ -446,3 +446,30 @@ Flutter 2.8.1
 
 ##### Tutorial
 https://www.youtube.com/watch?v=BCbO4iRNNsM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## JWT client/server by macoratti (app34)
+
+##### Description
+cliente/servidor para entender o funcionamento da JWT com um sistema de login.
+
+##### Version
+Flutter 2.8.1
+
+##### Date
+11/01/2022
+
+##### Tutorial
+https://www.youtube.com/watch?v=kQ_hShOrzHM
