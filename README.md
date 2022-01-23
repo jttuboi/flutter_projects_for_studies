@@ -448,16 +448,16 @@ Flutter 2.8.1
 https://www.youtube.com/watch?v=BCbO4iRNNsM
 
 
+## Mixin (app33)
 
+##### Description
+teste simples para entender o mixin do dart.
 
+##### Version
+Flutter 2.8.1
 
-
-
-
-
-
-
-
+##### Date
+11/01/2022
 
 
 ## JWT client/server by macoratti (app34)
@@ -473,3 +473,19 @@ Flutter 2.8.1
 
 ##### Tutorial
 https://www.youtube.com/watch?v=kQ_hShOrzHM
+
+
+
+## JWT client/server (app35)
+
+##### Description
+cliente/servidor para entender o funcionamento da JWT com um sistema de login.
+
+##### Version
+Flutter 2.8.1
+
+##### Date
+13/01/2022
+
+##### Tutorial
+https://dev.to/carminezacc/user-authentication-jwt-authorization-with-flutter-and-node-176l
