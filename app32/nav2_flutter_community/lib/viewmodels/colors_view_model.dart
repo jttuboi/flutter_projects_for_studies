@@ -7,22 +7,22 @@ class ColorsViewModel extends ChangeNotifier {
   ColorsViewModel(this.colorsRepository);
 
   final ColorsRepository? colorsRepository;
-  bool _fetchingColors = false;
-  bool _clearingColors = false;
+  bool fetchingColors = false;
+  bool clearingColors = false;
 
   void fetchColors() async {
-    _fetchingColors = true;
+    fetchingColors = true;
     notifyListeners();
     await colorsRepository!.fetchColors();
-    _fetchingColors = false;
+    fetchingColors = false;
     notifyListeners();
   }
 
   void clearColors() async {
-    _clearingColors = true;
+    clearingColors = true;
     notifyListeners();
     await colorsRepository!.clearColors();
-    _clearingColors = false;
+    clearingColors = false;
     notifyListeners();
   }
 }
