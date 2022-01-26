@@ -2,13 +2,14 @@ import 'package:nav2_flutter_community/common/model/shape_border_type.dart';
 import 'package:flutter/material.dart';
 import 'package:nav2_flutter_community/data/auth_repository.dart';
 import 'package:nav2_flutter_community/data/colors_repository.dart';
+import 'package:nav2_flutter_community/router/my_app_configuration.dart';
 import 'package:nav2_flutter_community/router/pages/color_page.dart';
 import 'package:nav2_flutter_community/router/pages/home_page.dart';
 import 'package:nav2_flutter_community/router/pages/login_page.dart';
 import 'package:nav2_flutter_community/router/pages/shape_page.dart';
 import 'package:nav2_flutter_community/router/pages/splash_page.dart';
 
-class MyAppRouterDelegate extends RouterDelegate
+class MyAppRouterDelegate extends RouterDelegate<MyAppConfiguration>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin {
   MyAppRouterDelegate(this.authRepository, this.colorsRepository) {
     _init();
