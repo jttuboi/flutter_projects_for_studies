@@ -72,6 +72,7 @@ class AuthenticationRouterDelegate extends RouterDelegate with ChangeNotifier {
   Future<void> setNewRoutePath(configuration) async => null;
 }
 
+// de acordo com o tutorial, tem um defeito de PageRouteTransition, por isso dessa linha
 final GlobalKey<NavigatorState> _homeNavigatorKey = GlobalKey<NavigatorState>();
 
 class HomeRouterDelegate extends RouterDelegate with ChangeNotifier {
@@ -87,6 +88,8 @@ class HomeRouterDelegate extends RouterDelegate with ChangeNotifier {
 
   @override
   Widget build(BuildContext context) {
+    // 0PORQUE O SCAFFOLD ESTÀ DENTRO DO ROUTER DELEGATE
+    // ele não devia estar internamente aqui, pois o ideal é separar navegação de visual e é exatametne o oposto que está acontecendo aqui
     return Scaffold(
       appBar: AppBar(title: Text('You are connected')),
       bottomNavigationBar: BottomNavigationBar(
@@ -99,6 +102,7 @@ class HomeRouterDelegate extends RouterDelegate with ChangeNotifier {
       ),
       body: Navigator(
         key: _homeNavigatorKey,
+        // de acordo com o tutorial, tem um defeito de HeroAnimations, por isso dessa linha
         observers: [HeroController()],
         pages: [
           if (selectedIndex == 0)
