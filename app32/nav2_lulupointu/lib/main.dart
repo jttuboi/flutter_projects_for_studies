@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nav2_lulupointu/app_1_simple_route.dart';
 import 'package:nav2_lulupointu/app_2_nested_route.dart';
 import 'package:nav2_lulupointu/app_3_transitions.dart';
+import 'package:nav2_lulupointu/app_4_routes_plus_bloc.dart';
 
 void main() {
   // https://lucasdelsol01.medium.com/flutter-navigator-2-0-101-for-mobile-dev-5094566613f6
@@ -22,5 +23,9 @@ void main() {
 
   // https://lucasdelsol01.medium.com/flutter-navigator-2-0-for-mobile-dev-transitions-1967b79aaa37
   // esse explica como fazer uma animação na transição com a criação de Pages
-  runApp(const App3());
+  // runApp(const App3());
+
+  // https://lucasdelsol01.medium.com/flutter-navigator-2-0-for-mobile-dev-bloc-state-management-integration-3a180b4d25b3
+  // exxe mpstra router + bloc
+  runApp(const App4());
 }
