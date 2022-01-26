@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nav2_lulupointu/app_1_simple_route.dart';
 import 'package:nav2_lulupointu/app_2_nested_route.dart';
+import 'package:nav2_lulupointu/app_3_transitions.dart';
 
 void main() {
   // https://lucasdelsol01.medium.com/flutter-navigator-2-0-101-for-mobile-dev-5094566613f6
@@ -17,5 +18,9 @@ void main() {
   // - a parte visual está completamente misturado com o RouterDelegate (o Scaffold está dentro do RouterDelegate)
   //   sendo que um dos propósito é tirar responsa do visual cuidar da navegação e aqui está dando a responsabilidade
   //   da navegação ter partes visuais internamente
-  runApp(const App2());
+  // runApp(const App2());
+
+  // https://lucasdelsol01.medium.com/flutter-navigator-2-0-for-mobile-dev-transitions-1967b79aaa37
+  // esse explica como fazer uma animação na transição com a criação de Pages
+  runApp(const App3());
 }
