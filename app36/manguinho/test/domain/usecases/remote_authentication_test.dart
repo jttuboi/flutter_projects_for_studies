@@ -1,24 +1,8 @@
 import 'package:faker/faker.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:manguinho/data/data.dart';
+import 'package:manguinho/domain/usecases/usecases.dart';
 import 'package:mocktail/mocktail.dart';
-
-class RemoteAuthentication {
-  RemoteAuthentication({
-    required this.httpClient,
-    required this.url,
-  });
-
-  final HttpClient httpClient;
-  final String url;
-
-  Future<void> auth() async {
-    await httpClient.request(url: url, method: 'get');
-  }
-}
-
-abstract class HttpClient {
-  Future<void> request({required String url, required String method});
-}
 
 void main() {
   late RemoteAuthentication sut;
@@ -32,11 +16,12 @@ void main() {
   });
 
   test('should call HttpClient with correct values', () async {
-    when(() => httpClient.request(url: url, method: 'get')).thenAnswer((_) => Future.value());
+    var params = AuthenticationParams(email: faker.internet.email(), secret: faker.internet.password());
+    when(() => httpClient.request(url: url, method: 'post', body: params.toJson())).thenAnswer((_) => Future.value());
 
-    await sut.auth();
+    await sut.auth(params);
 
-    verify(() => httpClient.request(url: url, method: 'get')).called(1);
+    verify(() => httpClient.request(url: url, method: 'post', body: params.toJson())).called(1);
   });
 }
 
