@@ -20,8 +20,9 @@ void main() {
 
   test('should call HttpClient with correct values', () async {
     var body = RemoteAuthenticationParams.fromDomain(params).toJson();
-    var httpBody = {'accessToken': faker.guid.guid(), 'name': faker.person.name()};
-    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenAnswer((_) async => httpBody);
+    var httpResponse = {'accessToken': faker.guid.guid(), 'name': faker.person.name()};
+    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body')))
+        .thenAnswer((_) async => httpResponse);
 
     await sut.auth(params);
 
@@ -29,9 +30,7 @@ void main() {
   });
 
   test('should throw UnexpectedError when HttpClient returns 400', () async {
-    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenThrow(
-      HttpError.badRequest,
-    );
+    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenThrow(HttpError.badRequest);
 
     final future = sut.auth(params);
 
@@ -39,9 +38,7 @@ void main() {
   });
 
   test('should throw UnexpectedError when HttpClient returns 404', () async {
-    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenThrow(
-      HttpError.notFound,
-    );
+    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenThrow(HttpError.notFound);
 
     final future = sut.auth(params);
 
@@ -49,9 +46,7 @@ void main() {
   });
 
   test('should throw UnexpectedError when HttpClient returns 500', () async {
-    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenThrow(
-      HttpError.serverError,
-    );
+    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenThrow(HttpError.serverError);
 
     final future = sut.auth(params);
 
@@ -59,9 +54,7 @@ void main() {
   });
 
   test('should throw InvalidCredentialsError when HttpClient returns 401', () async {
-    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenThrow(
-      HttpError.unauthorized,
-    );
+    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenThrow(HttpError.unauthorized);
 
     final future = sut.auth(params);
 
@@ -70,14 +63,22 @@ void main() {
 
   test('should return an account when HttpClient returns 200', () async {
     final accessToken = faker.guid.guid();
-    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body'))).thenAnswer((_) async => {
-          'accessToken': accessToken,
-          'name': faker.person.name(),
-        });
+    var httpResponse = {'accessToken': accessToken, 'name': faker.person.name()};
+    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body')))
+        .thenAnswer((_) async => httpResponse);
 
     final account = await sut.auth(params);
 
     expect(account.token, accessToken);
+  });
+
+  test('should throw UnexpectedError when HttpClient returns 200 with invalid data', () async {
+    when(() => httpClient.request(url: any(named: 'url'), method: any(named: 'method'), body: any(named: 'body')))
+        .thenAnswer((_) async => {'invalid_key': 'invalid_value'});
+
+    final future = sut.auth(params);
+
+    expect(future, throwsA(DomainError.unexpected));
   });
 }
 

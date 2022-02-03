@@ -1,7 +1,8 @@
+import 'package:manguinho/data/data.dart';
+
 import '../../domain/entities/entities.dart';
 import '../../domain/helpers/helpers.dart';
 import '../../domain/usecases/usecases.dart';
-import '../http/http.dart';
 
 class RemoteAuthentication {
   RemoteAuthentication({
@@ -16,7 +17,7 @@ class RemoteAuthentication {
     var body = RemoteAuthenticationParams.fromDomain(params).toJson();
     try {
       final httpResponse = await httpClient.request(url: url, method: 'post', body: body);
-      return AccountEntity.fromMap(httpResponse);
+      return RemoteAccountModel.fromMap(httpResponse).toEntity();
     } on HttpError catch (e) {
       if (e == HttpError.unauthorized) {
         throw DomainError.invalidCredentials;
