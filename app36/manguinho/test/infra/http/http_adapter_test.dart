@@ -17,7 +17,7 @@ class HttpAdapter implements HttpClient {
 
     var response = await client.post(Uri.parse(url), headers: headers, body: jsonBody);
 
-    return jsonDecode(response.body);
+    return response.body.isNotEmpty ? jsonDecode(response.body) : {};
   }
 }
 
@@ -33,25 +33,25 @@ void main() {
   });
 
   group('post', () {
+    const anyBodyResponse = '{"any_key_body":"any_value_body"}';
+    When mockRequest() => when(() => client.post(Uri.parse(url), headers: any(named: 'headers')));
+
+    void mockResponse(int statusCode, {String bodyResponse = anyBodyResponse}) {
+      mockRequest().thenAnswer((_) async => Response(bodyResponse, 200));
+    }
+
     test('should call post with correct values', () async {
-      when(() => client.post(
-            Uri.parse(url),
-            headers: {'content-type': 'application/json', 'accept': 'application/json'},
-            body: '{"any_key":"any_value"}',
-          )).thenAnswer((_) => Future.value(Response('{"any_key":"any_value"}', 200)));
+      final headersRequest = {'content-type': 'application/json', 'accept': 'application/json'};
+      final bodyRequest = '{"any_key_request":"any_value_request"}';
+      when(() => client.post(Uri.parse(url), headers: headersRequest, body: bodyRequest)).thenAnswer((_) async => Response(anyBodyResponse, 200));
 
-      await sut.request(url: url, method: 'post', body: {'any_key': 'any_value'});
+      await sut.request(url: url, method: 'post', body: {'any_key_request': 'any_value_request'});
 
-      verify(() => client.post(
-            Uri.parse(url),
-            headers: {'content-type': 'application/json', 'accept': 'application/json'},
-            body: '{"any_key":"any_value"}',
-          )).called(1);
+      verify(() => client.post(Uri.parse(url), headers: headersRequest, body: bodyRequest)).called(1);
     });
 
     test('should call post without body', () async {
-      when(() => client.post(Uri.parse(url), headers: any(named: 'headers')))
-          .thenAnswer((_) => Future.value(Response('{"any_key":"any_value"}', 200)));
+      mockResponse(200);
 
       await sut.request(url: url, method: 'post');
 
@@ -59,12 +59,19 @@ void main() {
     });
 
     test('should return data when post returns 200', () async {
-      when(() => client.post(Uri.parse(url), headers: any(named: 'headers')))
-          .thenAnswer((_) => Future.value(Response('{"any_key":"any_value"}', 200)));
+      mockResponse(200);
 
       final response = await sut.request(url: url, method: 'post');
 
-      expect(response, {'any_key': 'any_value'});
+      expect(response, {'any_key_body': 'any_value_body'});
+    });
+
+    test('should return {} when post returns 200 with no data', () async {
+      mockResponse(200, bodyResponse: '');
+
+      final response = await sut.request(url: url, method: 'post');
+
+      expect(response, {});
     });
   });
 }
