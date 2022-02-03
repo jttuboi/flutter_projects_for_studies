@@ -6,6 +6,7 @@ import 'package:manguinho/infra/http/http.dart';
 import 'package:mocktail/mocktail.dart';
 
 void main() {
+  const anyBodyResponse = '{"any_key_body":"any_value_body"}';
   late HttpAdapter sut;
   late ClientSpy client;
   late String url;
@@ -16,8 +17,17 @@ void main() {
     url = faker.internet.httpUrl();
   });
 
+  group('shared', () {
+    test('should throw ServerError when invalid method is provided', () async {
+      when(() => client.post(Uri.parse(url), headers: any(named: 'headers'))).thenAnswer((_) async => Response(anyBodyResponse, 200));
+
+      final future = sut.request(url: url, method: 'invalid_method');
+
+      expect(future, throwsA(HttpError.serverError));
+    });
+  });
+
   group('post', () {
-    const anyBodyResponse = '{"any_key_body":"any_value_body"}';
     When mockRequest() => when(() => client.post(Uri.parse(url), headers: any(named: 'headers')));
 
     void mockResponse(int statusCode, {String bodyResponse = anyBodyResponse}) {
@@ -116,6 +126,14 @@ void main() {
 
     test('should return ServerError when post returns 500', () async {
       mockResponse(500);
+
+      final future = sut.request(url: url, method: 'post');
+
+      expect(future, throwsA(HttpError.serverError));
+    });
+
+    test('should return ServerError when post throws any Exception', () async {
+      mockRequest().thenThrow(Exception());
 
       final future = sut.request(url: url, method: 'post');
 
