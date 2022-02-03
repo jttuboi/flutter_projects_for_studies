@@ -4,7 +4,7 @@ import '../../domain/entities/entities.dart';
 import '../../domain/helpers/helpers.dart';
 import '../../domain/usecases/usecases.dart';
 
-class RemoteAuthentication {
+class RemoteAuthentication implements Authentication {
   RemoteAuthentication({
     required this.httpClient,
     required this.url,
