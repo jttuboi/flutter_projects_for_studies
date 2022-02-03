@@ -1,5 +1,6 @@
+import '../../domain/entities/entities.dart';
+import '../../domain/helpers/helpers.dart';
 import '../../domain/usecases/usecases.dart';
-
 import '../http/http.dart';
 
 class RemoteAuthentication {
@@ -11,7 +12,35 @@ class RemoteAuthentication {
   final HttpClient httpClient;
   final String url;
 
-  Future<void> auth(AuthenticationParams params) async {
-    await httpClient.request(url: url, method: 'post', body: params.toJson());
+  Future<AccountEntity> auth(AuthenticationParams params) async {
+    var body = RemoteAuthenticationParams.fromDomain(params).toJson();
+    try {
+      final httpResponse = await httpClient.request(url: url, method: 'post', body: body);
+      return AccountEntity.fromMap(httpResponse);
+    } on HttpError catch (e) {
+      if (e == HttpError.unauthorized) {
+        throw DomainError.invalidCredentials;
+      }
+      throw DomainError.unexpected;
+    }
   }
+}
+
+class RemoteAuthenticationParams {
+  RemoteAuthenticationParams({
+    required this.email,
+    required this.password,
+  });
+
+  final String email;
+  final String password;
+
+  factory RemoteAuthenticationParams.fromDomain(AuthenticationParams params) {
+    return RemoteAuthenticationParams(email: params.email, password: params.secret);
+  }
+
+  Map<String, dynamic> toJson() => {
+        'email': email,
+        'password': password,
+      };
 }

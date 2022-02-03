@@ -12,6 +12,4 @@ class AuthenticationParams {
 
   final String email;
   final String secret;
-
-  Map<String, dynamic> toJson() => {'email': email, 'password': secret};
 }
