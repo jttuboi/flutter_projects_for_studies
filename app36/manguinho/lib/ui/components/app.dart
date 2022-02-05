@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:manguinho/ui/pages/pages.dart';
 
+class Aaa extends LoginPresenter {
+  @override
+  void validateEmail(String email) {
+    // TODO: implement validateEmail
+  }
+
+  @override
+  void validatePassword(String password) {
+    // TODO: implement validatePassword
+  }
+
+  @override
+  // TODO: implement emailErrorStream
+  Stream<String> get emailErrorStream => throw UnimplementedError();
+
+  @override
+  // TODO: implement passwordErrorStream
+  Stream<String?> get passwordErrorStream => throw UnimplementedError();
+}
+
 class App extends StatelessWidget {
   const App({Key? key}) : super(key: key);
 
@@ -11,7 +31,7 @@ class App extends StatelessWidget {
     final primaryColorLight = Color.fromRGBO(188, 71, 123, 1);
 
     return MaterialApp(
-      home: LoginPage(),
+      home: LoginPage(Aaa()),
       theme: ThemeData(
         primaryColor: primaryColor,
         primaryColorDark: primaryColorDark,
