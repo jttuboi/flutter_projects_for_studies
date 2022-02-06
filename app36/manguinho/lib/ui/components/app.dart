@@ -25,7 +25,7 @@ class Aaa extends LoginPresenter {
   Stream<bool> get isFormValidStream => throw UnimplementedError();
 
   @override
-  void auth() {
+  Future<void> auth() async {
     // TODO: implement auth
   }
 

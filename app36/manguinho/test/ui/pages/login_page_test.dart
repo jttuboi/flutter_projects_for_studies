@@ -16,32 +16,41 @@ void main() {
   late StreamController<bool> isLoadingController;
   late StreamController<String> authenticationErrorController;
 
-  Future<void> loadPage(WidgetTester tester) async {
-    presenter = LoginPresenterSpy();
+  void initStreams() {
     emailErrorController = StreamController<String?>();
     passwordErrorController = StreamController<String?>();
     isFormValidController = StreamController<bool>();
     isLoadingController = StreamController<bool>();
     authenticationErrorController = StreamController<String>();
+  }
+
+  void mockStreams() {
     when(() => presenter.emailErrorStream).thenAnswer((_) => emailErrorController.stream);
     when(() => presenter.passwordErrorStream).thenAnswer((_) => passwordErrorController.stream);
     when(() => presenter.isFormValidStream).thenAnswer((_) => isFormValidController.stream);
     when(() => presenter.isLoadingStream).thenAnswer((_) => isLoadingController.stream);
     when(() => presenter.authenticationErrorStream).thenAnswer((_) => authenticationErrorController.stream);
+  }
 
-    when(() => presenter.auth()).thenReturn(null);
+  void closeStreams() {
+    emailErrorController.close();
+    passwordErrorController.close();
+    isFormValidController.close();
+    isLoadingController.close();
+    authenticationErrorController.close();
+  }
 
+  Future<void> loadPage(WidgetTester tester) async {
+    presenter = LoginPresenterSpy();
+    initStreams();
+    mockStreams();
     await tester.pumpWidget(MaterialApp(
       home: LoginPage(presenter),
     ));
   }
 
   tearDown(() {
-    emailErrorController.close();
-    passwordErrorController.close();
-    isFormValidController.close();
-    isLoadingController.close();
-    authenticationErrorController.close();
+    closeStreams();
   });
 
   testWidgets('should load with correct initial state', (tester) async {
@@ -161,8 +170,8 @@ void main() {
   });
 
   testWidgets('should call authentication on form submit', (tester) async {
-    when(() => presenter.auth()).thenReturn(null);
     await loadPage(tester);
+    when(() => presenter.auth()).thenAnswer((_) async {});
 
     isFormValidController.add(true);
 
