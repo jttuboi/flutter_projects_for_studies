@@ -23,6 +23,24 @@ class Aaa extends LoginPresenter {
   @override
   // TODO: implement isFormValidStream
   Stream<bool> get isFormValidStream => throw UnimplementedError();
+
+  @override
+  void auth() {
+    // TODO: implement auth
+  }
+
+  @override
+  // TODO: implement isLoadingStream
+  Stream<bool> get isLoadingStream => throw UnimplementedError();
+
+  @override
+  // TODO: implement authenticationErrorStream
+  Stream<String> get authenticationErrorStream => throw UnimplementedError();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+  }
 }
 
 class App extends StatelessWidget {
