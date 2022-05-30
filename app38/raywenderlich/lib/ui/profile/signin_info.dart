@@ -4,7 +4,7 @@ import 'package:raywenderlich/widgets/j_app_bar.dart';
 import 'package:raywenderlich/widgets/j_elevated_button.dart';
 import 'package:raywenderlich/widgets/j_text_field.dart';
 
-import '../login_state.dart';
+import '../../login_state.dart';
 
 class SigninInfo extends StatefulWidget {
   const SigninInfo({Key? key}) : super(key: key);

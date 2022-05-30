@@ -4,16 +4,16 @@ import 'package:raywenderlich/widgets/j_app_bar.dart';
 import 'package:raywenderlich/widgets/j_elevated_button.dart';
 import 'package:raywenderlich/widgets/j_text_form_field.dart';
 
-import '../login_state.dart';
+import '../../login_state.dart';
 
-class CreateAccount extends StatefulWidget {
-  const CreateAccount({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  _CreateAccountState createState() => _CreateAccountState();
+  _LoginState createState() => _LoginState();
 }
 
-class _CreateAccountState extends State<CreateAccount> {
+class _LoginState extends State<Login> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -21,7 +21,7 @@ class _CreateAccountState extends State<CreateAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: JAppBar(title: 'Create Account'),
+      appBar: JAppBar(title: 'Login'),
       body: SafeArea(
         child: Center(
           child: Form(
@@ -30,13 +30,8 @@ class _CreateAccountState extends State<CreateAccount> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 JTextFormField(hintText: 'Email', controller: emailTextController),
-                JTextFormField(
-                  hintText: 'Password',
-                  controller: passwordTextController,
-                  enableSuggestions: false,
-                  autocorrect: false,
-                  obscureText: true,
-                ),
+                JTextFormField(hintText: 'Email', controller: emailTextController),
+                JTextFormField(hintText: 'Password', controller: passwordTextController, enableSuggestions: false, autocorrect: false, obscureText: true),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -47,16 +42,18 @@ class _CreateAccountState extends State<CreateAccount> {
                         title: 'Create Account',
                         style: JElevatedButtonStyle.primaryColor,
                         textStyle: JElevatedButtonTextStyle.white,
-                        onPressed: () async => saveLoginState(context),
+                        onPressed: () {
+                          // TODO: Add Create Account Route
+                        },
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: JElevatedButton(
-                        title: 'Cancel',
+                        title: 'Login',
                         style: JElevatedButtonStyle.white,
                         onPressed: () {
-                          // TODO: Add Login Route
+                          saveLoginState(context);
                         },
                       ),
                     ),

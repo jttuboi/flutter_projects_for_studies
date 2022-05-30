@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:raywenderlich/widgets/j_app_bar.dart';
 import 'package:raywenderlich/widgets/j_elevated_button.dart';
-import '../cart_holder.dart';
+import '../../cart_holder.dart';
 import 'package:provider/provider.dart';
 
 class Details extends StatelessWidget {

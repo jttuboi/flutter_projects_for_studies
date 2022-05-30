@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-
 class Shopping extends StatelessWidget {
   const Shopping({Key? key}) : super(key: key);
 

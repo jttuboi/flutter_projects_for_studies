@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:raywenderlich/widgets/j_app_bar.dart';
-import 'cart.dart';
-import 'profile.dart';
-import 'shopping.dart';
+import 'shop/cart.dart';
+import 'profile/profile.dart';
+import 'shop/shopping.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({required String tab, Key? key})

@@ -4,16 +4,16 @@ import 'package:raywenderlich/widgets/j_app_bar.dart';
 import 'package:raywenderlich/widgets/j_elevated_button.dart';
 import 'package:raywenderlich/widgets/j_text_form_field.dart';
 
-import '../login_state.dart';
+import '../../login_state.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class CreateAccount extends StatefulWidget {
+  const CreateAccount({Key? key}) : super(key: key);
 
   @override
-  _LoginState createState() => _LoginState();
+  _CreateAccountState createState() => _CreateAccountState();
 }
 
-class _LoginState extends State<Login> {
+class _CreateAccountState extends State<CreateAccount> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: JAppBar(title: 'Login'),
+      appBar: JAppBar(title: 'Create Account'),
       body: SafeArea(
         child: Center(
           child: Form(
@@ -30,8 +30,13 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 JTextFormField(hintText: 'Email', controller: emailTextController),
-                JTextFormField(hintText: 'Email', controller: emailTextController),
-                JTextFormField(hintText: 'Password', controller: passwordTextController, enableSuggestions: false, autocorrect: false, obscureText: true),
+                JTextFormField(
+                  hintText: 'Password',
+                  controller: passwordTextController,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  obscureText: true,
+                ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -42,18 +47,16 @@ class _LoginState extends State<Login> {
                         title: 'Create Account',
                         style: JElevatedButtonStyle.primaryColor,
                         textStyle: JElevatedButtonTextStyle.white,
-                        onPressed: () {
-                          // TODO: Add Create Account Route
-                        },
+                        onPressed: () async => saveLoginState(context),
                       ),
                     ),
                     const SizedBox(width: 16),
                     Expanded(
                       child: JElevatedButton(
-                        title: 'Login',
+                        title: 'Cancel',
                         style: JElevatedButtonStyle.white,
                         onPressed: () {
-                          saveLoginState(context);
+                          // TODO: Add Login Route
                         },
                       ),
                     ),
