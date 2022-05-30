@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:raywenderlich/constants.dart';
 import 'package:raywenderlich/widgets/j_app_bar.dart';
 import 'package:raywenderlich/widgets/j_elevated_button.dart';
 import 'package:raywenderlich/widgets/j_text_form_field.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../login_state.dart';
 
@@ -30,7 +32,6 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 JTextFormField(hintText: 'Email', controller: emailTextController),
-                JTextFormField(hintText: 'Email', controller: emailTextController),
                 JTextFormField(hintText: 'Password', controller: passwordTextController, enableSuggestions: false, autocorrect: false, obscureText: true),
                 Row(
                   mainAxisSize: MainAxisSize.max,
@@ -42,9 +43,7 @@ class _LoginState extends State<Login> {
                         title: 'Create Account',
                         style: JElevatedButtonStyle.primaryColor,
                         textStyle: JElevatedButtonTextStyle.white,
-                        onPressed: () {
-                          // TODO: Add Create Account Route
-                        },
+                        onPressed: () => context.goNamed(createAccountRouteName),
                       ),
                     ),
                     const SizedBox(width: 16),

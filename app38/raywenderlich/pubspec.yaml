@@ -10,6 +10,7 @@ dependencies:
   extended_masked_text: ^2.3.1
   flutter:
     sdk: flutter
+  go_router: ^3.1.1
   provider: ^6.0.3
   shared_preferences: ^2.0.15
 

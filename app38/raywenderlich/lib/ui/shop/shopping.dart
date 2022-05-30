@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:raywenderlich/constants.dart';
+import 'package:go_router/go_router.dart';
 
 class Shopping extends StatelessWidget {
   const Shopping({Key? key}) : super(key: key);
@@ -12,10 +14,7 @@ class Shopping extends StatelessWidget {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(items[index]),
-            onTap: () {
-              final value = items[index];
-              // TODO: Add Push Details Route
-            },
+            onTap: () => context.goNamed(detailsRouteName, params: {'item': items[index]}),
           );
         },
       ),

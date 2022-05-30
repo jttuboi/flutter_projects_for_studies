@@ -3,6 +3,7 @@ import 'package:raywenderlich/widgets/j_app_bar.dart';
 import 'shop/cart.dart';
 import 'profile/profile.dart';
 import 'shop/shopping.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({required String tab, Key? key})
@@ -57,7 +58,18 @@ class _HomeScreenState extends State<HomeScreen> {
         selectedItemColor: Colors.white,
         onTap: (index) => setState(() {
           _selectedIndex = index;
-          // TODO: Add Switch
+          // apenas mostrando como funciona quando utiliza path
+          switch (index) {
+            case 0:
+              context.go('/shop');
+              break;
+            case 1:
+              context.go('/cart');
+              break;
+            case 2:
+              context.go('/profile');
+              break;
+          }
         }),
       ),
       body: IndexedStack(

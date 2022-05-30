@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:raywenderlich/constants.dart';
 import 'package:raywenderlich/widgets/j_app_bar.dart';
 import 'package:raywenderlich/widgets/j_elevated_button.dart';
 import '../../cart_holder.dart';
 import 'package:provider/provider.dart';
+import 'package:go_router/go_router.dart';
 
 class Details extends StatelessWidget {
   const Details({required this.description, Key? key}) : super(key: key);
@@ -25,7 +27,7 @@ class Details extends StatelessWidget {
               textStyle: JElevatedButtonTextStyle.white,
               onPressed: () {
                 Provider.of<CartHolder>(context, listen: false).addItem(description);
-                // TODO: Add Root Route
+                context.goNamed(rootRouteName);
               },
             ),
           ],

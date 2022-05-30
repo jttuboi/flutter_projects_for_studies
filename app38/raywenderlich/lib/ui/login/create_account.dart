@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:raywenderlich/constants.dart';
 import 'package:raywenderlich/widgets/j_app_bar.dart';
 import 'package:raywenderlich/widgets/j_elevated_button.dart';
 import 'package:raywenderlich/widgets/j_text_form_field.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../login_state.dart';
 
@@ -55,9 +57,7 @@ class _CreateAccountState extends State<CreateAccount> {
                       child: JElevatedButton(
                         title: 'Cancel',
                         style: JElevatedButtonStyle.white,
-                        onPressed: () {
-                          // TODO: Add Login Route
-                        },
+                        onPressed: () => context.goNamed(loginRouteName),
                       ),
                     ),
                     const SizedBox(width: 16),
@@ -72,6 +72,7 @@ class _CreateAccountState extends State<CreateAccount> {
   }
 
   void saveLoginState(BuildContext context) {
+    // TODO transformar num metodo para evitar "setar" o valor fora do LoginState
     Provider.of<LoginState>(context, listen: false).loggedIn = true;
   }
 }

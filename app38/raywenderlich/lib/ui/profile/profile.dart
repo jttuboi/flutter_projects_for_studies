@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:raywenderlich/constants.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -28,30 +30,22 @@ class _ProfileState extends State<Profile> {
       case 0:
         return ProfileCardTile(
           title: 'Personal Info',
-          onTap: () {
-            // TODO: Add Personal Page Route
-          },
+          onTap: () => context.goNamed(personalRouteName),
         );
       case 1:
         return ProfileCardTile(
           title: 'Payment',
-          onTap: () {
-            // TODO: Add Payment Route
-          },
+          onTap: () => context.goNamed(paymentRouteName),
         );
       case 2:
         return ProfileCardTile(
           title: 'Sign In Info',
-          onTap: () {
-            // TODO: Add Signin Info Route
-          },
+          onTap: () => context.goNamed(signinInfoRouteName),
         );
     }
     return ProfileCardTile(
       title: 'More Info',
-      onTap: () {
-        // TODO: Add More Info Route
-      },
+      onTap: () => context.goNamed(moreInfoRouteName),
     );
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:raywenderlich/cart_holder.dart';
 import 'package:raywenderlich/login_state.dart';
+import 'package:raywenderlich/router/routes.dart';
 import 'package:raywenderlich/ui/login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,17 +24,18 @@ class App extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<CartHolder>(lazy: false, create: (_) => CartHolder()),
         ChangeNotifierProvider<LoginState>(lazy: false, create: (_) => loginState),
+        Provider<MyRouter>(lazy: false, create: (_) => MyRouter(loginState)),
       ],
-      child: Builder(
-        builder: (BuildContext context) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Navigation App',
-            theme: ThemeData(primarySwatch: Colors.blue),
-            home: const Login(),
-          );
-        },
-      ),
+      child: Builder(builder: (BuildContext context) {
+        final router = Provider.of<MyRouter>(context, listen: false).router;
+        return MaterialApp.router(
+          routeInformationParser: router.routeInformationParser,
+          routerDelegate: router.routerDelegate,
+          debugShowCheckedModeBanner: false,
+          title: 'Navigation App',
+          theme: ThemeData(primarySwatch: Colors.blue),
+        );
+      }),
     );
   }
 }
