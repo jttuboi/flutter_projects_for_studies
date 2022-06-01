@@ -122,6 +122,10 @@ class MyRouter {
     // esta página mostra o erro lançado pelo go router
     errorPageBuilder: (_, state) => MaterialPage<void>(key: state.pageKey, child: ErrorPage(error: state.error)),
     redirect: (state) {
+      print('--- redirect()');
+      //// exemplo para deixar claro o funcionamento
+      //// state.subloc = 'create-account'
+
       final loginLoc = state.namedLocation(loginRouteName);
       final loggingIn = state.subloc == loginLoc;
 
@@ -131,12 +135,26 @@ class MyRouter {
       final loggedIn = loginState.loggedIn;
       final rootLoc = state.namedLocation(rootRouteName);
 
-      print('redirect(loggingIn: $loggingIn, creatingAccount: $creatingAccount, loggedIn: $loggedIn)');
+      print('* redirect(loggingIn: $loggingIn, creatingAccount: $creatingAccount, loggedIn: $loggedIn)');
 
-      if (!loggedIn && !loggingIn && !creatingAccount) return loginLoc;
-      if (loggedIn && (loggingIn || creatingAccount)) return rootLoc;
+      //// no primeiro if ele não entra
+      //// no segundo, ele só entra caso esteja logado,
+      ////   então nesse caso ele redireciona para home, pois se ele está logado, ele não deve ter acesso a pagina do create
 
-      // caso não caia em nenhuma das situações, então não redireciona
+      // essa parte redireciona caso a pagina a ser acessada não tem permissão ou algo similar
+      if (!loggedIn && !loggingIn && !creatingAccount) {
+        print('- redirecting to $loginLoc');
+        return loginLoc;
+      }
+      if (loggedIn && (loggingIn || creatingAccount)) {
+        print('- redirecting to $rootLoc');
+        return rootLoc;
+      }
+
+      //// caso ele não seja redirecionado, então o go router chama a classe CreateAccount()
+
+      // caso não caia em nenhuma das situações, então deixa prosseguir para a página que deve ir
+      print('- ${state.location} ${state.subloc}');
       return null;
     },
   );
