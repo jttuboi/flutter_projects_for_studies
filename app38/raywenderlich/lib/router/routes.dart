@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:raywenderlich/constants.dart';
@@ -122,20 +124,18 @@ class MyRouter {
     // esta página mostra o erro lançado pelo go router
     errorPageBuilder: (_, state) => MaterialPage<void>(key: state.pageKey, child: ErrorPage(error: state.error)),
     redirect: (state) {
-      print('--- redirect()');
+      log('---- redirect(${state.location})');
       //// exemplo para deixar claro o funcionamento
       //// state.subloc = 'create-account'
 
       final loginLoc = state.namedLocation(loginRouteName);
       final loggingIn = state.subloc == loginLoc;
-
       final createAccountLoc = state.namedLocation(createAccountRouteName);
       final creatingAccount = state.subloc == createAccountLoc;
-
-      final loggedIn = loginState.loggedIn;
       final rootLoc = state.namedLocation(rootRouteName);
+      final loggedIn = loginState.loggedIn;
 
-      print('* redirect(loggingIn: $loggingIn, creatingAccount: $creatingAccount, loggedIn: $loggedIn)');
+      log('* loggingIn: $loggingIn, creatingAccount: $creatingAccount, loggedIn: $loggedIn) - ${state.location} ${state.subloc} ${state.name} ${state.fullpath} ${state.path}');
 
       //// no primeiro if ele não entra
       //// no segundo, ele só entra caso esteja logado,
@@ -143,18 +143,18 @@ class MyRouter {
 
       // essa parte redireciona caso a pagina a ser acessada não tem permissão ou algo similar
       if (!loggedIn && !loggingIn && !creatingAccount) {
-        print('- redirecting to $loginLoc');
+        log('- redirecting to $loginLoc 1');
         return loginLoc;
       }
       if (loggedIn && (loggingIn || creatingAccount)) {
-        print('- redirecting to $rootLoc');
+        log('- redirecting to $rootLoc 2');
         return rootLoc;
       }
 
       //// caso ele não seja redirecionado, então o go router chama a classe CreateAccount()
 
       // caso não caia em nenhuma das situações, então deixa prosseguir para a página que deve ir
-      print('- ${state.location} ${state.subloc}');
+      log('- redirecting to ${state.location}++');
       return null;
     },
   );

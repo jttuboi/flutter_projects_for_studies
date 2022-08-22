@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:raywenderlich/cart_holder.dart';
@@ -19,6 +21,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('==== App.build()');
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<CartHolder>(lazy: false, create: (_) => CartHolder()),
@@ -26,6 +29,7 @@ class App extends StatelessWidget {
         Provider<MyRouter>(lazy: false, create: (_) => MyRouter(loginState)),
       ],
       child: Builder(builder: (BuildContext context) {
+        log('==== initial builder() with MaterialApp');
         final router = Provider.of<MyRouter>(context, listen: false).router;
         return MaterialApp.router(
           routeInformationParser: router.routeInformationParser,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:raywenderlich/constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,6 +16,7 @@ class LoginState extends ChangeNotifier {
   set loggedIn(bool value) {
     _loggedIn = value;
     prefs.setBool(loggedInKey, value);
+    log('CHange notifier::loggedIn = $loggedIn ');
     notifyListeners();
   }
 
