@@ -1,4 +1,4 @@
-// TODO readaptar o projeto pro 
+// TODO readaptar o projeto pro
 // o abaixo ele cria o projeto, mas tem q ver como associa com o projeto ja existente ou na conta
 // q vc nao tem acesso
 
@@ -35,6 +35,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging_teste_3_3_5/firebase_options.dart';
 import 'package:firebase_messaging_teste_3_3_5/routes.dart';
+import 'package:firebase_messaging_teste_3_3_5/service/firebase_messaging_service.dart';
 import 'package:firebase_messaging_teste_3_3_5/service/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +53,7 @@ Future<void> main() async {
   runApp(MultiProvider(
     providers: [
       Provider<NotificationService>(create: (_) => NotificationService()),
+      Provider<FirebaseMessagingService>(create: (context) => FirebaseMessagingService(context.read<NotificationService>())),
     ],
     child: const App(),
   ));
@@ -68,7 +70,12 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+    _initilizeFirebaseMessaging();
     _checkNotifications();
+  }
+
+  Future<void> _initilizeFirebaseMessaging() async {
+    await Provider.of<FirebaseMessagingService>(context, listen: false).initialize();
   }
 
   Future<void> _checkNotifications() async {

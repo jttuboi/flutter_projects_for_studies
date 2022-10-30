@@ -101,6 +101,10 @@ class NotificationService {
   }
 
   void _onDidReceiveNotificationResponse(NotificationResponse details) {
+    // aqui é bom colocar proteção para o app, nesse caso, como sabemos q existe o redirecionamento para /notificacao
+    // então apenas aceitar esse tipo de açao pós resposta, caso contrario nao deve fazer nada
+    // o motivo é q se vier alguma notificaçao invasora, eles podem tentar acessar qqr outra pagina e se não tiver
+    // restriçao, ele pode conseguir.
     if (details.payload != null && details.payload!.isNotEmpty) {
       Navigator.of(Routes.navigatorKey!.currentContext!).pushNamed(details.payload!);
     }

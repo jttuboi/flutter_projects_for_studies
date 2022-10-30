@@ -540,4 +540,5 @@ flutter 3.3.5
 // https://www.youtube.com/watch?v=OjdGSoDntZQ
 // como utilizar o local notifications no seu projeto
 // https://www.youtube.com/watch?v=ilm89PL6-K8
-
+// como utilizar o push notifications do firebase no seu projeto
+// https://www.youtube.com/watch?v=jV8GsSl76FY
