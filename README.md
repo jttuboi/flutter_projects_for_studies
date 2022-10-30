@@ -524,12 +524,20 @@ https://dev.to/carminezacc/user-authentication-jwt-authorization-with-flutter-an
 ##### Tutorial
 
 
-##  (app39)
+## firebase messaging (app39)
 
 ##### Description
+teste para ver como funciona o firebase messaging e também para ver como implementar o push
 
 ##### Version
+flutter 3.3.5
 
 ##### Date
+30/10/2022
 
 ##### Tutorial
+// como instalar o flutterfire na sua máquina e associar no seu projeto
+// https://www.youtube.com/watch?v=OjdGSoDntZQ
+// como utilizar o local notifications no seu projeto
+// https://www.youtube.com/watch?v=ilm89PL6-K8
+
