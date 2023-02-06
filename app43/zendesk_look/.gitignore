@@ -1,3 +1,6 @@
+lib/dados_importantes.dart
+packages/zendesk_messaging/
+
 # Miscellaneous
 *.class
 *.log

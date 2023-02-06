@@ -10,6 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   zendesk_messaging: ^2.6.0+1
+  # zendesk_messaging:
+  #   path: packages/zendesk_messaging
 
 dev_dependencies:
   flutter_lints: ^2.0.1
