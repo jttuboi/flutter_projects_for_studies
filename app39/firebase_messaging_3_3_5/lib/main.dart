@@ -1,4 +1,7 @@
-// TODO readaptar o projeto pro
+// PARA testar, precisa instalar o firebase_cli e flutterfire
+// cujo ele gera os arquivos google-services.json, firebase_app_id_file.json e firebase_options.dart.
+// esses arquivos são gerados baseado no projeto selecionado do firebase account registrado no firebase_cli.
+
 // o abaixo ele cria o projeto, mas tem q ver como associa com o projeto ja existente ou na conta
 // q vc nao tem acesso
 
@@ -39,10 +42,6 @@ import 'package:firebase_messaging_teste_3_3_5/service/firebase_messaging_servic
 import 'package:firebase_messaging_teste_3_3_5/service/notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-// PARA testar, precisa instalar o firebase_cli e flutterfire
-// cujo ele gera os arquivos google-services.json, firebase_app_id_file.json e firebase_options.dart.
-// esses arquivos são gerados baseado no projeto selecionado do firebase account registrado no firebase_cli.
 
 Future<void> main() async {
   // PRECISA DISSO, tanto pro local notifications quanto pro firebase messaging
