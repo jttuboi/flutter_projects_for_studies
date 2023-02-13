@@ -29,6 +29,16 @@ class NotificationService {
   late FlutterLocalNotificationsPlugin _localNotificationsPlugin;
   late AndroidNotificationDetails _androidNotificationDetails;
 
+  // é chamado no inicio do app
+  Future<void> checkForNotifications() async {
+    final details = await _localNotificationsPlugin.getNotificationAppLaunchDetails();
+    // verifica se tem uma notificaçao
+    if (details != null && details.didNotificationLaunchApp) {
+      // se tiver, abre a notification, nesse caso ele redireciona para página (ver dentro do método)
+      _onDidReceiveNotificationResponse(details.notificationResponse!);
+    }
+  }
+
   // versão que envia na hora
   void showNotification(CustomNotification notification) {
     _localNotificationsPlugin.show(
@@ -60,16 +70,6 @@ class NotificationService {
       androidAllowWhileIdle: true,
       uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
     );
-  }
-
-  // é chamado no inicio do app
-  Future<void> checkForNotifications() async {
-    final details = await _localNotificationsPlugin.getNotificationAppLaunchDetails();
-    // verifica se tem uma notificaçao
-    if (details != null && details.didNotificationLaunchApp) {
-      // se tiver, abre a notification, nesse caso ele redireciona para página (ver dentro do método)
-      _onDidReceiveNotificationResponse(details.notificationResponse!);
-    }
   }
 
   Future<void> _initAndroidNotificationsDetails() async {
