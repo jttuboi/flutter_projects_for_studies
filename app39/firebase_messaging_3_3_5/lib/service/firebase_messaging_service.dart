@@ -21,11 +21,18 @@ class FirebaseMessagingService {
   }
 
   Future<void> _getDeviceFirebaseToken() async {
+    final settings = await FirebaseMessaging.instance.requestPermission();
+    print(settings.authorizationStatus);
+
     // esse token é gerado especificamente para esse device
     // o ideal é que o token seja salvo em algum lugar, mais especificamente no backend,
     // pois assim ao ter esse token, o backend consegue enviar diretamente para esse device
-    final token = await FirebaseMessaging.instance.getToken();
-    print('TOKEENNNNN: $token');
+    try {
+      final token = await FirebaseMessaging.instance.getToken();
+      print('TOKEENNNNN: $token');
+    } catch (e) {
+      print(e);
+    }
   }
 
   // captura a notificação
