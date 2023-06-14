@@ -1,0 +1,27 @@
+name: multiplayer_online
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  bonfire: "2.12.5"
+  flame: "1.7.3" #adicionado apenas para evitar um bug de versão, pois no dia q foi feito esse projeto, o flame foi atualizado para 1.8.1, porém o bonfire não atualizou e há breaking changes.
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/images/maps/
+    - assets/images/player/
+    - assets/images/enemies/
+    - assets/images/abilities/

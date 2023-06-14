@@ -1,0 +1,334 @@
+{
+    "columns": 15,
+    "image": "forest.png",
+    "imageheight": 576,
+    "imagewidth": 240,
+    "margin": 0,
+    "name": "tileset_map",
+    "spacing": 0,
+    "tilecount": 540,
+    "tiledversion": "1.8.4",
+    "tileheight": 16,
+    "tiles": [
+        {
+            "animation": [
+                {
+                    "duration": 100,
+                    "tileid": 17
+                },
+                {
+                    "duration": 100,
+                    "tileid": 122
+                },
+                {
+                    "duration": 100,
+                    "tileid": 227
+                },
+                {
+                    "duration": 100,
+                    "tileid": 332
+                }
+            ],
+            "id": 17,
+            "objectgroup": {
+                "draworder": "index",
+                "id": 2,
+                "name": "",
+                "objects": [
+                    {
+                        "height": 6.75,
+                        "id": 1,
+                        "name": "",
+                        "rotation": 0,
+                        "type": "",
+                        "visible": true,
+                        "width": 16.125,
+                        "x": 0,
+                        "y": 0
+                    }
+                ],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": true,
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "id": 20,
+            "objectgroup": {
+                "draworder": "index",
+                "id": 2,
+                "name": "",
+                "objects": [
+                    {
+                        "height": 3.125,
+                        "id": 1,
+                        "name": "",
+                        "rotation": 0,
+                        "type": "",
+                        "visible": true,
+                        "width": 3.25,
+                        "x": 12.625,
+                        "y": 12.75
+                    }
+                ],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": true,
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "id": 21,
+            "objectgroup": {
+                "draworder": "index",
+                "id": 2,
+                "name": "",
+                "objects": [
+                    {
+                        "height": 3,
+                        "id": 1,
+                        "name": "",
+                        "rotation": 0,
+                        "type": "",
+                        "visible": true,
+                        "width": 3.125,
+                        "x": -0.125,
+                        "y": 13
+                    }
+                ],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": true,
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "animation": [
+                {
+                    "duration": 100,
+                    "tileid": 31
+                },
+                {
+                    "duration": 100,
+                    "tileid": 136
+                },
+                {
+                    "duration": 100,
+                    "tileid": 241
+                },
+                {
+                    "duration": 100,
+                    "tileid": 346
+                }
+            ],
+            "id": 31,
+            "objectgroup": {
+                "draworder": "index",
+                "id": 2,
+                "name": "",
+                "objects": [
+                    {
+                        "height": 16.375,
+                        "id": 1,
+                        "name": "",
+                        "rotation": 0,
+                        "type": "",
+                        "visible": true,
+                        "width": 3,
+                        "x": -0.125,
+                        "y": -0.25
+                    }
+                ],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": true,
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "animation": [
+                {
+                    "duration": 100,
+                    "tileid": 33
+                },
+                {
+                    "duration": 100,
+                    "tileid": 138
+                },
+                {
+                    "duration": 100,
+                    "tileid": 243
+                },
+                {
+                    "duration": 100,
+                    "tileid": 348
+                }
+            ],
+            "id": 33,
+            "objectgroup": {
+                "draworder": "index",
+                "id": 2,
+                "name": "",
+                "objects": [
+                    {
+                        "height": 16.375,
+                        "id": 1,
+                        "name": "",
+                        "rotation": 0,
+                        "type": "",
+                        "visible": true,
+                        "width": 2.875,
+                        "x": 13.125,
+                        "y": -0.125
+                    }
+                ],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": true,
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "animation": [
+                {
+                    "duration": 100,
+                    "tileid": 35
+                },
+                {
+                    "duration": 100,
+                    "tileid": 140
+                },
+                {
+                    "duration": 100,
+                    "tileid": 245
+                },
+                {
+                    "duration": 100,
+                    "tileid": 350
+                }
+            ],
+            "id": 35,
+            "objectgroup": {
+                "draworder": "index",
+                "id": 2,
+                "name": "",
+                "objects": [
+                    {
+                        "height": 7.375,
+                        "id": 1,
+                        "name": "",
+                        "rotation": 0,
+                        "type": "",
+                        "visible": true,
+                        "width": 3.25,
+                        "x": 13.375,
+                        "y": -0.5
+                    }
+                ],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": true,
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "animation": [
+                {
+                    "duration": 100,
+                    "tileid": 36
+                },
+                {
+                    "duration": 100,
+                    "tileid": 141
+                },
+                {
+                    "duration": 100,
+                    "tileid": 246
+                },
+                {
+                    "duration": 100,
+                    "tileid": 351
+                }
+            ],
+            "id": 36,
+            "objectgroup": {
+                "draworder": "index",
+                "id": 2,
+                "name": "",
+                "objects": [
+                    {
+                        "height": 7.25,
+                        "id": 1,
+                        "name": "",
+                        "rotation": 0,
+                        "type": "",
+                        "visible": true,
+                        "width": 2.875,
+                        "x": 0.125,
+                        "y": -0.25
+                    }
+                ],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": true,
+                "x": 0,
+                "y": 0
+            }
+        },
+        {
+            "animation": [
+                {
+                    "duration": 100,
+                    "tileid": 47
+                },
+                {
+                    "duration": 100,
+                    "tileid": 152
+                },
+                {
+                    "duration": 100,
+                    "tileid": 257
+                },
+                {
+                    "duration": 100,
+                    "tileid": 362
+                }
+            ],
+            "id": 47,
+            "objectgroup": {
+                "draworder": "index",
+                "id": 2,
+                "name": "",
+                "objects": [
+                    {
+                        "height": 2.875,
+                        "id": 1,
+                        "name": "",
+                        "rotation": 0,
+                        "type": "",
+                        "visible": true,
+                        "width": 15.875,
+                        "x": 0.125,
+                        "y": 13
+                    }
+                ],
+                "opacity": 1,
+                "type": "objectgroup",
+                "visible": true,
+                "x": 0,
+                "y": 0
+            }
+        }
+    ],
+    "tilewidth": 16,
+    "transparentcolor": "#ffffff",
+    "type": "tileset",
+    "version": "1.8"
+}
