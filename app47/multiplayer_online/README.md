@@ -12,8 +12,10 @@ Para criação do jogo (sem multiplayer)
 - https://www.youtube.com/watch?v=4UDpScYTwjM
 - https://www.youtube.com/watch?v=P9FhgJPglIE
 
-Para criação do webSocket
-- 
-
 Para criação do multiplayer
-- 
+- https://www.youtube.com/watch?v=BoBtL4CIkJA
+- https://www.youtube.com/watch?v=VXRx3N5M4Y0
+- https://www.youtube.com/watch?v=-gFBKqBxYPg
+
+Projeto do servidor websocket simples utilizado no tutorial
+- https://github.com/Pub-Dev/Lesson-Nodejs-WebSocket

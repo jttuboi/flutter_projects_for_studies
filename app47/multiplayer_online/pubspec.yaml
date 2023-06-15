@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
   bonfire: "2.12.5"
   flame: "1.7.3" #adicionado apenas para evitar um bug de versão, pois no dia q foi feito esse projeto, o flame foi atualizado para 1.8.1, porém o bonfire não atualizou e há breaking changes.
+  web_socket_channel: ^2.4.0
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:
