@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/nav2_john_ryan.iml" filepath="$PROJECT_DIR$/nav2_john_ryan.iml" />
-      <module fileurl="file://$PROJECT_DIR$/android/nav2_john_ryan_android.iml" filepath="$PROJECT_DIR$/android/nav2_john_ryan_android.iml" />
-    </modules>
-  </component>
-</project>

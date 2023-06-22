@@ -1,3 +1,4 @@
+#
 
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,archlinuxpackages,macos,flutter,dart,android,androidstudio,java,kotlin,xcode,xcodeinjection,swift,objective-c,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,archlinuxpackages,macos,flutter,dart,android,androidstudio,java,kotlin,xcode,xcodeinjection,swift,objective-c,visualstudiocode
@@ -16,7 +17,7 @@
 *.class
 
 # Generated files
-bin/*
+#bin/*
 gen/
 out/
 #  Uncomment the following line in case you need and you don't have the release build type files in your app
