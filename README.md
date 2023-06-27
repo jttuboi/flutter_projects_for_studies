@@ -256,3 +256,8 @@ Para criação do multiplayer
 
 Projeto do servidor websocket simples utilizado no tutorial
 - https://github.com/Pub-Dev/Lesson-Nodejs-WebSocket
+
+## 048 - Weather App (flutter 3.10.5) (27/06/2023)
+copy app weather
+
+https://www.youtube.com/watch?v=yZG_S3P7Ng4
