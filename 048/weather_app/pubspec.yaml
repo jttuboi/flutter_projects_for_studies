@@ -9,6 +9,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  geocoding: ^2.1.0
+  geolocator: ^9.0.2
+  get: ^4.6.5
+  http: ^1.1.0
+  intl: ^0.18.1
+  sleek_circular_slider: ^2.0.1
 
 
 
