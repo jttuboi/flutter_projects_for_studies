@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:weather_app/models/weather_data_current.dart';
 import 'package:weather_app/utils/utils.dart';
 
-class CurrentWeather extends StatelessWidget {
-  const CurrentWeather({required this.weatherDataCurrent, super.key});
+class CurrentWeatherTile extends StatelessWidget {
+  const CurrentWeatherTile({required this.weatherDataCurrent, super.key});
 
   final WeatherDataCurrent weatherDataCurrent;
 

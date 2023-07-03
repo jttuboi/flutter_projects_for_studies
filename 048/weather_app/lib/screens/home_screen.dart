@@ -25,8 +25,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.vertical,
                     children: [
                       const SizedBox(height: 20),
-                      const Header(),
-                      CurrentWeather(weatherDataCurrent: _globalController.getWeatherData().getCurrentWeather()),
+                      const HeaderTile(),
+                      CurrentWeatherTile(weatherDataCurrent: _globalController.getWeatherData().getCurrentWeather()),
                     ],
                   ),
                 ),

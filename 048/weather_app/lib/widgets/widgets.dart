@@ -1,2 +1,2 @@
-export 'current_weather.dart';
-export 'header.dart';
+export 'current_weather_tile.dart';
+export 'header_tile.dart';
