@@ -7,21 +7,29 @@ class GlobalController extends GetxController {
   final RxBool _isLoading = true.obs;
   final RxDouble _latitude = 0.0.obs;
   final RxDouble _longitude = 0.0.obs;
+  final RxInt _currentIndex = 0.obs;
 
   final _weatherData = const WeatherData().obs;
-
-  RxBool checkLoading() => _isLoading;
-  RxDouble getLatitude() => _latitude;
-  RxDouble getLongitude() => _longitude;
-  WeatherData getWeatherData() => _weatherData.value;
 
   @override
   Future<void> onInit() async {
     if (_isLoading.isTrue) {
       await getLocation();
+    } else {
+      getIndex();
     }
     super.onInit();
   }
+
+  RxBool checkLoading() => _isLoading;
+
+  RxDouble getLatitude() => _latitude;
+
+  RxDouble getLongitude() => _longitude;
+
+  RxInt getIndex() => _currentIndex;
+
+  WeatherData getWeatherData() => _weatherData.value;
 
   Future<void> getLocation() async {
     bool isLocationEnabled;
