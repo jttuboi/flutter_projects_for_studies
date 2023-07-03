@@ -4,14 +4,14 @@ import 'package:get/instance_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:weather_app/controllers/global_controller.dart';
 
-class HeaderWidget extends StatefulWidget {
-  const HeaderWidget({super.key});
+class Header extends StatefulWidget {
+  const Header({super.key});
 
   @override
-  State<HeaderWidget> createState() => _HeaderWidgetState();
+  State<Header> createState() => _HeaderState();
 }
 
-class _HeaderWidgetState extends State<HeaderWidget> {
+class _HeaderState extends State<Header> {
   final _globalController = Get.put(GlobalController(), permanent: true);
   String _city = '';
   final String _date = DateFormat('yMMMMd').format(DateTime.now());

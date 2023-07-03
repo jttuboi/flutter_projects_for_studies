@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:weather_app/models/weather_data.dart';
 import 'package:weather_app/models/weather_data_current.dart';
-import 'package:weather_app/services/api_key.dart';
+import 'package:weather_app/utils/utils.dart';
 
 class FetchWeatherAPI {
   WeatherData? weatherData;
@@ -17,8 +17,4 @@ class FetchWeatherAPI {
 
     return weatherData!;
   }
-}
-
-String apiUrl(double latitude, double longitude) {
-  return 'https://api.openweathermap.org/data/3.0/onecall?lat=$latitude&lon=$longitude&appid=$apiKey&units=metric&exclude=minutely';
 }
