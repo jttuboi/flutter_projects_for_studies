@@ -29,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       CurrentWeatherTile(weatherDataCurrent: _globalController.getWeatherData().getCurrentWeather()),
                       const SizedBox(height: 20),
                       HourlyTile(weatherDataHourly: _globalController.getWeatherData().getHourlyWeather()),
+                      DailyForecastTile(weatherDataDaily: _globalController.getWeatherData().getDailyWeather()),
                     ],
                   ),
                 ),
