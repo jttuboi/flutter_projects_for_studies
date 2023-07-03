@@ -20,12 +20,15 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Obx(
           () => _globalController.checkLoading().isTrue
               ? const Center(child: CircularProgressIndicator())
-              : ListView(
-                  scrollDirection: Axis.vertical,
-                  children: const [
-                    SizedBox(height: 20),
-                    HeaderWidget(),
-                  ],
+              : Center(
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      const SizedBox(height: 20),
+                      const Header(),
+                      CurrentWeather(weatherDataCurrent: _globalController.getWeatherData().getCurrentWeather()),
+                    ],
+                  ),
                 ),
         ),
       ),

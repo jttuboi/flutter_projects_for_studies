@@ -13,6 +13,7 @@ class GlobalController extends GetxController {
   RxBool checkLoading() => _isLoading;
   RxDouble getLatitude() => _latitude;
   RxDouble getLongitude() => _longitude;
+  WeatherData getWeatherData() => _weatherData.value;
 
   @override
   Future<void> onInit() async {
