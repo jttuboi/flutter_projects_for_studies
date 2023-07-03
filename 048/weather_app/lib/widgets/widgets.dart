@@ -1,3 +1,4 @@
+export 'comfort_level_tile.dart';
 export 'current_weather_tile.dart';
 export 'daily_forecast_tile.dart';
 export 'header_tile.dart';

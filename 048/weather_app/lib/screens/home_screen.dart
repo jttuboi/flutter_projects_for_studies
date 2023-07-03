@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:weather_app/controllers/global_controller.dart';
+import 'package:weather_app/utils/utils.dart';
 import 'package:weather_app/widgets/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,7 +20,12 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SafeArea(
         child: Obx(
           () => _globalController.checkLoading().isTrue
-              ? const Center(child: CircularProgressIndicator())
+              ? Center(
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Image.asset('assets/images/icons/clouds.png', height: 200, width: 200),
+                    const CircularProgressIndicator(),
+                  ]),
+                )
               : Center(
                   child: ListView(
                     scrollDirection: Axis.vertical,
@@ -30,6 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(height: 20),
                       HourlyTile(weatherDataHourly: _globalController.getWeatherData().getHourlyWeather()),
                       DailyForecastTile(weatherDataDaily: _globalController.getWeatherData().getDailyWeather()),
+                      Container(height: 1, color: UColors.dividerLine),
+                      const SizedBox(height: 10),
+                      ComfortLevelTile(weatherDataCurrent: _globalController.getWeatherData().getCurrentWeather()),
                     ],
                   ),
                 ),
