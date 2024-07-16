@@ -2,6 +2,9 @@
 
 import 'dart:async';
 
+import '../fake/connection.dart';
+import '../fake/feed.dart';
+import '../fake/rethinkdb.dart';
 import '../models/message.dart';
 import '../models/user.dart';
 import 'encryption_service_interface.dart';
@@ -14,7 +17,7 @@ class MessageService implements IMessageService {
   final Rethinkdb r;
   final IEncryptionService _encryptionService;
 
-  StreamSubscription _changeFeed;
+  StreamSubscription? _changeFeed;
   final _controller = StreamController<Message>.broadcast();
 
   @override
@@ -39,7 +42,7 @@ class MessageService implements IMessageService {
 
   @override
   Future<void> dispose() async {
-    await _changeFeed.cancel();
+    await _changeFeed?.cancel();
     await _controller.close();
   }
 

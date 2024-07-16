@@ -1,5 +1,7 @@
 // ignore_for_file: unnecessary_lambdas, prefer_final_locals, omit_local_variable_types
 
+import '../fake/connection.dart';
+import '../fake/rethinkdb.dart';
 import '../models/user.dart';
 import 'user_service_interface.dart';
 
@@ -12,7 +14,7 @@ class UserService implements IUserService {
   @override
   Future<List<User>> online() async {
     // recupera todos usuários ativos
-    Cursor users = await r.table('users').filter({'active': true}).run(_connection);
+    final users = await r.table('users').filter({'active': true}).run(_connection);
 
     // retorna a lista
     final userList = await users.toList();
@@ -31,7 +33,7 @@ class UserService implements IUserService {
     }).run(_connection);
 
     // retorna o usuário salvo
-    return User.fromMap(result['changes'].first['new_val']);
+    return User.fromMap(result['changes'].first['new_val'])!;
   }
 
   @override

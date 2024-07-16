@@ -1,9 +1,10 @@
+import 'package:chat/fake/encrypter.dart';
 import 'package:chat/services/encryption_service.dart';
 import 'package:chat/services/encryption_service_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  IEncryptionService sut;
+  late IEncryptionService sut;
 
   setUp(() {
     final encrypter = Encrypter(AES(Key.fromLength(32)));

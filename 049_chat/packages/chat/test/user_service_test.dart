@@ -1,12 +1,17 @@
 // ignore_for_file: prefer_final_locals, omit_local_variable_types
 
+import 'package:chat/fake/connection.dart';
+import 'package:chat/fake/rethinkdb.dart';
 import 'package:chat/models/user.dart';
+import 'package:chat/services/user_service.dart';
 import 'package:flutter_test/flutter_test.dart';
+
+import 'helpers.dart';
 
 void main() {
   Rethinkdb r = Rethinkdb();
-  Connection connection;
-  UserService sut;
+  late Connection connection;
+  late UserService sut;
 
   setUp(() async {
     connection = await r.connect(host: '127.0.0.1', port: 28015);
@@ -24,7 +29,7 @@ void main() {
       username: 'test',
       photoUrl: 'url',
       active: true,
-      lastseen: DateTime.now(),
+      lastSeen: DateTime.now(),
     );
 
     final userWithId = await sut.connect(user);
@@ -37,7 +42,7 @@ void main() {
       username: 'test',
       photoUrl: 'url',
       active: true,
-      lastseen: DateTime.now(),
+      lastSeen: DateTime.now(),
     );
 
     await sut.connect(user);

@@ -1,5 +1,6 @@
-import 'package:encrypt/encrypt.dart';
+// import 'package:encrypt/encrypt.dart';
 
+import '../fake/encrypter.dart';
 import 'encryption_service_interface.dart';
 
 class EncryptionService implements IEncryptionService {
