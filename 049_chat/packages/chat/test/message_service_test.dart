@@ -2,6 +2,8 @@
 
 import 'package:chat/models/message.dart';
 import 'package:chat/models/user.dart';
+import 'package:chat/services/encryption_service.dart';
+import 'package:chat/services/message_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -11,12 +13,15 @@ void main() {
 
   setUp(() async {
     connection = await r.connect(host: '127.0.0.1', port: 28015);
+
+    final encryption = EncryptionService(Encrypter(AES(Key.fromLenth(32))));
+
     await createDb(r, connection);
-    sut = MessageService(r, connection);
+    sut = MessageService(r, connection, encryption);
   });
 
   tearDown(() async {
-    sut.dispose();
+    await sut.dispose();
     await cleanDb(r, connection);
   });
 
@@ -46,10 +51,13 @@ void main() {
   });
 
   test('successfully subscribe and receive messages', () async {
+    const contents = 'this is a message';
+
     sut.messages(activeUser: user2).listen(
           expectAsync1((Message message) {
             expect(message.to, user2!.id);
             expect(message.id, isNotEmpty);
+            expect(message.contents, contents);
           }, count: 2),
         );
 
@@ -58,7 +66,7 @@ void main() {
       from: user.id,
       to: user2.id,
       timestamp: DateTime.now(),
-      contents: 'this is a message',
+      contents: contents,
     );
 
     Message secondMessage = Message(
@@ -66,7 +74,7 @@ void main() {
       from: user.id,
       to: user2.id,
       timestamp: DateTime.now(),
-      contents: 'this is another message',
+      contents: contents,
     );
 
     await sut.send(message);

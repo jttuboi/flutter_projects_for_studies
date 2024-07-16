@@ -4,21 +4,27 @@ import 'dart:async';
 
 import '../models/message.dart';
 import '../models/user.dart';
+import 'encryption_service_interface.dart';
 import 'message_service_interface.dart';
 
 class MessageService implements IMessageService {
-  MessageService(this.r, this._connection);
+  MessageService(this.r, this._connection, this._encryptionService);
 
   final Connection _connection;
   final Rethinkdb r;
-  StreamSubscription _changeFeed;
+  final IEncryptionService _encryptionService;
 
+  StreamSubscription _changeFeed;
   final _controller = StreamController<Message>.broadcast();
 
   @override
   Future<bool> send(Message message) async {
+    // converte em map
+    var data = message.toMap();
+    data['contents'] = _encryptionService.encrypt(message.contents);
+
     // adiciona a msg na base de dados
-    Map record = await r.table('messages').insert(message.toMap()).run(_connection);
+    Map record = await r.table('messages').insert(data).run(_connection);
 
     // retorna true se foi inserido
     return record['inserted'] == 1;
@@ -53,8 +59,12 @@ class MessageService implements IMessageService {
         .listen((event) {
           event
               .forEach((feedData) {
-                final message = Message.fromMap(feedData['new_val']);
-                if (message == null) return null;
+                var data = feedData['new_val'];
+                if (data == null) return null;
+
+                // converte em message
+                data['contents'] = _encryptionService.decrypt(data['contents']);
+                final message = Message.fromMap(data)!;
 
                 // se existe mensagem, então envia para quem estiver subscrito
                 _controller.sink.add(message);

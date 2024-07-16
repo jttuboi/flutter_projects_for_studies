@@ -11,8 +11,10 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  # encrypt:
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
+  # rethinkdb_dart:
 
 flutter:
