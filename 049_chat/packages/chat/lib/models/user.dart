@@ -1,25 +1,24 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 class User {
   User({
     required this.id,
     required this.username,
     required this.photoUrl,
     required this.active,
-    required this.lastseen,
+    required this.lastSeen,
   });
 
   String? id;
   final String username;
   final String photoUrl;
   final bool active;
-  final DateTime lastseen;
+  final DateTime lastSeen;
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'username': username,
       'photo_url': photoUrl,
       'active': active,
-      'last_seen': lastseen.toIso8601String(),
+      'last_seen': lastSeen.toIso8601String(),
     };
   }
 
@@ -31,7 +30,7 @@ class User {
       username: map['username'] as String,
       photoUrl: map['photo_url'] as String,
       active: map['active'] as bool,
-      lastseen: DateTime.parse(map['last_seen'] as String),
+      lastSeen: DateTime.parse(map['last_seen'] as String),
     );
   }
 }

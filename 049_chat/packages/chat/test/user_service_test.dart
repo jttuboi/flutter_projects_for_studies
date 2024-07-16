@@ -1,47 +1,49 @@
-// import 'package:chat/models/user.dart';
-// import 'package:flutter_test/flutter_test.dart';
+// ignore_for_file: prefer_final_locals, omit_local_variable_types
 
-// void main() {
-//   Rethinkdb r = Rethinkdb();
-//   Connection connection;
-//   UserService sut;
+import 'package:chat/models/user.dart';
+import 'package:flutter_test/flutter_test.dart';
 
-//   setUp(() async {
-//     connection = await r.connect(host: '127.0.0.1', port: 28015);
-//     await createDb(r, connection);
-//     sut = UserService(r, connection);
-//   });
+void main() {
+  Rethinkdb r = Rethinkdb();
+  Connection connection;
+  UserService sut;
 
-//   tearDown(() async {
-//     await cleanDb(r, connection);
-//   });
+  setUp(() async {
+    connection = await r.connect(host: '127.0.0.1', port: 28015);
+    await createDb(r, connection);
+    sut = UserService(r, connection);
+  });
 
-//   test('creates a new user document in database', () async {
-//     final user = User(
-//       id: '', // não precisa
-//       username: 'test',
-//       photoUrl: 'url',
-//       active: true,
-//       lastseen: DateTime.now(),
-//     );
+  tearDown(() async {
+    await cleanDb(r, connection);
+  });
 
-//     final userWithId = await sut.connect(user);
-//     expect(userWithId.id, isNotEmpty);
-//   });
+  test('creates a new user document in database', () async {
+    final user = User(
+      id: '', // não precisa
+      username: 'test',
+      photoUrl: 'url',
+      active: true,
+      lastseen: DateTime.now(),
+    );
 
-//   test('get online users', () async {
-//     final user = User(
-//       id: '', // não precisa
-//       username: 'test',
-//       photoUrl: 'url',
-//       active: true,
-//       lastseen: DateTime.now(),
-//     );
+    final userWithId = await sut.connect(user);
+    expect(userWithId.id, isNotEmpty);
+  });
 
-//     await sut.connect(user);
+  test('get online users', () async {
+    final user = User(
+      id: '', // não precisa
+      username: 'test',
+      photoUrl: 'url',
+      active: true,
+      lastseen: DateTime.now(),
+    );
 
-//     final users = await sut.online();
+    await sut.connect(user);
 
-//     expect(users.length, 1);
-//   });
-// }
+    final users = await sut.online();
+
+    expect(users.length, 1);
+  });
+}
