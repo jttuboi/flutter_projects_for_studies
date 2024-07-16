@@ -17,9 +17,9 @@ class User {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'username': username,
-      'photoUrl': photoUrl,
+      'photo_url': photoUrl,
       'active': active,
-      'lastseen': lastseen.toIso8601String(),
+      'last_seen': lastseen.toIso8601String(),
     };
   }
 
@@ -29,9 +29,9 @@ class User {
     return User(
       id: map['id'] as String,
       username: map['username'] as String,
-      photoUrl: map['photoUrl'] as String,
+      photoUrl: map['photo_url'] as String,
       active: map['active'] as bool,
-      lastseen: DateTime.parse(map['lastseen'] as String),
+      lastseen: DateTime.parse(map['last_seen'] as String),
     );
   }
 }
