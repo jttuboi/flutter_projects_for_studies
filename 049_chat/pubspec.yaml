@@ -1,4 +1,4 @@
-name: chat
+name: chat_app
 description: "A new Flutter project."
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
@@ -11,6 +11,8 @@ dependencies:
     sdk: flutter
 
 dev_dependencies:
+  chat:
+    path: ./packages/chat
   flutter_lints: ^4.0.0
   flutter_test:
     sdk: flutter
