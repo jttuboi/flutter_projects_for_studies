@@ -7,10 +7,13 @@ environment:
   sdk: '>=3.3.4 <4.0.0'
 
 dependencies:
+  bloc: ^8.1.4
   chat:
     path: packages/chat
+  equatable: ^2.0.5
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.6
   sqflite: ^2.3.3+1
 
 dev_dependencies:
