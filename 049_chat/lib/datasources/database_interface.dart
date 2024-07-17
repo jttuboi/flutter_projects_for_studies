@@ -8,7 +8,7 @@ abstract class IDatabase {
 
   Future<void> addMessage(LocalMessage message);
 
-  Future<Chat> findChat(String chatId);
+  Future<Chat?> findChat(String chatId);
 
   Future<List<Chat>> findChats();
 

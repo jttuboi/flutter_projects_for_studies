@@ -31,9 +31,11 @@ class SqfliteDatabase implements IDatabase {
   }
 
   @override
-  Future<Chat> findChat(String chatId) async {
-    return await _db.transaction((txn) async {
+  Future<Chat?> findChat(String chatId) async {
+    return _db.transaction((txn) async {
       final listOfChatMaps = await txn.query('chats', where: 'id = ?', whereArgs: [chatId]);
+
+      if (listOfChatMaps.isEmpty) return null;
 
       final unread = Sqflite.firstIntValue(await txn.rawQuery(
         'SELECT COUNT(*) FROM MESSAGES WHERE chat_id = ? AND receipt = ?',
@@ -68,6 +70,8 @@ class SqfliteDatabase implements IDatabase {
         ON messages.chat_id = latest_messages.chat_id
         AND messages.created_at = latest_messages.created_at
       ''');
+
+      if (chatsWithLatestMessage.isEmpty) return [];
 
       final chatsWithUnreadMessages = await txn.rawQuery('''
         SELECT chat_id, count(*) as unread
