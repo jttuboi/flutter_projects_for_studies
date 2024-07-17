@@ -50,8 +50,6 @@ void main() {
   });
 
   test('successfully subscribe and receive typing events', () async {
-    const contents = 'this is a message';
-
     sut.subscribe(user2, [user.id!]).listen(
       expectAsync1((TypingEvent event) {
         expect(event.from, user.id);
