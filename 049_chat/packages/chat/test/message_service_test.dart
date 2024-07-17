@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_final_locals, omit_local_variable_types, avoid_types_on_closure_parameters
 
-import 'package:chat/fake/connection.dart';
-import 'package:chat/fake/encrypter.dart';
-import 'package:chat/fake/rethinkdb.dart';
-import 'package:chat/models/message.dart';
-import 'package:chat/models/user.dart';
-import 'package:chat/services/encryption_service.dart';
-import 'package:chat/services/message_service.dart';
+import 'package:chat/src/entities/message.dart';
+import 'package:chat/src/entities/user.dart';
+import 'package:chat/src/fake/connection.dart';
+import 'package:chat/src/fake/encrypter.dart';
+import 'package:chat/src/fake/rethinkdb.dart';
+import 'package:chat/src/services/encryption_service.dart';
+import 'package:chat/src/services/message_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'helpers.dart';

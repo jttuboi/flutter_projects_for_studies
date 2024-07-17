@@ -1,6 +1,6 @@
-import 'package:chat/fake/encrypter.dart';
-import 'package:chat/services/encryption_service.dart';
-import 'package:chat/services/encryption_service_interface.dart';
+import 'package:chat/src/fake/encrypter.dart';
+import 'package:chat/src/services/encryption_service.dart';
+import 'package:chat/src/services/encryption_service_interface.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

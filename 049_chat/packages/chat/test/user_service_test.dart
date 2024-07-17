@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_final_locals, omit_local_variable_types
 
-import 'package:chat/fake/connection.dart';
-import 'package:chat/fake/rethinkdb.dart';
-import 'package:chat/models/user.dart';
-import 'package:chat/services/user_service.dart';
+import 'package:chat/src/entities/user.dart';
+import 'package:chat/src/fake/connection.dart';
+import 'package:chat/src/fake/rethinkdb.dart';
+import 'package:chat/src/services/user_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'helpers.dart';

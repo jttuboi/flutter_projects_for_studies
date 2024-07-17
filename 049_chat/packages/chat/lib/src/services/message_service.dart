@@ -2,26 +2,29 @@
 
 import 'dart:async';
 
+import '../entities/message.dart';
+import '../entities/user.dart';
 import '../fake/connection.dart';
 import '../fake/feed.dart';
 import '../fake/rethinkdb.dart';
-import '../models/receipt.dart';
-import '../models/user.dart';
-import 'receipt_service_interface.dart';
+import 'encryption_service_interface.dart';
+import 'message_service_interface.dart';
 
-class ReceiptService implements IReceiptService {
-  ReceiptService(this.r, this._connection);
+class MessageService implements IMessageService {
+  MessageService(this.r, this._connection, this._encryptionService);
 
   final Connection _connection;
   final Rethinkdb r;
+  final IEncryptionService _encryptionService;
 
   StreamSubscription? _changeFeed;
-  final _controller = StreamController<Receipt>.broadcast();
+  final _controller = StreamController<Message>.broadcast();
 
   @override
-  Future<bool> send(Receipt receipt) async {
+  Future<bool> send(Message message) async {
     // converte em map
-    var data = receipt.toMap();
+    var data = message.toMap();
+    data['contents'] = _encryptionService.encrypt(message.contents);
 
     // adiciona a msg na base de dados
     Map record = await r.table('messages').insert(data).run(_connection);
@@ -31,9 +34,9 @@ class ReceiptService implements IReceiptService {
   }
 
   @override
-  Stream<Receipt> receipts(User user) {
+  Stream<Message> messages({required User activeUser}) {
     // cria uma conexão com quem quiser subscrever, passando o usuário
-    _startReceivingReceipts(user);
+    _startReceivingMessages(activeUser);
     return _controller.stream;
   }
 
@@ -43,12 +46,12 @@ class ReceiptService implements IReceiptService {
     await _controller.close();
   }
 
-  void _startReceivingReceipts(User user) {
+  void _startReceivingMessages(User user) {
     // cria uma subscrição
     _changeFeed = r
-        .table('receipts')
+        .table('messages')
         .filter({
-          'recipient': user.id,
+          'to': user.id,
         })
         .changes({
           'include_initial': true,
@@ -63,13 +66,21 @@ class ReceiptService implements IReceiptService {
                 if (data == null) return null;
 
                 // converte em message
-                final receipt = Receipt.fromMap(data)!;
+                data['contents'] = _encryptionService.decrypt(data['contents']);
+                final message = Message.fromMap(data)!;
 
                 // se existe mensagem, então envia para quem estiver subscrito
-                _controller.sink.add(receipt);
+                _controller.sink.add(message);
+
+                // deleta as mensagens já enviadas
+                _removeDeliveredMessage(message);
               })
               .catchError((error) => print(error))
               .onError((error, stackTrace) => print(error));
         });
+  }
+
+  void _removeDeliveredMessage(Message message) {
+    r.table('messages').get(message.id).delete({'return_changes': false}).run(_connection);
   }
 }

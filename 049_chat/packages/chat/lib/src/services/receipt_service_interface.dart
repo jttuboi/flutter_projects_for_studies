@@ -1,18 +1,18 @@
 import 'dart:async';
 
-import '../models/message.dart';
-import '../models/user.dart';
+import '../entities/receipt.dart';
+import '../entities/user.dart';
 
-abstract class IMessageService {
-  const IMessageService();
+abstract class IReceiptService {
+  const IReceiptService();
 
   /// Envia mensagem para quem estiver subscrito no serviço. Retorna true se enviado com sucesso
   ///
-  Future<bool> send(Message message);
+  Future<bool> send(Receipt receipt);
 
   /// Subscreve no serviço passando o usuário
   ///
-  Stream<Message> messages({required User activeUser});
+  Stream<Receipt> receipts(User user);
 
   /// Desconecta
   ///

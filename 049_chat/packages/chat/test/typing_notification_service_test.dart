@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_final_locals, omit_local_variable_types, avoid_types_on_closure_parameters
 
-import 'package:chat/fake/connection.dart';
-import 'package:chat/fake/rethinkdb.dart';
-import 'package:chat/models/typing_event.dart';
-import 'package:chat/models/user.dart';
-import 'package:chat/services/typing_notification_service.dart';
+import 'package:chat/src/entities/typing_event.dart';
+import 'package:chat/src/entities/user.dart';
+import 'package:chat/src/fake/connection.dart';
+import 'package:chat/src/fake/rethinkdb.dart';
+import 'package:chat/src/services/typing_notification_service.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'helpers.dart';

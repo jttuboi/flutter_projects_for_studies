@@ -1,5 +1,5 @@
-import 'package:chat/fake/connection.dart';
-import 'package:chat/fake/rethinkdb.dart';
+import 'package:chat/src/fake/connection.dart';
+import 'package:chat/src/fake/rethinkdb.dart';
 // import 'package:rethinkdb_dart/rethinkdb_dart.dart';
 
 Future<void> createDb(Rethinkdb r, Connection connection) async {

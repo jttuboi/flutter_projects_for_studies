@@ -1,8 +1,8 @@
 // ignore_for_file: unnecessary_lambdas, prefer_final_locals, omit_local_variable_types
 
+import '../entities/user.dart';
 import '../fake/connection.dart';
 import '../fake/rethinkdb.dart';
-import '../models/user.dart';
 import 'user_service_interface.dart';
 
 class UserService implements IUserService {

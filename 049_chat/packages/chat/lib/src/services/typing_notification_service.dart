@@ -2,11 +2,11 @@
 
 import 'dart:async';
 
+import '../entities/typing_event.dart';
+import '../entities/user.dart';
 import '../fake/connection.dart';
 import '../fake/feed.dart';
 import '../fake/rethinkdb.dart';
-import '../models/typing_event.dart';
-import '../models/user.dart';
 import 'typing_notification_service_interface.dart';
 
 class TypingNotificationService implements ITypingNotificationService {

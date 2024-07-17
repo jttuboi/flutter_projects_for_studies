@@ -1,5 +1,5 @@
-import '../models/typing_event.dart';
-import '../models/user.dart';
+import '../entities/typing_event.dart';
+import '../entities/user.dart';
 
 abstract class ITypingNotificationService {
   const ITypingNotificationService();
