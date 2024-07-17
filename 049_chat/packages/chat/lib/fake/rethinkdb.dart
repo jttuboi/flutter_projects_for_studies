@@ -3,7 +3,7 @@ import 'connection.dart';
 class Rethinkdb {
   Rethinkdb();
 
-  Future<Connection> connect({required String host, required int port}) async {
+  Future<Connection> connect({String? host, int? port}) async {
     return Connection();
   }
 
@@ -11,11 +11,19 @@ class Rethinkdb {
     return this;
   }
 
+  Rethinkdb expr(List<String> _) {
+    return this;
+  }
+
+  Rethinkdb contains(dynamic _) {
+    return this;
+  }
+
   Rethinkdb insert(Map _, [Map? __]) {
     return this;
   }
 
-  Rethinkdb filter(Map _) {
+  Rethinkdb filter(dynamic _) {
     return this;
   }
 
