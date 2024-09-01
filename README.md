@@ -273,4 +273,65 @@ signals package and live cells package
 https://pub.dev/packages/signals
 https://pub.dev/packages/live_cells
 
-teste
+## [051] Follow my tracks (flutter ?) (20/10/2021)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+In this app, you can create, edit, delete tracks. Selecting a track, it's showing in the main map.
+
+This project uses bloc pattern and google maps package.
+
+## [052] Person form (flutter ?) (11/11/2021)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+In this app, you can register your data (name, birthday, gender, address and picture) in the Firebase.
+
+This project uses bloc pattern, camera and firebase(cloud firestore for data and storage for picture).
+
+## [053] Tic tac toe (flutter ?) (12/11/2021)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+This is a tic tac toe game.
+
+This project uses a MVC architecture pattern, unit test and integration test.
+
+## [054] Todos (flutter ?) (14/11/2021)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+This is a simple todo list based on https://bloclibrary.dev/#/fluttertodostutorial. I only used the GIF to reference and build the app using what I learnt. In other project, I copy to look the diferences of them.
+
+This project uses Bloc pattern.
+
+## [055] Products (flutter ?) (10/01/2022)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+This app shows a list of products and you can remove or edit a product. The data is stored in Firebase.
+
+This project uses bloc pattern, image_picker and firebase (cloud firestore for data and storage for pictures).
+
+## [056] Shot text (flutter ?) (22/08/2022)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+Tentativa de criação de um projeto de tirar uma foto e o app reconhecer o que está escrito e passar para o copy diretamente.
+
+## [057] Offline CDRM (flutter ?) (15/05/2023)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+This app shows offline data in some pages to test offline.
+
+It's used flutter modular structure to control routes and independency injection and bloc to control states.
+
+## [058] Contact List (flutter ?) (31/05/2023)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+Teste de sincronização de uma lista de contatos entre o servidor e o app.
+
+## [059] Suggest words (flutter ?) (08/10/2023)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+App apenas para sugerir novas palavras de tempos em tempos.
+
+## [060] Change theme (flutter ?) (20/12/2023)
+Projeto antigo mergeado de outro projeto para melhor organização da minha conta no github.
+
+Criado para testar nova maneira de controlar o theme sem depender o ThemeData do MaterialApp.
+

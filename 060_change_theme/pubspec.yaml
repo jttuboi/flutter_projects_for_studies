@@ -1,0 +1,17 @@
+name: teste_tema_independente
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.1.1
+  get_it: ^7.6.4
+
+flutter:
+  uses-material-design: true

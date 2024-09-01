@@ -1,0 +1,1 @@
+class OfflineException implements Exception {}

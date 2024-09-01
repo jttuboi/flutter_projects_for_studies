@@ -1,0 +1,30 @@
+name: follow_my_tracks
+description: A new Flutter project.
+publish_to: 'none'
+version: 0.0.1+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  dio: ^4.0.0
+  equatable: ^2.0.3
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^7.3.1
+  flutter_polyline_points: ^1.0.0
+  geocoding: ^2.0.1
+  google_maps_flutter: ^2.0.11
+  location: ^4.3.0
+
+dev_dependencies:
+  bloc_test: ^8.3.0
+  flutter_lints: ^1.0.4
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
